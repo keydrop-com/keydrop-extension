@@ -8,7 +8,7 @@ const theme = {
     black: {
       DEFAULT: '#000000',
     },
-    grey: {
+    gray: {
       DEFAULT: '#737373',
       50: '#fafafa',
       100: '#f5f5f5',

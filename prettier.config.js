@@ -6,7 +6,7 @@ const config = {
   tabWidth: 2,
   printWidth: 100,
   endOfLine: 'auto',
-  tailwindConfig: 'tailwind.config.ts',
+  tailwindConfig: 'tailwind.config.js',
   plugins: ['prettier-plugin-tailwindcss'],
   pluginSearchDirs: false,
   importOrder: ['^@core/(.*)$', '^@server/(.*)$', '^@ui/(.*)$', '^[./]'],
