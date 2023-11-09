@@ -8,7 +8,7 @@ export const INIT_STATE: AppState = {
   userProfile: { userName: '', id: '' },
   appData: INIT_APP_DATA,
   loggedIn: false,
-  activeView: ActiveView.userProfile,
+  activeView: ActiveView.MAIN,
   appStorage: DEFAULT_APP_STORAGE,
   isAnyNotificationToRead: false,
 }

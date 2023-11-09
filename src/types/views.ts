@@ -1,6 +1,6 @@
 export enum ActiveView {
-  userProfile = 'userProfile',
-  pendingTrades = 'pendingTrades',
-  settings = 'settings',
-  notifications = 'notifications',
+  MAIN = 'main-view',
+  INVENTORY = 'your-inventory-view',
+  NOTIFICATIONS = 'notifications-view',
+  SETTINGS = 'settings-view',
 }

@@ -31,3 +31,4 @@ yarn-error.log*
 
 # i18nexus
 /public/locales
+@types/i18nextResources.ts

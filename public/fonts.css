@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Poppins';
-    src: url('PUBLIC_URL/fonts/poppins/Poppins-Medium.woff2') format('woff2'),
-    url('PUBLIC_URL/fonts/poppins/Poppins-Medium.woff') format('woff');
+    src: url('fonts/poppins/Poppins-Medium.woff2') format('woff2'),
+    url('fonts/poppins/Poppins-Medium.woff') format('woff');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -9,8 +9,8 @@
 
 @font-face {
     font-family: 'Poppins';
-    src: url('PUBLIC_URL/fonts/poppins/Poppins-SemiBold.woff2') format('woff2'),
-    url('PUBLIC_URL/fonts/poppins/Poppins-SemiBold.woff') format('woff');
+    src: url('fonts/poppins/Poppins-SemiBold.woff2') format('woff2'),
+    url('fonts/poppins/Poppins-SemiBold.woff') format('woff');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -18,8 +18,8 @@
 
 @font-face {
     font-family: 'Poppins';
-    src: url('PUBLIC_URL/fonts/poppins/Poppins-Regular.woff2') format('woff2'),
-    url('PUBLIC_URL/fonts/poppins/Poppins-Regular.woff') format('woff');
+    src: url('fonts/poppins/Poppins-Regular.woff2') format('woff2'),
+    url('fonts/poppins/Poppins-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;

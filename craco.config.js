@@ -5,7 +5,8 @@ const getClientEnvironment = require('react-scripts/config/env')
 const TerserPlugin = require('terser-webpack-plugin')
 const path = require('path')
 
-module.exports = {
+/** @type {import('@craco/types').CracoConfig} */
+const config = {
   webpack: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
@@ -68,3 +69,5 @@ module.exports = {
     },
   },
 }
+
+module.exports = config
