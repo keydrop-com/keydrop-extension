@@ -8,9 +8,7 @@ const path = require('path')
 /** @type {import('@craco/types').CracoConfig} */
 const config = {
   webpack: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-    },
+    alias: { '@': path.resolve(__dirname, 'src') },
     configure: (webpackConfig, { paths }) => {
       const htmlWebpackPluginInstance = webpackConfig.plugins.find(
         (webpackPlugin) => webpackPlugin instanceof HtmlWebpackPlugin,

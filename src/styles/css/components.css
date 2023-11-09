@@ -1,3 +1,11 @@
 @tailwind components;
 
-/*@layer components {}*/
+@layer components {
+    .button {
+        @apply flex h-11 appearance-none items-center justify-center whitespace-nowrap rounded-lg px-8 text-center text-xs font-semibold uppercase text-white outline-none transition-colors duration-200 focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold disabled:pointer-events-none disabled:cursor-default;
+    }
+
+    .button--primary {
+        @apply border border-solid border-gold bg-gold-900 hover:bg-gold-850 disabled:opacity-50;
+    }
+}

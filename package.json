@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "npm-watch",
     "trans:interfaces": "i18next-resources-for-ts toc -i ./public/locales/en -o @types/i18nextResources.ts",
-    "trans": "i18nexus pull && yarn trans:interfaces",
+    "trans": "i18nexus pull --clean && yarn trans:interfaces",
     "trans:op": "op run --env-file .env.dev yarn trans",
     "build:qucik": "REACT_APP_ENVIRONMENT=dev craco build",
     "build:dev:chromium": "yarn trans && REACT_APP_ENVIRONMENT=dev GENERATE_SOURCEMAP=false craco build",

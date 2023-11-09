@@ -1,7 +1,11 @@
 @tailwind base;
 
 @layer base {
+    body, #root {
+        @apply h-[600px] w-[800px];
+    }
+
     body {
-        @apply font-sans h-[600px] w-[800px] overflow-hidden bg-navy-750 text-base text-white;
+        @apply font-sans overflow-hidden bg-navy-750 text-base text-white;
     }
 }

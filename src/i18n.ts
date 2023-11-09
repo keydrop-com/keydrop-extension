@@ -9,8 +9,8 @@ export default i18next
   .use(initReactI18next)
   .init({
     fallbackLng: 'en',
-    ns: ['default'],
-    defaultNS: 'default',
+    ns: ['common'],
+    defaultNS: 'common',
     supportedLngs: ['en'],
     backend: {
       loadPath: `${window.location.origin}/locales/{{lng}}/{{ns}}.json`,
