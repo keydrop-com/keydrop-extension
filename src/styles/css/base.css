@@ -1,0 +1,11 @@
+@tailwind base;
+
+@layer base {
+    * {
+        font-family: Poppins, sans-serif;
+    }
+
+    body {
+        @apply h-[600px] w-[800px] overflow-hidden bg-gray-1000 text-base text-white;
+    }
+}
