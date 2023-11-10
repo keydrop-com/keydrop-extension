@@ -17,7 +17,7 @@ export type AppContextType = { appState: AppState; dispatch: Dispatch }
 
 export const AppContext = createContext<AppContextType | undefined>(undefined)
 
-const AppProvider: FC<AppProviderProps> = ({ children }) => {
+export const AppProvider: FC<AppProviderProps> = ({ children }) => {
   const [appState, dispatch] = useReducer(userAppReducer, INIT_STATE)
 
   const value = { appState, dispatch }
@@ -27,8 +27,8 @@ const AppProvider: FC<AppProviderProps> = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    setUserProfile(dispatch, appState).catch((e) => consoleLog('setUserProfile', e))
-  }, [appState.appData])
+    setUserProfile(dispatch, appState.appData.steamId).catch((e) => consoleLog('setUserProfile', e))
+  }, [appState.appData.steamId])
 
   useEffect(() => {
     setStorage(dispatch).catch((e) => consoleLog('setStorage', e))
@@ -50,5 +50,3 @@ export const useApp = (): AppContextType => {
   }
   return context
 }
-
-export default AppProvider

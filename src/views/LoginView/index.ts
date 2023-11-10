@@ -1,1 +1,3 @@
-export { default } from './LoginView'
+import { LoginView } from './LoginView'
+
+export default LoginView

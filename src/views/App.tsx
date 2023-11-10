@@ -5,17 +5,23 @@ import { FC } from 'react'
 
 import { useApp } from '@/context/AppContext'
 import LoginView from '@/views/LoginView'
+import MainView from '@/views/MainView'
 
 const App: FC = () => {
   const {
-    appState: { loggedIn },
+    appState: { loggedIn, activeView },
   } = useApp()
 
   if (!loggedIn) {
     return <LoginView />
   }
 
-  return <></>
+  switch (activeView) {
+    case 'main-view':
+      return <MainView />
+    default:
+      return <></>
+  }
 }
 
 export default App

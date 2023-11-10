@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next'
 
 import { Button } from '@/components/Button'
 import { SvgIcon } from '@/components/SvgIcon'
+import { KEYDROP } from '@/constants/urls'
 
-const LoginView: FC = () => {
+export const LoginView: FC = () => {
   const { t } = useTranslation('login')
 
   return (
@@ -22,6 +23,7 @@ const LoginView: FC = () => {
         </div>
         <div className="relative top-8 flex w-full justify-center">
           <Button
+            href={KEYDROP.main}
             className="button--primary h-[70px] w-fit rounded-[15px] px-[80px] text-base"
             label={t('button.label')}
           />
@@ -34,5 +36,3 @@ const LoginView: FC = () => {
     </div>
   )
 }
-
-export default LoginView

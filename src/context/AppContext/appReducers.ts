@@ -1,47 +1,33 @@
+import { INIT_APP_DATA } from '@/constants/app'
+import { getKeydropCookies, getSteamId } from '@/services/browser/cookies'
+import ProfileClient from '@/services/http/ProfileClient'
 import { AppState, Dispatch } from '@/types/app'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const setAppData = async (dispatch: Dispatch): Promise<void> => {
+  const sessionId = (await getKeydropCookies())?.session_id
+  const steamId = await getSteamId()
+
+  if (!sessionId || !steamId) {
+    dispatch({ type: 'setAppData', value: INIT_APP_DATA })
+    return
+  }
+
+  dispatch({ type: 'setAppData', value: { sessionId, steamId } })
   return
-  // const cookies = await getCookies(PUBLIC_URL)
-  // if (cookies) {
-  //   const normalizedCookies = normalizeCookies(cookies.filter(filterCredentialsCookies))
-  //   return await checkTokenExpiryServer(
-  //     normalizedCookies.token,
-  //     normalizedCookies.tokenExp,
-  //     normalizedCookies.refreshToken,
-  //     normalizedCookies.deviceId,
-  //   )
-  //     .then((appData) => {
-  //       if (appData) {
-  //         dispatch({
-  //           type: 'setAppData',
-  //           value: {
-  //             deviceId: normalizedCookies.deviceId,
-  //             refreshToken: appData.refreshToken,
-  //             token: appData.token,
-  //             tokenExp: appData.tokenExp,
-  //           },
-  //         })
-  //       } else {
-  //         dispatch({ type: 'setAppData', value: INIT_APP_DATA })
-  //       }
-  //     })
-  //     .catch(() => dispatch({ type: 'setAppData', value: INIT_APP_DATA }))
-  // }
-  // return dispatch({ type: 'setAppData', value: INIT_APP_DATA })
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const setUserProfile = async (dispatch: Dispatch, appState: AppState): Promise<void> => {
+export const setUserProfile = async (dispatch: Dispatch, steamId: string): Promise<void> => {
+  if (!steamId) return
+
+  const userProfile = await ProfileClient.getUserProfile({ steamId })
+
+  if (!userProfile) {
+    dispatch({ type: 'setAppData', value: INIT_APP_DATA })
+    return
+  }
+
+  dispatch({ type: 'setUser', value: userProfile })
   return
-  // return await getAuthUser(state.appData.token).then(async ({ success, userProfile }) => {
-  //   if (success && userProfile) {
-  //     dispatch({ type: 'setUser', value: userProfile })
-  //   } else {
-  //     dispatch({ type: 'setAppData', value: INIT_APP_DATA })
-  //   }
-  // })
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -71,8 +57,9 @@ export const setIsAnyNotificationToRead = async (
   dispatch: Dispatch,
   appState: AppState,
 ): Promise<void> => {
-  const token = appState.appData.token
-  if (!token) return
+  const sessionId = appState.appData.sessionId
+
+  if (!sessionId) return
   // return await getNotifications(
   //   API.getMyNotifications({
   //     pageSize: 1,

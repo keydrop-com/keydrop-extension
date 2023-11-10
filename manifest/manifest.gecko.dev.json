@@ -29,7 +29,7 @@
     "cookies",
     "storage"
   ],
-  "host_permissions": [],
+  "host_permissions": ["*://*.key-drop.com/*", "*://*.steamcommunity.com/*"],
   "background": {
     "scripts": ["service-worker.js"]
   },

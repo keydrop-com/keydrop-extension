@@ -1,6 +1,7 @@
 import { JSX } from 'react'
 
 import { SvgIcon } from '@/components/SvgIcon'
+import { openInNewTab } from '@/services/browser/tabs'
 import { TwComponent } from '@/types/common'
 import { IconsNames } from '@/types/icons'
 import { cn } from '@/utils/styles'
@@ -11,19 +12,29 @@ interface ButtonProps {
   label?: string | JSX.Element
   onClick?: () => void
   disabled?: boolean
+  href?: string
 }
 
 export const Button: TwComponent<ButtonProps> = ({
-  as: As = 'button',
   iconName,
   iconClassName = 'w-4 h-4 flex-shrink-0',
   className,
   label = '',
   children,
+  onClick,
+  href,
   ...props
 }) => {
+  const handleOnClick = async (): Promise<void> => {
+    onClick?.()
+
+    if (href) {
+      await openInNewTab(href)
+    }
+  }
+
   return (
-    <As className={cn('button', className)} {...props}>
+    <button className={cn('button', className)} onClick={handleOnClick} {...props}>
       {children ?? (
         <>
           {iconName ? (
@@ -32,6 +43,6 @@ export const Button: TwComponent<ButtonProps> = ({
           {label ? <span>{label}</span> : null}
         </>
       )}
-    </As>
+    </button>
   )
 }

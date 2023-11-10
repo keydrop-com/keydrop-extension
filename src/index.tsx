@@ -8,7 +8,7 @@ const root = createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
   <StrictMode>
-    <Suspense fallback="loading">
+    <Suspense>
       <AppProvider>
         <App />
       </AppProvider>

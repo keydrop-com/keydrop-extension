@@ -6,11 +6,7 @@ export function userAppReducer(appState: AppState, action: Action): AppState {
       return { ...appState, userProfile: action.value }
     }
     case 'setAppData': {
-      const loggedIn = Boolean(
-        action.value.token &&
-          action.value.refreshToken &&
-          Number(action.value.tokenExp) < new Date().getTime(),
-      )
+      const loggedIn = Boolean(action.value.sessionId && action.value.steamId)
       return { ...appState, appData: action.value, loggedIn }
     }
     case 'setActiveView': {

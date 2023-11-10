@@ -1,10 +1,9 @@
-import { ComponentProps, CSSProperties, ElementType, JSX } from 'react'
+import { CSSProperties, JSX, ReactNode } from 'react'
 
-export type TwComponent<CustomProps = unknown> = <As extends ElementType>(
+export type TwComponent<CustomProps = unknown> = (
   props: {
-    as?: As
     style?: CSSProperties
     className?: string
-  } & ComponentProps<As> &
-    CustomProps,
+    children?: ReactNode
+  } & CustomProps,
 ) => JSX.Element
