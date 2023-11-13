@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -9,7 +10,7 @@ export const LoginView: FC = () => {
   const { t } = useTranslation('login')
 
   return (
-    <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
+    <>
       <div className="relative z-10 flex w-[460px] flex-col gap-9">
         <div className="flex flex-col items-center justify-center gap-8">
           <SvgIcon iconName="keydrop-logo" className="h-[116px] w-[460px]" />
@@ -29,10 +30,17 @@ export const LoginView: FC = () => {
           />
         </div>
       </div>
-      <SvgIcon
-        iconName="keydrop-signet"
-        className="absolute left-[80%] top-1/2 h-[878px] w-[719px] -translate-x-1/2 -translate-y-1/2 -rotate-[16deg] text-white opacity-20 mix-blend-overlay"
-      />
-    </div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.2 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
+      >
+        <SvgIcon
+          iconName="keydrop-signet"
+          className="absolute left-[80%] top-1/2 h-[878px] w-[719px] -translate-x-1/2 -translate-y-1/2 -rotate-[16deg] text-white opacity-20 mix-blend-overlay"
+        />
+      </motion.div>
+    </>
   )
 }

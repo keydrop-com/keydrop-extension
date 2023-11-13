@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { ProfilePageResponse } from '@/types/API/http/profile'
 
 interface StatsInterface {
-  stats: ProfilePageResponse['stats']
+  userProfile: ProfilePageResponse
 }
 
 interface StatInterface {
@@ -20,7 +20,7 @@ const Stat: FC<StatInterface> = ({ label, value }) => {
   )
 }
 
-export const Stats: FC<StatsInterface> = ({ stats }) => {
+export const Stats: FC<StatsInterface> = ({ userProfile: { stats } }) => {
   return (
     <div className="flex justify-around">
       <Stat value={stats.cases} label="Opened cases" />

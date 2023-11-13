@@ -10,6 +10,7 @@ interface ButtonProps {
   iconClassName?: string
   iconName?: IconsNames
   label?: string | JSX.Element
+  title?: string
   onClick?: () => void
   disabled?: boolean
   href?: string
@@ -20,6 +21,7 @@ export const Button: TwComponent<ButtonProps> = ({
   iconClassName = 'w-4 h-4 flex-shrink-0',
   className,
   label = '',
+  title,
   children,
   onClick,
   href,
@@ -34,7 +36,7 @@ export const Button: TwComponent<ButtonProps> = ({
   }
 
   return (
-    <button className={cn('button', className)} onClick={handleOnClick} {...props}>
+    <button className={cn('button', className)} title={title} onClick={handleOnClick} {...props}>
       {children ?? (
         <>
           {iconName ? (

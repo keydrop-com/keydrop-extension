@@ -16,17 +16,16 @@ export type AppState = {
   userProfile: ProfilePageResponse
   appData: AppData
   loggedIn: boolean
+  isLoading: boolean
   activeView: ActiveView
   appStorage: AppStorage
-  isAnyNotificationToRead: boolean
 }
 
 export type Action =
-  | { type: 'setUser'; value: ProfilePageResponse }
+  | { type: 'setUserProfile'; value: ProfilePageResponse }
   | { type: 'setAppData'; value: AppData }
   | { type: 'setActiveView'; value: ActiveView }
   | { type: 'syncStorage'; value: AppStorage }
-  | { type: 'setIsAnyNotificationToRead'; value: boolean }
 
 export type Dispatch = (action: Action) => void
 

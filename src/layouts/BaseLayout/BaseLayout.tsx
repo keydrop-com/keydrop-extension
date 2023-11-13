@@ -1,16 +1,9 @@
-import { FC, ReactNode } from 'react'
+import { LayoutType } from '@/types/layout'
 
-import { Navbar } from '@/components/Navbar'
-
-interface BaseLayoutInterface {
-  children: ReactNode
-}
-
-export const BaseLayout: FC<BaseLayoutInterface> = ({ children }) => {
+export const BaseLayout: LayoutType = ({ children }) => {
   return (
-    <div className="grid grid-rows-[80px,1fr] gap-[30px] bg-navy-750 p-5">
-      <Navbar />
-      <div>{children}</div>
+    <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
+      {children}
     </div>
   )
 }

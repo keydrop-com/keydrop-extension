@@ -56,9 +56,9 @@ export const INIT_STATE: AppState = {
   userProfile: INIT_USER_PROFILE,
   appData: INIT_APP_DATA,
   loggedIn: false,
+  isLoading: true,
   activeView: ActiveView.MAIN,
   appStorage: DEFAULT_APP_STORAGE,
-  isAnyNotificationToRead: false,
 }
 
 export const DEFAULT_VIEW_OPTIONS: { value: ActiveView; label: string }[] = [
@@ -66,3 +66,15 @@ export const DEFAULT_VIEW_OPTIONS: { value: ActiveView; label: string }[] = [
   { value: ActiveView.INVENTORY, label: 'pendingTrades.title' },
   { value: ActiveView.NOTIFICATIONS, label: 'notifications.title' },
 ]
+
+export const DEFAULT_MOTION = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+  transition: { duration: 0.1 },
+}
+
+export const DEFAULT_APP_MOTION = {
+  ...DEFAULT_MOTION,
+  className: 'h-full w-full',
+}
