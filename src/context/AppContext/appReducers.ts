@@ -8,23 +8,23 @@ export const setAppData = async (dispatch: Dispatch): Promise<void> => {
   const steamId = await getSteamId()
 
   if (!sessionId || !steamId) {
-    dispatch({ type: 'setAppData', value: INIT_APP_DATA })
+    dispatch({ type: 'SET_APP_DATA', value: INIT_APP_DATA })
     return
   }
 
-  dispatch({ type: 'setAppData', value: { sessionId, steamId } })
+  dispatch({ type: 'SET_APP_DATA', value: { sessionId, steamId } })
   return
 }
 
 export const setUserProfile = async (dispatch: Dispatch, steamId: string): Promise<void> => {
   if (!steamId) {
-    dispatch({ type: 'setAppData', value: INIT_APP_DATA })
+    dispatch({ type: 'SET_APP_DATA', value: INIT_APP_DATA })
     return
   }
 
   const userProfile = await ProfileClient.getUserProfile({ steamId })
 
-  dispatch({ type: 'setUserProfile', value: userProfile })
+  dispatch({ type: 'SET_USER_PROFILE', value: userProfile })
   return
 }
 
@@ -34,18 +34,18 @@ export const setStorage = async (dispatch: Dispatch): Promise<void> => {
   // return await getAppStorage()
   //   .then((appStorage) => {
   //     if (appStorage) {
-  //       dispatch({ type: 'syncStorage', value: appStorage })
-  //       dispatch({ type: 'setActiveView', value: appStorage.default_view })
+  //       dispatch({ type: 'SYNC_STORAGE', value: appStorage })
+  //       dispatch({ type: 'SET_ACTIVE_VIEW', value: appStorage.default_view })
   //       return true
   //     } else {
   //       saveAppStorage(DEFAULT_APP_STORAGE).catch(() => consoleLog('saving default storage failed'))
-  //       dispatch({ type: 'syncStorage', value: DEFAULT_APP_STORAGE })
+  //       dispatch({ type: 'SYNC_STORAGE', value: DEFAULT_APP_STORAGE })
   //       return true
   //     }
   //   })
   //   .catch(() => {
   //     saveAppStorage(DEFAULT_APP_STORAGE).catch(() => consoleLog('saving default storage failed'))
-  //     dispatch({ type: 'syncStorage', value: DEFAULT_APP_STORAGE })
+  //     dispatch({ type: 'SYNC_STORAGE', value: DEFAULT_APP_STORAGE })
   //     return true
   //   })
 }

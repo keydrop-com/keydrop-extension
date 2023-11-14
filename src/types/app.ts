@@ -1,4 +1,4 @@
-import { ProfilePageResponse } from '@/types/API/http/profile'
+import { BalanceResponse, ProfilePageResponse } from '@/types/API/http/profile'
 
 export type AppData = {
   sessionId: string
@@ -12,20 +12,28 @@ export enum ActiveView {
   SETTINGS = 'settings-view',
 }
 
+export type CountersAnimations = {
+  [key in ActiveView]: boolean
+}
+
 export type AppState = {
   userProfile: ProfilePageResponse
+  userBalance: BalanceResponse
   appData: AppData
   loggedIn: boolean
   isLoading: boolean
   activeView: ActiveView
   appStorage: AppStorage
+  countersAnimations: CountersAnimations
 }
 
 export type Action =
-  | { type: 'setUserProfile'; value: ProfilePageResponse }
-  | { type: 'setAppData'; value: AppData }
-  | { type: 'setActiveView'; value: ActiveView }
-  | { type: 'syncStorage'; value: AppStorage }
+  | { type: 'SET_USER_PROFILE'; value: ProfilePageResponse }
+  | { type: 'SET_USER_BALANCE'; value: BalanceResponse }
+  | { type: 'SET_COUNTER_ANIMATIONS'; value: ActiveView }
+  | { type: 'SET_APP_DATA'; value: AppData }
+  | { type: 'SET_ACTIVE_VIEW'; value: ActiveView }
+  | { type: 'SYNC_STORAGE'; value: AppStorage }
 
 export type Dispatch = (action: Action) => void
 

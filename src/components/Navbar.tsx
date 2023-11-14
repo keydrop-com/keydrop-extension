@@ -1,19 +1,13 @@
 import { FC, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { Avatar } from '@/components/Avatar'
 import { Button } from '@/components/Button'
+import { NavbarButtonInterface, NavigationButton } from '@/components/NavigationButton'
 import { SvgIcon } from '@/components/SvgIcon'
 import { KEYDROP } from '@/constants/urls'
 import { useApp } from '@/context/AppContext'
 import { ActiveView } from '@/types/app'
-import { IconsNames } from '@/types/icons'
-import { cn } from '@/utils/styles'
-
-type NavbarButton = {
-  label: string
-  view: ActiveView
-  icon: IconsNames
-}
 
 export const Navbar: FC = () => {
   const { t } = useTranslation('common', { keyPrefix: 'navbar' })
@@ -27,7 +21,7 @@ export const Navbar: FC = () => {
     dispatch,
   } = useApp()
 
-  const viewButtons: NavbarButton[] = useMemo(
+  const viewButtons: Omit<NavbarButtonInterface, 'onClick' | 'isActive'>[] = useMemo(
     () => [
       {
         label: t('button.main.label'),
@@ -44,7 +38,7 @@ export const Navbar: FC = () => {
   )
 
   const handleOnClick = (value: ActiveView): void => {
-    dispatch({ type: 'setActiveView', value })
+    dispatch({ type: 'SET_ACTIVE_VIEW', value })
   }
 
   return (
@@ -56,26 +50,16 @@ export const Navbar: FC = () => {
       </div>
       <div className="flex h-full w-fit items-center gap-[22px] rounded-[15px] bg-[#1F1F27] pl-6 pr-2">
         <div className="flex items-center gap-4">
-          {viewButtons.map(({ view, icon, label }) => (
-            <Button
-              key={view}
-              title={label}
-              onClick={() => handleOnClick(view)}
-              className="button--primary h-[35px] w-[35px] rounded-[5px] bg-transparent p-0"
-            >
-              <SvgIcon
-                iconName={icon}
-                className={cn('h-4 w-4', activeView === view && '!text-gold-400')}
-              />
-            </Button>
+          {viewButtons.map((data) => (
+            <NavigationButton
+              key={data.view}
+              onClick={handleOnClick}
+              isActive={activeView === data.view}
+              {...data}
+            />
           ))}
         </div>
-        <Button
-          href={KEYDROP.profile}
-          className="h-[65px] w-[65px] overflow-hidden rounded-[10px] border-none p-0"
-        >
-          <img src={avatar} alt={username} className="h-[65px] w-[65px]" />
-        </Button>
+        <Avatar src={avatar} alt={username} href={KEYDROP.profile} variant="small" />
       </div>
     </div>
   )

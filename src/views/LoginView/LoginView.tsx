@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Button } from '@/components/Button'
+import { MouseParallax } from '@/components/MouseParallax'
 import { SvgIcon } from '@/components/SvgIcon'
 import { KEYDROP } from '@/constants/urls'
 
@@ -30,17 +30,12 @@ export const LoginView: FC = () => {
           />
         </div>
       </div>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.2 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.2 }}
-      >
+      <MouseParallax className="absolute left-[80%] top-1/2 -translate-x-1/2 -translate-y-1/2">
         <SvgIcon
           iconName="keydrop-signet"
-          className="absolute left-[80%] top-1/2 h-[878px] w-[719px] -translate-x-1/2 -translate-y-1/2 -rotate-[16deg] text-white opacity-20 mix-blend-overlay"
+          className="h-[878px] w-[719px] -rotate-[16deg] text-white opacity-[0.02]"
         />
-      </motion.div>
+      </MouseParallax>
     </>
   )
 }

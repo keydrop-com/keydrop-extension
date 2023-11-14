@@ -1,5 +1,5 @@
-import { ProfilePageResponse } from '@/types/API/http/profile'
-import { ActiveView, AppData, AppState, AppStorage, OpenIn } from '@/types/app'
+import { BalanceResponse, ProfilePageResponse } from '@/types/API/http/profile'
+import { ActiveView, AppData, AppState, AppStorage, CountersAnimations, OpenIn } from '@/types/app'
 
 export const STORAGE_VERSION = '1.0'
 
@@ -52,20 +52,30 @@ export const DEFAULT_APP_STORAGE: AppStorage = {
   open_in: OpenIn.new_tab,
 }
 
+export const INIT_USER_BALANCE: BalanceResponse = {
+  gold: 0,
+  pkt: 0,
+  status: true,
+  vdolce: 0,
+}
+
+export const INIT_COUNTER_ANIMATIONS: CountersAnimations = {
+  [ActiveView.MAIN]: true,
+  [ActiveView.INVENTORY]: true,
+  [ActiveView.NOTIFICATIONS]: true,
+  [ActiveView.SETTINGS]: true,
+}
+
 export const INIT_STATE: AppState = {
   userProfile: INIT_USER_PROFILE,
+  userBalance: INIT_USER_BALANCE,
   appData: INIT_APP_DATA,
   loggedIn: false,
   isLoading: true,
+  countersAnimations: INIT_COUNTER_ANIMATIONS,
   activeView: ActiveView.MAIN,
   appStorage: DEFAULT_APP_STORAGE,
 }
-
-export const DEFAULT_VIEW_OPTIONS: { value: ActiveView; label: string }[] = [
-  { value: ActiveView.MAIN, label: 'userProfile.title' },
-  { value: ActiveView.INVENTORY, label: 'pendingTrades.title' },
-  { value: ActiveView.NOTIFICATIONS, label: 'notifications.title' },
-]
 
 export const DEFAULT_MOTION = {
   initial: { opacity: 0 },

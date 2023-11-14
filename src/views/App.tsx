@@ -8,10 +8,13 @@ import { DEFAULT_APP_MOTION } from '@/constants/app'
 import { useApp } from '@/context/AppContext'
 import BaseLayout from '@/layouts/BaseLayout'
 import MainLayout from '@/layouts/MainLayout'
+import { ActiveView } from '@/types/app'
 import LoadingView from '@/views/LoadingView'
 import LoginView from '@/views/LoginView'
 import MainView from '@/views/MainView'
 import SettingsView from '@/views/SettingsView'
+
+import { InventoryView } from './InventoryView/InventoryView'
 
 const App: FC = () => {
   const {
@@ -36,8 +39,9 @@ const App: FC = () => {
         {loggedIn && !isLoading && (
           <MainLayout>
             <motion.div key={activeView} {...DEFAULT_APP_MOTION}>
-              {activeView === 'main-view' && <MainView />}
-              {activeView === 'settings-view' && <SettingsView />}
+              {activeView === ActiveView.MAIN && <MainView />}
+              {activeView === ActiveView.SETTINGS && <SettingsView />}
+              {activeView === ActiveView.INVENTORY && <InventoryView />}
             </motion.div>
           </MainLayout>
         )}

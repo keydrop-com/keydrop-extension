@@ -29,12 +29,6 @@ export const AppProvider: FC<AppProviderProps> = ({ children }) => {
     setStorage(dispatch).catch((e) => consoleLog('setStorage', e))
   }, [])
 
-  // useEffect(() => {
-  //   setIsAnyNotificationToRead(dispatch, appState).catch((e) =>
-  //     consoleLog('setIsAnyNotificationToRead', e),
-  //   )
-  // }, [appState.userProfile])
-
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>
 }
 
