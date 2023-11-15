@@ -28,7 +28,7 @@ class AbstractHttpService {
       })
   }
 
-  static async getToken(): Promise<string | null> {
+  static async getToken(): Promise<string> {
     const token = window.__token__
     if (token) return token
 
@@ -38,7 +38,9 @@ class AbstractHttpService {
     return fetch(url).then(async (r) => {
       const token = await r.text()
 
-      if (token.includes('<!DOCTYPE html>')) return null
+      if (token.includes('<!DOCTYPE html>')) {
+        return Promise.reject()
+      }
 
       window.__token__ = token
       return token
@@ -52,7 +54,7 @@ class AbstractHttpService {
   ): Promise<T> {
     const token = await this.getToken()
 
-    if (!token) throw new Error(url)
+    if (!token) return Promise.reject()
 
     const headers = { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
 

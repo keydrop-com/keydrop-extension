@@ -16,3 +16,8 @@ export const getCookie = async (
   if (!allCookies) return null
   return normalizeCookies([allCookies])
 }
+
+export const removeCookie = async (domain: string, name: string): Promise<void> => {
+  await cookies.remove({ url: domain, name: name })
+  return
+}

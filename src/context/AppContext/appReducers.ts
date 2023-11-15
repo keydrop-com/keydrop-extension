@@ -7,6 +7,8 @@ export const setAppData = async (dispatch: AppDispatch): Promise<void> => {
   const sessionId = (await getKeydropCookies())?.session_id
   const steamId = await getSteamId()
 
+  console.log({ sessionId, steamId })
+
   if (!sessionId || !steamId) {
     dispatch({ type: 'SET_APP_DATA', value: INIT_APP_DATA })
     return
@@ -22,7 +24,12 @@ export const setUserProfile = async (dispatch: AppDispatch, steamId: string): Pr
     return
   }
 
-  const userProfile = await ProfileClient.getUserProfile({ steamId })
+  const userProfile = await ProfileClient.getUserProfile({ steamId }).catch(() => {
+    dispatch({ type: 'SET_APP_DATA', value: INIT_APP_DATA })
+    return null
+  })
+
+  if (!userProfile) return
 
   dispatch({ type: 'SET_USER_PROFILE', value: userProfile })
   return

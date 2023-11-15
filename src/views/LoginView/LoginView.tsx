@@ -5,9 +5,14 @@ import { Button } from '@/components/Button'
 import { MouseParallax } from '@/components/MouseParallax'
 import { SvgIcon } from '@/components/SvgIcon'
 import { KEYDROP } from '@/constants/urls'
+import { removeKeydropSessionCookie } from '@/services/browser/cookies'
 
 export const LoginView: FC = () => {
   const { t } = useTranslation('loginView')
+
+  const handleOnClick = async (): Promise<void> => {
+    await removeKeydropSessionCookie()
+  }
 
   return (
     <>
@@ -25,6 +30,7 @@ export const LoginView: FC = () => {
         <div className="relative top-8 flex w-full justify-center">
           <Button
             href={KEYDROP.main}
+            onClick={handleOnClick}
             className="button--primary h-[70px] w-fit rounded-[15px] px-[80px] text-base"
             label={t('button.label')}
           />

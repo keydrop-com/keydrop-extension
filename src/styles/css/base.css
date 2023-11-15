@@ -1,8 +1,12 @@
 @tailwind base;
 
 @layer base {
+    * {
+      @apply select-none
+    }
+
     body, #root {
-        @apply h-[600px] w-[800px];
+        @apply h-[600px] w-[800px] overflow-hidden;
     }
 
     body {
