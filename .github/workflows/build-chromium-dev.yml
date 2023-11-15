@@ -1,4 +1,4 @@
-name: [CHROMIUM/DEV] Build Extension
+name: "[CHROMIUM/DEV] Build Extension"
 
 on:
   push:
