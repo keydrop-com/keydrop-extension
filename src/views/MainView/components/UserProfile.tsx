@@ -7,7 +7,8 @@ import { RefillButton } from '@/components/RefillButton'
 import { SvgIcon } from '@/components/SvgIcon'
 import { BONUS_AMOUNT, BONUS_CODE } from '@/constants/refill'
 import { KEYDROP } from '@/constants/urls'
-import { BalanceResponse, ProfilePageResponse } from '@/types/API/http/profile'
+import { BalanceResponse } from '@/types/API/http/balance'
+import { ProfilePageResponse } from '@/types/API/http/profile'
 import { Balance } from '@/views/MainView/components/Balance'
 
 interface UserProfileInterface {

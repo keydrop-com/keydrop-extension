@@ -1,4 +1,6 @@
-import { BalanceResponse, ProfilePageResponse } from '@/types/API/http/profile'
+import { DEFAULT_MOTION } from '@/constants/common'
+import { BalanceResponse } from '@/types/API/http/balance'
+import { ProfilePageResponse } from '@/types/API/http/profile'
 import { ActiveView, AppData, AppState, AppStorage, CountersAnimations, OpenIn } from '@/types/app'
 
 export const STORAGE_VERSION = '1.0'
@@ -44,7 +46,7 @@ export const INIT_USER_PROFILE: ProfilePageResponse = {
 
 export const INIT_APP_DATA: AppData = { sessionId: '', steamId: '' }
 
-export const DEFAULT_APP_STORAGE: AppStorage = {
+export const INIT_APP_STORAGE: AppStorage = {
   auto_creating_trade: false,
   default_view: ActiveView.MAIN,
   disable_offer_edit: true,
@@ -66,7 +68,7 @@ export const INIT_COUNTER_ANIMATIONS: CountersAnimations = {
   [ActiveView.SETTINGS]: true,
 }
 
-export const INIT_STATE: AppState = {
+export const INIT_APP_STATE: AppState = {
   userProfile: INIT_USER_PROFILE,
   userBalance: INIT_USER_BALANCE,
   appData: INIT_APP_DATA,
@@ -74,14 +76,7 @@ export const INIT_STATE: AppState = {
   isLoading: true,
   countersAnimations: INIT_COUNTER_ANIMATIONS,
   activeView: ActiveView.MAIN,
-  appStorage: DEFAULT_APP_STORAGE,
-}
-
-export const DEFAULT_MOTION = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 0 },
-  transition: { duration: 0.1 },
+  appStorage: INIT_APP_STORAGE,
 }
 
 export const DEFAULT_APP_MOTION = {

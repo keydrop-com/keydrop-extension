@@ -1,4 +1,5 @@
-import { BalanceResponse, ProfilePageResponse } from '@/types/API/http/profile'
+import { BalanceResponse } from '@/types/API/http/balance'
+import { ProfilePageResponse } from '@/types/API/http/profile'
 
 export type AppData = {
   sessionId: string
@@ -27,7 +28,7 @@ export type AppState = {
   countersAnimations: CountersAnimations
 }
 
-export type Action =
+export type AppAction =
   | { type: 'SET_USER_PROFILE'; value: ProfilePageResponse }
   | { type: 'SET_USER_BALANCE'; value: BalanceResponse }
   | { type: 'SET_COUNTER_ANIMATIONS'; value: ActiveView }
@@ -35,7 +36,7 @@ export type Action =
   | { type: 'SET_ACTIVE_VIEW'; value: ActiveView }
   | { type: 'SYNC_STORAGE'; value: AppStorage }
 
-export type Dispatch = (action: Action) => void
+export type AppDispatch = (action: AppAction) => void
 
 export enum OpenIn {
   new_tab = 'new_tab',

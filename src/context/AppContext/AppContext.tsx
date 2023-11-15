@@ -1,21 +1,20 @@
 import { createContext, FC, ReactNode, useContext, useEffect, useReducer } from 'react'
 
-import { INIT_STATE } from '@/constants/app'
+import { INIT_APP_STATE } from '@/constants/app'
 import { setAppData, setStorage, setUserProfile } from '@/context/AppContext/appReducers'
 import { userAppReducer } from '@/context/AppContext/useAppReducer'
-import { AppState, Dispatch } from '@/types/app'
+import { AppDispatch, AppState } from '@/types/app'
 import { consoleLog } from '@/utils/common'
 
 export type AppProviderProps = { children: ReactNode }
 
-export type AppContextType = { appState: AppState; dispatch: Dispatch }
+export type AppContextType = { appState: AppState; dispatch: AppDispatch }
 
 export const AppContext = createContext<AppContextType | undefined>(undefined)
 
 export const AppProvider: FC<AppProviderProps> = ({ children }) => {
-  const [appState, dispatch] = useReducer(userAppReducer, INIT_STATE)
+  const [appState, dispatch] = useReducer(userAppReducer, INIT_APP_STATE)
   const steamId = appState.appData.steamId
-  const value = { appState, dispatch }
 
   useEffect(() => {
     setAppData(dispatch).catch((e) => consoleLog('setAppData', e))
@@ -29,7 +28,7 @@ export const AppProvider: FC<AppProviderProps> = ({ children }) => {
     setStorage(dispatch).catch((e) => consoleLog('setStorage', e))
   }, [])
 
-  return <AppContext.Provider value={value}>{children}</AppContext.Provider>
+  return <AppContext.Provider value={{ appState, dispatch }}>{children}</AppContext.Provider>
 }
 
 export const useApp = (): AppContextType => {

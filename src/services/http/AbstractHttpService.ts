@@ -16,7 +16,7 @@ class AbstractHttpService {
         }
         if (resolveResponse) {
           const parsedResponse = await res.json()
-          if (parsedResponse.hasOwnProperty('status') && parsedResponse.hasOwnProperty('message')) {
+          if (parsedResponse.hasOwnProperty('status') && parsedResponse.status === false) {
             throw new Error(url)
           }
           return parsedResponse
@@ -28,10 +28,21 @@ class AbstractHttpService {
       })
   }
 
-  static async getToken(): Promise<string> {
+  static async getToken(): Promise<string | null> {
+    const token = window.__token__
+    if (token) return token
+
     const url = new URL('token', KD_API_BASE_URL)
     url.searchParams.set('t', Date.now().toString())
-    return await fetch(url).then((r) => r.text())
+
+    return fetch(url).then(async (r) => {
+      const token = await r.text()
+
+      if (token.includes('<!DOCTYPE html>')) return null
+
+      window.__token__ = token
+      return token
+    })
   }
 
   static async fetchWithAuth<T>(
@@ -40,6 +51,9 @@ class AbstractHttpService {
     resolveResponse = true,
   ): Promise<T> {
     const token = await this.getToken()
+
+    if (!token) throw new Error(url)
+
     const headers = { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
 
     return fetch(url, {
@@ -50,7 +64,7 @@ class AbstractHttpService {
       .then(async (res) => {
         if (resolveResponse) {
           const parsedResponse = await res.json()
-          if (parsedResponse.hasOwnProperty('status') && parsedResponse.hasOwnProperty('message')) {
+          if (parsedResponse.hasOwnProperty('status') && parsedResponse.status === false) {
             throw new Error(url)
           }
           return parsedResponse

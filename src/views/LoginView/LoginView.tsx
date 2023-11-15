@@ -7,7 +7,7 @@ import { SvgIcon } from '@/components/SvgIcon'
 import { KEYDROP } from '@/constants/urls'
 
 export const LoginView: FC = () => {
-  const { t } = useTranslation('login')
+  const { t } = useTranslation('loginView')
 
   return (
     <>

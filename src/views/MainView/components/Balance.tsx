@@ -3,8 +3,8 @@ import { FC } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { SvgIcon } from '@/components/SvgIcon'
-import { DEFAULT_MOTION } from '@/constants/app'
-import { BalanceResponse } from '@/types/API/http/profile'
+import { DEFAULT_MOTION } from '@/constants/common'
+import { BalanceResponse } from '@/types/API/http/balance'
 import { AnimatedCounter } from '@/views/MainView/components/AnimatedCounter'
 
 interface BalanceInterface {

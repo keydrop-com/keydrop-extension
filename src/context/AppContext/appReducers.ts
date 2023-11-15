@@ -1,9 +1,9 @@
 import { INIT_APP_DATA } from '@/constants/app'
 import { getKeydropCookies, getSteamId } from '@/services/browser/cookies'
 import ProfileClient from '@/services/http/ProfileClient'
-import { Dispatch } from '@/types/app'
+import { AppDispatch } from '@/types/app'
 
-export const setAppData = async (dispatch: Dispatch): Promise<void> => {
+export const setAppData = async (dispatch: AppDispatch): Promise<void> => {
   const sessionId = (await getKeydropCookies())?.session_id
   const steamId = await getSteamId()
 
@@ -16,7 +16,7 @@ export const setAppData = async (dispatch: Dispatch): Promise<void> => {
   return
 }
 
-export const setUserProfile = async (dispatch: Dispatch, steamId: string): Promise<void> => {
+export const setUserProfile = async (dispatch: AppDispatch, steamId: string): Promise<void> => {
   if (!steamId) {
     dispatch({ type: 'SET_APP_DATA', value: INIT_APP_DATA })
     return
@@ -29,7 +29,7 @@ export const setUserProfile = async (dispatch: Dispatch, steamId: string): Promi
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const setStorage = async (dispatch: Dispatch): Promise<void> => {
+export const setStorage = async (dispatch: AppDispatch): Promise<void> => {
   return
   // return await getAppStorage()
   //   .then((appStorage) => {

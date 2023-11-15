@@ -5,7 +5,7 @@ import { Button } from '@/components/Button'
 import { Hr } from '@/components/Hr'
 import { SvgIcon } from '@/components/SvgIcon'
 import { useApp } from '@/context/AppContext'
-import ProfileClient from '@/services/http/ProfileClient'
+import BalanceClient from '@/services/http/BalanceClient'
 import { ActiveView } from '@/types/app'
 import { Stats } from '@/views/MainView/components/Stats/Stats'
 import { UserProfile } from '@/views/MainView/components/UserProfile'
@@ -29,7 +29,7 @@ export const MainView: FC = () => {
   }
 
   const getUserBalance = (): void => {
-    ProfileClient.getUserBalance({ skinsValue: false }).then((balance) => {
+    BalanceClient.getUserBalance({ skinsValue: false }).then((balance) => {
       dispatch({ type: 'SET_USER_BALANCE', value: balance })
     })
   }

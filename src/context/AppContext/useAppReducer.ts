@@ -1,6 +1,6 @@
-import { Action, AppState } from '@/types/app'
+import { AppAction, AppState } from '@/types/app'
 
-export function userAppReducer(appState: AppState, action: Action): AppState {
+export function userAppReducer(appState: AppState, action: AppAction): AppState {
   switch (action.type) {
     case 'SET_APP_DATA': {
       const appData = action.value
