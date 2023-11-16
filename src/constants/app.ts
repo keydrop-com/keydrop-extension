@@ -1,7 +1,7 @@
 import { DEFAULT_MOTION } from '@/constants/common'
 import { BalanceResponse } from '@/types/API/http/balance'
 import { ProfilePageResponse } from '@/types/API/http/profile'
-import { ActiveView, AppData, AppMachineContext, CountersAnimations } from '@/types/app'
+import { ActiveView, AppData, CountersAnimations } from '@/types/app'
 
 export const DEFAULT_APP_MOTION = {
   ...DEFAULT_MOTION,
@@ -61,12 +61,4 @@ export const INIT_COUNTER_ANIMATIONS: CountersAnimations = {
   [ActiveView.INVENTORY]: true,
   [ActiveView.NOTIFICATIONS]: true,
   [ActiveView.SETTINGS]: true,
-}
-
-export const INIT_APP_CONTEXT: AppMachineContext = {
-  userProfile: INIT_USER_PROFILE,
-  userBalance: INIT_USER_BALANCE,
-  appData: INIT_APP_DATA,
-  countersAnimations: INIT_COUNTER_ANIMATIONS,
-  activeView: ActiveView.MAIN,
 }

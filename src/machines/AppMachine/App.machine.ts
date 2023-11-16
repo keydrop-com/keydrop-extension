@@ -1,7 +1,12 @@
 import { assign } from '@xstate/immer'
 import { createMachine } from 'xstate'
 
-import { INIT_APP_CONTEXT } from '@/constants/app'
+import {
+  INIT_APP_DATA,
+  INIT_COUNTER_ANIMATIONS,
+  INIT_USER_BALANCE,
+  INIT_USER_PROFILE,
+} from '@/constants/app'
 import { KEYDROP } from '@/constants/urls'
 import {
   getKeydropCookies,
@@ -10,8 +15,9 @@ import {
 } from '@/services/browser/cookies'
 import { openInNewTab } from '@/services/browser/tabs'
 import ProfileClient from '@/services/http/ProfileClient'
+import { BalanceResponse } from '@/types/API/http/balance'
 import { ProfilePageResponse } from '@/types/API/http/profile'
-import { ActiveView, AppData, AppMachineContext } from '@/types/app'
+import { ActiveView, AppData, CountersAnimations } from '@/types/app'
 
 export type AppMachineServices = {
   getAppData: {
@@ -26,6 +32,22 @@ export type AppMachineServices = {
 }
 
 export type AppMachineEvent = { type: 'ACTIVE_VIEW_CHANGE'; value: ActiveView } | { type: 'LOGIN' }
+
+export interface AppMachineContext {
+  appData: AppData
+  activeView: ActiveView
+  userProfile: ProfilePageResponse
+  userBalance: BalanceResponse
+  countersAnimations: CountersAnimations
+}
+
+export const INIT_APP_CONTEXT: AppMachineContext = {
+  userProfile: INIT_USER_PROFILE,
+  userBalance: INIT_USER_BALANCE,
+  appData: INIT_APP_DATA,
+  countersAnimations: INIT_COUNTER_ANIMATIONS,
+  activeView: ActiveView.MAIN,
+}
 
 export const AppMachine = createMachine(
   {
