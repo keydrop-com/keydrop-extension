@@ -6,20 +6,14 @@ import { Button } from '@/components/Button'
 import { NavbarButtonInterface, NavigationButton } from '@/components/NavigationButton'
 import { SvgIcon } from '@/components/SvgIcon'
 import { KEYDROP } from '@/constants/urls'
-import { useApp } from '@/context/AppContext'
+import { useAppContext } from '@/context/AppContext'
 import { ActiveView } from '@/types/app'
 
 export const Navbar: FC = () => {
   const { t } = useTranslation('common', { keyPrefix: 'navbar' })
-  const {
-    appState: {
-      activeView,
-      userProfile: {
-        user: { username, avatar },
-      },
-    },
-    dispatch,
-  } = useApp()
+  const { appState, appSend } = useAppContext()
+  const { activeView, userProfile } = appState.context
+  const { username, avatar } = userProfile.user
 
   const viewButtons: Omit<NavbarButtonInterface, 'onClick' | 'isActive'>[] = useMemo(
     () => [
@@ -38,7 +32,7 @@ export const Navbar: FC = () => {
   )
 
   const handleOnClick = (value: ActiveView): void => {
-    dispatch({ type: 'SET_ACTIVE_VIEW', value })
+    appSend({ type: 'ACTIVE_VIEW_CHANGE', value })
   }
 
   return (

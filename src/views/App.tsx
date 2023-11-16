@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { FC } from 'react'
 
 import { DEFAULT_APP_MOTION } from '@/constants/app'
-import { useApp } from '@/context/AppContext'
+import { useAppContext } from '@/context/AppContext'
 import BaseLayout from '@/layouts/BaseLayout'
 import MainLayout from '@/layouts/MainLayout'
 import { ActiveView } from '@/types/app'
@@ -17,26 +17,23 @@ import SettingsView from '@/views/SettingsView'
 import { InventoryView } from './InventoryView/InventoryView'
 
 const App: FC = () => {
-  const {
-    appState: { loggedIn, activeView, isLoading },
-  } = useApp()
+  const { appState } = useAppContext()
+  const { context, matches } = appState
+  const { activeView } = context
+
+  const isLoggedIn = matches('loggedIn')
+  const isLoading = matches('gettingData')
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div key={loggedIn ? 'loggedIn' : 'notLoggedIn'} {...DEFAULT_APP_MOTION}>
+      <motion.div key={isLoggedIn ? 'loggedIn' : 'notLoggedIn'} {...DEFAULT_APP_MOTION}>
         {isLoading && (
           <BaseLayout>
             <LoadingView />
           </BaseLayout>
         )}
 
-        {!loggedIn && !isLoading && (
-          <BaseLayout>
-            <LoginView />
-          </BaseLayout>
-        )}
-
-        {loggedIn && !isLoading && (
+        {isLoggedIn ? (
           <MainLayout>
             <motion.div key={activeView} {...DEFAULT_APP_MOTION}>
               {activeView === ActiveView.MAIN && <MainView />}
@@ -44,6 +41,10 @@ const App: FC = () => {
               {activeView === ActiveView.INVENTORY && <InventoryView />}
             </motion.div>
           </MainLayout>
+        ) : (
+          <BaseLayout>
+            <LoginView />
+          </BaseLayout>
         )}
       </motion.div>
     </AnimatePresence>

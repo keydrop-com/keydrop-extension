@@ -1,40 +1,37 @@
-import { createContext, FC, ReactNode, useContext, useEffect, useReducer } from 'react'
+import { useMachine } from '@xstate/react'
+import { createContext, FC, ReactNode, useContext } from 'react'
+import { Sender, StateFrom } from 'xstate'
 
-import { INIT_APP_STATE } from '@/constants/app'
-import { setAppData, setStorage, setUserProfile } from '@/context/AppContext/appReducers'
-import { userAppReducer } from '@/context/AppContext/useAppReducer'
-import { AppDispatch, AppState } from '@/types/app'
-import { consoleLog } from '@/utils/common'
+import { AppMachine, AppMachineEvent } from '@/machines/AppMachine/App.machine'
 
-export type AppProviderProps = { children: ReactNode }
-
-export type AppContextType = { appState: AppState; dispatch: AppDispatch }
-
-export const AppContext = createContext<AppContextType | undefined>(undefined)
-
-export const AppProvider: FC<AppProviderProps> = ({ children }) => {
-  const [appState, dispatch] = useReducer(userAppReducer, INIT_APP_STATE)
-  const steamId = appState.appData.steamId
-
-  useEffect(() => {
-    setAppData(dispatch).catch((e) => consoleLog('setAppData', e))
-  }, [])
-
-  useEffect(() => {
-    setUserProfile(dispatch, steamId).catch((e) => consoleLog('setUserProfile', e))
-  }, [appState.appData.steamId])
-
-  useEffect(() => {
-    setStorage(dispatch).catch((e) => consoleLog('setStorage', e))
-  }, [])
-
-  return <AppContext.Provider value={{ appState, dispatch }}>{children}</AppContext.Provider>
+interface AppContextProvider {
+  children: ReactNode
 }
 
-export const useApp = (): AppContextType => {
+interface AppContextInterface {
+  appState: StateFrom<typeof AppMachine>
+  appSend: Sender<AppMachineEvent>
+}
+
+export const AppContext = createContext<AppContextInterface>({
+  appState: AppMachine.initialState,
+  appSend: () => null,
+})
+
+export const AppContextProvider: FC<AppContextProvider> = ({ children }) => {
+  const [state, send] = useMachine(AppMachine)
+
+  return (
+    <AppContext.Provider value={{ appState: state, appSend: send }}>{children}</AppContext.Provider>
+  )
+}
+
+export const useAppContext = (): AppContextInterface => {
   const context = useContext(AppContext)
-  if (context === undefined) {
-    throw new Error('useApp must be used within a AppProvider')
+
+  if (!context) {
+    throw new Error('useAppContext must be used inside the AppContextProvider')
   }
+
   return context
 }

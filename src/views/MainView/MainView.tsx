@@ -4,34 +4,28 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/Button'
 import { Hr } from '@/components/Hr'
 import { SvgIcon } from '@/components/SvgIcon'
-import { useApp } from '@/context/AppContext'
-import BalanceClient from '@/services/http/BalanceClient'
+import { useAppContext } from '@/context/AppContext'
 import { ActiveView } from '@/types/app'
 import { Stats } from '@/views/MainView/components/Stats/Stats'
 import { UserProfile } from '@/views/MainView/components/UserProfile'
 
 export const MainView: FC = () => {
   const { t } = useTranslation('mainView')
-  const {
-    appState: {
-      userProfile,
-      userBalance,
-      appData: { steamId },
-      countersAnimations,
-    },
-    dispatch,
-  } = useApp()
+
+  const { appState, appSend } = useAppContext()
+  const { userProfile, userBalance, appData, countersAnimations } = appState.context
+  const { steamId } = appData
 
   const isCounterAnimationEnabled = countersAnimations[ActiveView.MAIN]
 
   const handleOnClick = (): void => {
-    dispatch({ type: 'SET_ACTIVE_VIEW', value: ActiveView.INVENTORY })
+    appSend({ type: 'ACTIVE_VIEW_CHANGE', value: ActiveView.INVENTORY })
   }
 
   const getUserBalance = (): void => {
-    BalanceClient.getUserBalance({ skinsValue: false }).then((balance) => {
-      dispatch({ type: 'SET_USER_BALANCE', value: balance })
-    })
+    // BalanceClient.getUserBalance({ skinsValue: false }).then((balance) => {
+    //   dispatch({ type: 'SET_USER_BALANCE', value: balance })
+    // })
   }
 
   useEffect(getUserBalance, [])

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 import { Table, TableColumnInterface } from '@/components/Table'
 import { ViewBar } from '@/components/ViewBar'
-import { useApp } from '@/context/AppContext'
+import { useAppContext } from '@/context/AppContext'
 import { ActiveView } from '@/types/app'
 
 type InventoryItemRow = {
@@ -59,10 +59,10 @@ const columns: TableColumnInterface<InventoryItemRow>[] = [
 
 export const InventoryView: FC = () => {
   const { t } = useTranslation('inventoryView')
-  const { dispatch } = useApp()
+  const { appSend } = useAppContext()
 
   const handleOnBackClick = (): void => {
-    dispatch({ type: 'SET_ACTIVE_VIEW', value: ActiveView.MAIN })
+    appSend({ type: 'ACTIVE_VIEW_CHANGE', value: ActiveView.MAIN })
   }
 
   // useEffect(() => {

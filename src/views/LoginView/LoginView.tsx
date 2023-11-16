@@ -4,14 +4,14 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/Button'
 import { MouseParallax } from '@/components/MouseParallax'
 import { SvgIcon } from '@/components/SvgIcon'
-import { KEYDROP } from '@/constants/urls'
-import { removeKeydropSessionCookie } from '@/services/browser/cookies'
+import { useAppContext } from '@/context/AppContext'
 
 export const LoginView: FC = () => {
   const { t } = useTranslation('loginView')
+  const { appSend } = useAppContext()
 
   const handleOnClick = async (): Promise<void> => {
-    await removeKeydropSessionCookie()
+    appSend('LOGIN')
   }
 
   return (
@@ -29,7 +29,6 @@ export const LoginView: FC = () => {
         </div>
         <div className="relative top-8 flex w-full justify-center">
           <Button
-            href={KEYDROP.main}
             onClick={handleOnClick}
             className="button--primary h-[70px] w-fit rounded-[15px] px-[80px] text-base"
             label={t('button.label')}

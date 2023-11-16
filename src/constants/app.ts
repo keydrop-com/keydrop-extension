@@ -1,9 +1,12 @@
 import { DEFAULT_MOTION } from '@/constants/common'
 import { BalanceResponse } from '@/types/API/http/balance'
 import { ProfilePageResponse } from '@/types/API/http/profile'
-import { ActiveView, AppData, AppState, AppStorage, CountersAnimations, OpenIn } from '@/types/app'
+import { ActiveView, AppData, AppMachineContext, CountersAnimations } from '@/types/app'
 
-export const STORAGE_VERSION = '1.0'
+export const DEFAULT_APP_MOTION = {
+  ...DEFAULT_MOTION,
+  className: 'h-full w-full',
+}
 
 export const INIT_USER_PROFILE: ProfilePageResponse = {
   bot: false,
@@ -46,14 +49,6 @@ export const INIT_USER_PROFILE: ProfilePageResponse = {
 
 export const INIT_APP_DATA: AppData = { sessionId: '', steamId: '' }
 
-export const INIT_APP_STORAGE: AppStorage = {
-  auto_creating_trade: false,
-  default_view: ActiveView.MAIN,
-  disable_offer_edit: true,
-  offer_message: '',
-  open_in: OpenIn.new_tab,
-}
-
 export const INIT_USER_BALANCE: BalanceResponse = {
   gold: 0,
   pkt: 0,
@@ -68,18 +63,10 @@ export const INIT_COUNTER_ANIMATIONS: CountersAnimations = {
   [ActiveView.SETTINGS]: true,
 }
 
-export const INIT_APP_STATE: AppState = {
+export const INIT_APP_CONTEXT: AppMachineContext = {
   userProfile: INIT_USER_PROFILE,
   userBalance: INIT_USER_BALANCE,
   appData: INIT_APP_DATA,
-  loggedIn: false,
-  isLoading: true,
   countersAnimations: INIT_COUNTER_ANIMATIONS,
   activeView: ActiveView.MAIN,
-  appStorage: INIT_APP_STORAGE,
-}
-
-export const DEFAULT_APP_MOTION = {
-  ...DEFAULT_MOTION,
-  className: 'h-full w-full',
 }
