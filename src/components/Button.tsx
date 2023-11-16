@@ -1,7 +1,7 @@
 import { JSX } from 'react'
 
 import { SvgIcon } from '@/components/SvgIcon'
-import { openInNewTab } from '@/services/browser/tabs'
+import CommonClient from '@/services/browser/CommonClient'
 import { TwComponent } from '@/types/common'
 import { IconsNames } from '@/types/icons'
 import { cn } from '@/utils/styles'
@@ -29,10 +29,8 @@ export const Button: TwComponent<ButtonProps> = ({
 }) => {
   const handleOnClick = async (): Promise<void> => {
     onClick?.()
-
-    if (href) {
-      await openInNewTab(href)
-    }
+    if (!href) return
+    await CommonClient.openInNewTab(href)
   }
 
   return (

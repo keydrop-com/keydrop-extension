@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Button } from '@/components/Button'
@@ -21,14 +21,6 @@ export const MainView: FC = () => {
   const handleOnClick = (): void => {
     appSend({ type: 'ACTIVE_VIEW_CHANGE', value: ActiveView.INVENTORY })
   }
-
-  const getUserBalance = (): void => {
-    // BalanceClient.getUserBalance({ skinsValue: false }).then((balance) => {
-    //   dispatch({ type: 'SET_USER_BALANCE', value: balance })
-    // })
-  }
-
-  useEffect(getUserBalance, [])
 
   return (
     <div className="flex flex-col gap-[30px]">

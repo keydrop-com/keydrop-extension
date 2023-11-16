@@ -8,12 +8,10 @@ import {
   INIT_USER_PROFILE,
 } from '@/constants/app'
 import { KEYDROP } from '@/constants/urls'
-import {
-  getKeydropCookies,
-  getSteamId,
-  removeKeydropSessionCookie,
-} from '@/services/browser/cookies'
-import { openInNewTab } from '@/services/browser/tabs'
+import CommonClient from '@/services/browser/CommonClient'
+import KeydropClient from '@/services/browser/KeydropClient'
+import SteamClient from '@/services/browser/SteamClient'
+import BalanceClient from '@/services/http/BalanceClient'
 import ProfileClient from '@/services/http/ProfileClient'
 import { BalanceResponse } from '@/types/API/http/balance'
 import { ProfilePageResponse } from '@/types/API/http/profile'
@@ -25,6 +23,9 @@ export type AppMachineServices = {
   }
   getUserProfile: {
     data: ProfilePageResponse
+  }
+  getUserBalance: {
+    data: BalanceResponse
   }
   authUser: {
     data: void
@@ -107,9 +108,23 @@ export const AppMachine = createMachine(
         },
       },
       loggedIn: {
-        on: {
-          ACTIVE_VIEW_CHANGE: {
-            actions: ['assignActiveView', 'assignCountersAnimations'],
+        type: 'parallel',
+        states: {
+          idle: {
+            on: {
+              ACTIVE_VIEW_CHANGE: {
+                actions: ['assignActiveView', 'assignCountersAnimations'],
+              },
+            },
+          },
+          gettingUserBalance: {
+            invoke: {
+              src: 'getUserBalance',
+              onDone: {
+                actions: 'assignUserBalance',
+                target: 'idle',
+              },
+            },
           },
         },
       },
@@ -129,24 +144,29 @@ export const AppMachine = createMachine(
       assignCountersAnimations: assign((ctx, e) => {
         ctx.countersAnimations = { ...ctx.countersAnimations, [e.value]: false }
       }),
+      assignUserBalance: assign((ctx, e) => {
+        ctx.userBalance = e.data
+      }),
     },
     services: {
       authUser: async () => {
-        await removeKeydropSessionCookie()
-        await openInNewTab(KEYDROP.main)
+        await KeydropClient.removeSessionCookie()
+        await CommonClient.openInNewTab(KEYDROP.main)
       },
-      getAppData: () => {
-        return new Promise(async (resolve, reject) => {
-          const sessionId = (await getKeydropCookies())?.session_id
-          const steamId = await getSteamId()
-
-          if (!sessionId || !steamId) reject()
-
-          resolve({ sessionId, steamId })
-        })
+      getAppData: async () => {
+        const sessionId = await KeydropClient.getSessionId()
+        const steamId = await SteamClient.getSteamId()
+        if (!sessionId || !steamId) {
+          throw new Error('No session id or steam id')
+        } else {
+          return { sessionId, steamId }
+        }
       },
       getUserProfile: async ({ appData: { steamId } }) => {
         return await ProfileClient.getUserProfile({ steamId })
+      },
+      getUserBalance: async () => {
+        return await BalanceClient.getUserBalance({ skinsValue: false })
       },
     },
   },
