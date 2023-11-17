@@ -12,7 +12,7 @@ export interface TableColumnInterface<T> {
 interface TableInterface<T> {
   columns: TableColumnInterface<T>[]
   data: T[]
-  defaultItemHeight?: number
+  itemHeight?: number
   height?: number
   onLoadMore?: () => void
   classNames?: {
@@ -27,7 +27,7 @@ interface TableInterface<T> {
 export const Table = <T = unknown,>({
   columns,
   data,
-  defaultItemHeight = 70,
+  itemHeight = 70,
   height = 430,
   onLoadMore,
   classNames,
@@ -49,14 +49,11 @@ export const Table = <T = unknown,>({
       data={data}
       style={{ height }}
       endReached={onLoadMore}
-      defaultItemHeight={defaultItemHeight}
+      fixedItemHeight={itemHeight}
       className={cn('scrollbar-gold !overflow-y-scroll', classNames?.main)}
-      increaseViewportBy={{ top: defaultItemHeight * 2, bottom: defaultItemHeight * 2 }}
+      increaseViewportBy={{ top: itemHeight * 2, bottom: itemHeight * 2 }}
       fixedHeaderContent={() => (
-        <tr
-          style={{ height: defaultItemHeight }}
-          className={cn(classNames?.thWrapper, classNames?.grid)}
-        >
+        <tr style={{ height: itemHeight }} className={cn(classNames?.thWrapper, classNames?.grid)}>
           {columns.map((column, index) => (
             <th key={index} className={cn(classNames?.th)}>
               {column.header}
@@ -71,7 +68,7 @@ export const Table = <T = unknown,>({
           return (
             <tr
               {...restProps}
-              style={{ height: defaultItemHeight }}
+              style={{ height: itemHeight }}
               className={cn(classNames?.tdWrapper, classNames?.grid)}
             >
               {columns.map((column, colIndex) => (

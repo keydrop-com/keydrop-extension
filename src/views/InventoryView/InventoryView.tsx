@@ -52,7 +52,7 @@ export const InventoryView: FC = () => {
         cellRenderer: ActionsCellRender,
       },
     ]
-  }, [data])
+  }, [])
 
   const handleOnBackClick = (): void => {
     appSend({ type: 'ACTIVE_VIEW_CHANGE', value: ActiveView.MAIN })
