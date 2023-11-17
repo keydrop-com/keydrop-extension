@@ -4,7 +4,7 @@ import { PROFILE_API } from '@/utils/API/http/profile'
 
 class ProfileClient extends AbstractHttpService {
   static async getUserProfile(params: ProfilePageParams): Promise<ProfilePageResponse> {
-    return super.fetchWithAuth(PROFILE_API.profileData(params))
+    return super.fetchWithAuth(PROFILE_API.profileData(params), {}, true, true)
   }
 }
 

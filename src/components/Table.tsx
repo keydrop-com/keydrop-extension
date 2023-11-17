@@ -14,8 +14,11 @@ interface TableInterface<T> {
   data: T[]
   defaultItemHeight?: number
   height?: number
+  onLoadMore?: () => void
   classNames?: {
+    main?: string
     thWrapper?: string
+    th?: string
     tdWrapper?: string
     grid?: string
   }
@@ -26,6 +29,7 @@ export const Table = <T = unknown,>({
   data,
   defaultItemHeight = 70,
   height = 430,
+  onLoadMore,
   classNames,
 }: TableInterface<T>): JSX.Element => {
   const scrollContainerRef = useRef<HTMLElement | Window | null>(null)
@@ -44,7 +48,9 @@ export const Table = <T = unknown,>({
       scrollerRef={(ref) => (scrollContainerRef.current = ref)}
       data={data}
       style={{ height }}
+      endReached={onLoadMore}
       defaultItemHeight={defaultItemHeight}
+      className={cn('scrollbar-gold !overflow-y-scroll', classNames?.main)}
       increaseViewportBy={{ top: defaultItemHeight * 2, bottom: defaultItemHeight * 2 }}
       fixedHeaderContent={() => (
         <tr
@@ -52,7 +58,7 @@ export const Table = <T = unknown,>({
           className={cn(classNames?.thWrapper, classNames?.grid)}
         >
           {columns.map((column, index) => (
-            <th key={index} className={cn('group')}>
+            <th key={index} className={cn(classNames?.th)}>
               {column.header}
             </th>
           ))}
@@ -69,7 +75,7 @@ export const Table = <T = unknown,>({
               className={cn(classNames?.tdWrapper, classNames?.grid)}
             >
               {columns.map((column, colIndex) => (
-                <td key={colIndex} className="border-t-2 border-transparent p-0">
+                <td key={colIndex} className="p-0">
                   <div className="flex h-full items-center justify-center">
                     {renderCellValue(item, column)}
                   </div>

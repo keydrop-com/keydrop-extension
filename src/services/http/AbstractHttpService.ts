@@ -5,6 +5,7 @@ class AbstractHttpService {
     url: string,
     options: RequestInit = {},
     resolveResponse = true,
+    throwError = false,
   ): Promise<T> {
     return fetch(url, {
       ...options,
@@ -16,7 +17,11 @@ class AbstractHttpService {
         }
         if (resolveResponse) {
           const parsedResponse = await res.json()
-          if (parsedResponse.hasOwnProperty('status') && parsedResponse.status === false) {
+          if (
+            throwError &&
+            parsedResponse.hasOwnProperty('status') &&
+            parsedResponse.status === false
+          ) {
             throw new Error(url)
           }
           return parsedResponse
@@ -29,7 +34,7 @@ class AbstractHttpService {
   }
 
   static async getToken(): Promise<string> {
-    const token = window.__token__
+    const token = window.__token
     if (token) return token
 
     const url = new URL('token', KD_API_BASE_URL)
@@ -42,7 +47,7 @@ class AbstractHttpService {
         return Promise.reject()
       }
 
-      window.__token__ = token
+      window.__token = token
       return token
     })
   }
@@ -51,6 +56,7 @@ class AbstractHttpService {
     url: string,
     options: RequestInit = {},
     resolveResponse = true,
+    throwError = true,
   ): Promise<T> {
     const token = await this.getToken()
 
@@ -66,7 +72,11 @@ class AbstractHttpService {
       .then(async (res) => {
         if (resolveResponse) {
           const parsedResponse = await res.json()
-          if (parsedResponse.hasOwnProperty('status') && parsedResponse.status === false) {
+          if (
+            throwError &&
+            parsedResponse.hasOwnProperty('status') &&
+            parsedResponse.status === false
+          ) {
             throw new Error(url)
           }
           return parsedResponse

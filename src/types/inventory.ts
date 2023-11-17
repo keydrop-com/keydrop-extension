@@ -1,9 +1,31 @@
-import { Item } from '@/types/API/http/inventory'
+import { ActorRefFrom } from 'xstate'
 
-export type InventoryState = {
-  data: Item[]
+import ItemMachine from '@/machines/InventoryItemMachine/InventoryItem.machine'
+
+export type WeaponTypeOption = {
+  name: string
+  value: string
 }
 
-export type InventoryAction = { type: 'SET_DATA'; value: Item[] }
+export type ItemService = ActorRefFrom<typeof ItemMachine>
 
-export type InventoryDispatch = (action: InventoryAction) => void
+export type InventoryItemRow = {
+  itemDetails: ItemService
+  status: ItemService
+  date: ItemService
+  actions: ItemService
+}
+
+export enum INVENTORY_EVENT {
+  toggleStateFilter = 'toggleStateFilter',
+  setActiveStateFilter = 'setActiveStateFilter',
+  setAllStateFilter = 'setAllStateFilter',
+  setWeaponTypeFilter = 'setWeaponTypeFilter',
+  setCategoryFilter = 'setCategoryFilter',
+  resetFilters = 'resetFilters',
+  loadMore = 'loadMore',
+  retry = 'retry',
+  sellEq = 'sellEq',
+  refreshEq = 'refreshEq',
+  setSortingVariant = 'setSortingVariant',
+}

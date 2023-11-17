@@ -1,5 +1,5 @@
 import { useMachine } from '@xstate/react'
-import { createContext, FC, ReactNode, useContext } from 'react'
+import { createContext, FC, ReactNode, useContext, useEffect } from 'react'
 import { Sender, StateFrom } from 'xstate'
 
 import { AppMachine, AppMachineEvent } from '@/machines/AppMachine/App.machine'
@@ -20,6 +20,10 @@ export const AppContext = createContext<AppContextInterface>({
 
 export const AppContextProvider: FC<AppContextProvider> = ({ children }) => {
   const [state, send] = useMachine(AppMachine)
+
+  useEffect(() => {
+    window.__refetchBalance = () => send('REFETCH_BALANCE')
+  }, [send])
 
   return (
     <AppContext.Provider value={{ appState: state, appSend: send }}>{children}</AppContext.Provider>

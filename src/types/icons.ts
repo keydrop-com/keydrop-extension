@@ -12,3 +12,7 @@ export type IconsNames =
   | 'daily-fill'
   | 'hand-with-coins-fill'
   | 'success-fill'
+  | 'exchange-fill'
+  | 'pending-fill'
+  | 'question-fill'
+  | 'new-fill'

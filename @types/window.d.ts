@@ -1,6 +1,7 @@
 declare global {
   interface Window {
-    __token__: string
+    __token: string
+    __refetchBalance: () => void
   }
 }
 

@@ -32,7 +32,10 @@ export type AppMachineServices = {
   }
 }
 
-export type AppMachineEvent = { type: 'ACTIVE_VIEW_CHANGE'; value: ActiveView } | { type: 'LOGIN' }
+export type AppMachineEvent =
+  | { type: 'ACTIVE_VIEW_CHANGE'; value: ActiveView }
+  | { type: 'LOGIN' }
+  | { type: 'REFETCH_BALANCE' }
 
 export interface AppMachineContext {
   appData: AppData
@@ -108,13 +111,16 @@ export const AppMachine = createMachine(
         },
       },
       loggedIn: {
-        type: 'parallel',
+        initial: 'gettingUserBalance',
+        on: {
+          ACTIVE_VIEW_CHANGE: {
+            actions: ['assignActiveView', 'assignCountersAnimations'],
+          },
+        },
         states: {
           idle: {
             on: {
-              ACTIVE_VIEW_CHANGE: {
-                actions: ['assignActiveView', 'assignCountersAnimations'],
-              },
+              REFETCH_BALANCE: 'gettingUserBalance',
             },
           },
           gettingUserBalance: {

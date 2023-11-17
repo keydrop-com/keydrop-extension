@@ -2,7 +2,6 @@ import React, { StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 
 import AppContextProvider from '@/context/AppContext'
-import InventoryProvider from '@/context/InventoryContext'
 import App from '@/views/App'
 
 import { LoadingView } from './views/LoadingView/LoadingView'
@@ -13,9 +12,7 @@ root.render(
   <StrictMode>
     <Suspense fallback={<LoadingView />}>
       <AppContextProvider>
-        <InventoryProvider>
-          <App />
-        </InventoryProvider>
+        <App />
       </AppContextProvider>
     </Suspense>
   </StrictMode>,
