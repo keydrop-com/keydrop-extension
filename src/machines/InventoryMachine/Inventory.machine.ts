@@ -14,11 +14,11 @@ import {
   SORTING_VARIANT,
   STATE_FILTER,
 } from '@/types/API/http/inventory'
-import { INVENTORY_EVENT, ItemService, WeaponTypeOption } from '@/types/inventory'
+import { ItemService, UserInventoryData, WeaponTypeOption } from '@/types/inventory'
 
 const { pure } = actions
 
-type InventoryContext = {
+export type InventoryContext = {
   filters: {
     state: STATE_FILTER
     weaponType: string
@@ -38,7 +38,43 @@ type InventoryContext = {
   dataResponse: MyWinnerListResponse
 }
 
-const loadItemData = async (ctx: InventoryContext): Promise<MyWinnerListResponse> => {
+export type InventoryMachineServices = {
+  getUserItems: {
+    data: MyWinnerListResponse
+  }
+  getMarketItemsData: {
+    data: ItemMarketDataResponse[]
+  }
+  getMarketItemsDataInterval: {
+    data: ItemMarketDataResponse[]
+  }
+  getUserEqValue: {
+    data: EqValueResponse
+  }
+  getUserInventoryData: {
+    data: UserInventoryData
+  }
+  sellEq: {
+    data: SellEqResponse
+  }
+}
+
+export type InventoryMachineEvent =
+  | { type: 'TOGGLE_STATE_FILTER' }
+  | { type: 'SET_ACTIVE_STATE_FILTER' }
+  | { type: 'SET_ALL_STATE_FILTER' }
+  | { type: 'SET_WEAPON_TYPE_FILTER'; payload: string }
+  | { type: 'SET_CATEGORY_FILTERS'; payload: Array<string | CATEGORY_FILTER> }
+  | { type: 'RESET_FILTERS' }
+  | { type: 'LOAD_MORE' }
+  | { type: 'RETRY' }
+  | { type: 'SELL_EQ' }
+  | { type: 'REFRESH_EQ' }
+  | { type: 'SET_SORTING_VARIANT'; payload: SORTING_VARIANT }
+  | { type: 'UPDATE_BALANCE' }
+  | { type: 'REFRESH_MARKET_DATA'; data: ItemMarketDataResponse[] }
+
+const getUserItems = async (ctx: InventoryContext): Promise<MyWinnerListResponse> => {
   return await InventoryClient.getUserItems({
     type: ctx.filters.category.length === 1 ? String(ctx.filters.category) : CATEGORY_FILTER.ALL,
     sort: ctx.sortingVariant,
@@ -49,40 +85,31 @@ const loadItemData = async (ctx: InventoryContext): Promise<MyWinnerListResponse
   })
 }
 
-const loadMarketData = async (): Promise<ItemMarketDataResponse[]> => {
+const getMarketItemsData = async (): Promise<ItemMarketDataResponse[]> => {
   return await InventoryClient.getUserItemsMarketData()
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const loadMarketDataInterval = () => (callback: Sender<any>) => {
-  const id = setInterval(
-    () =>
-      loadMarketData()
-        .then((data) => {
-          callback({ type: 'REFRESH_MARKET_DATA', data })
-        })
-        .catch(console.error),
-    10000,
-  )
+const getMarketItemsDataInterval = () => (callback: Sender<InventoryMachineEvent>) => {
+  const id = setInterval(() => {
+    getMarketItemsData()
+      .then((data) => {
+        callback({ type: 'REFRESH_MARKET_DATA', data })
+      })
+      .catch(console.error)
+  }, 10000)
 
   return () => clearInterval(id)
 }
 
-const loadEqValue = async (): Promise<EqValueResponse> => {
+const getUserEqValue = async (): Promise<EqValueResponse> => {
   return await InventoryClient.getUserItemsEqValue()
 }
 
-const loadData = async (
-  ctx: InventoryContext,
-): Promise<{
-  dataRes: MyWinnerListResponse
-  marketDataRes: ItemMarketDataResponse[]
-  eqValue: EqValueResponse
-}> => {
+const getUserInventoryData = async (ctx: InventoryContext): Promise<UserInventoryData> => {
   const [dataRes, marketDataRes, eqValue] = await Promise.all([
-    loadItemData(ctx),
-    loadMarketData(),
-    loadEqValue(),
+    getUserItems(ctx),
+    getMarketItemsData(),
+    getUserEqValue(),
   ])
   return {
     dataRes,
@@ -91,38 +118,38 @@ const loadData = async (
   }
 }
 
-export const sellEq = async (): Promise<SellEqResponse> => {
+const sellEq = async (): Promise<SellEqResponse> => {
   const res = await InventoryClient.sellEq()
   if (!res.status) return Promise.reject(res)
   return res
 }
 
-const filterEvents = {
-  [INVENTORY_EVENT.toggleStateFilter]: {
+const FILTER_EVENTS = {
+  TOGGLE_STATE_FILTER: {
     actions: ['resetPagination', 'toggleStateFilter', 'saveDataToLocalStorage'],
     target: 'loadingInitialData',
   },
-  [INVENTORY_EVENT.setActiveStateFilter]: {
+  SET_ACTIVE_STATE_FILTER: {
     actions: ['resetPagination', 'setActiveStateFilter', 'saveDataToLocalStorage'],
     target: 'loadingInitialData',
   },
-  [INVENTORY_EVENT.setAllStateFilter]: {
+  SET_ALL_STATE_FILTER: {
     actions: ['resetPagination', 'setAllStateFilter', 'saveDataToLocalStorage'],
     target: 'loadingInitialData',
   },
-  [INVENTORY_EVENT.setWeaponTypeFilter]: {
+  SET_WEAPON_TYPE_FILTER: {
     actions: ['resetPagination', 'setWeaponTypeFilter'],
     target: 'loadingInitialData',
   },
-  [INVENTORY_EVENT.setCategoryFilter]: {
+  SET_CATEGORY_FILTERS: {
     actions: ['resetPagination', 'setCategoryFilter'],
     target: 'loadingInitialData',
   },
-  [INVENTORY_EVENT.setSortingVariant]: {
+  SET_SORTING_VARIANT: {
     actions: ['resetPagination', 'setSortingVariant'],
     target: 'loadingInitialData',
   },
-  [INVENTORY_EVENT.resetFilters]: {
+  RESET_FILTERS: {
     actions: ['resetPagination', 'setResetFilters'],
     target: 'loadingInitialData',
   },
@@ -160,13 +187,16 @@ const INIT_INVENTORY_CONTEXT: InventoryContext = {
 const InventoryMachine = createMachine(
   {
     id: 'InventoryMachine',
-    initial: 'initialising',
+    predictableActionArguments: true,
+    tsTypes: {} as import('./Inventory.machine.typegen').Typegen0,
     schema: {
       context: {} as InventoryContext,
+      events: {} as InventoryMachineEvent,
+      services: {} as InventoryMachineServices,
     },
     context: INIT_INVENTORY_CONTEXT,
     invoke: {
-      src: 'loadMarketDataInterval',
+      src: 'getMarketItemsDataInterval',
     },
     on: {
       UPDATE_BALANCE: {
@@ -178,6 +208,7 @@ const InventoryMachine = createMachine(
         internal: true,
       },
     },
+    initial: 'initialising',
     states: {
       initialising: {
         entry: 'getDataFromLocalStorage',
@@ -185,15 +216,15 @@ const InventoryMachine = createMachine(
       },
       idle: {
         on: {
-          [INVENTORY_EVENT.loadMore]: 'loadingNextData',
-          [INVENTORY_EVENT.sellEq]: 'sellingEq',
-          [INVENTORY_EVENT.refreshEq]: 'refreshingEq',
-          ...filterEvents,
+          LOAD_MORE: 'loadingNextData',
+          SELL_EQ: 'sellingEq',
+          REFRESH_EQ: 'refreshingEq',
+          ...FILTER_EVENTS,
         },
       },
       refreshingEq: {
         invoke: {
-          src: 'loadEqValue',
+          src: 'getUserEqValue',
           onDone: {
             actions: ['assignEqValue'],
             target: 'routingToProperIdleLikeState',
@@ -217,26 +248,24 @@ const InventoryMachine = createMachine(
         },
       },
       noData: {
-        on: {
-          ...filterEvents,
-        },
+        on: FILTER_EVENTS,
       },
       loadedAllItems: {
         on: {
-          [INVENTORY_EVENT.sellEq]: 'sellingEq',
-          [INVENTORY_EVENT.refreshEq]: 'refreshingEq',
-          ...filterEvents,
+          SELL_EQ: 'sellingEq',
+          REFRESH_EQ: 'refreshingEq',
+          ...FILTER_EVENTS,
         },
       },
       loadingInitialData: {
         entry: ['resetPagination'],
         on: {
-          [INVENTORY_EVENT.setWeaponTypeFilter]: {
+          SET_WEAPON_TYPE_FILTER: {
             actions: ['setWeaponTypeFilter'],
           },
         },
         invoke: {
-          src: 'loadData',
+          src: 'getUserInventoryData',
           onDone: [
             {
               cond: 'hasLoadedLastPage',
@@ -254,14 +283,14 @@ const InventoryMachine = createMachine(
       },
       failedLoadingInitialData: {
         on: {
-          [INVENTORY_EVENT.retry]: 'loadingInitialData',
-          ...filterEvents,
+          RETRY: 'loadingInitialData',
+          ...FILTER_EVENTS,
         },
       },
       loadingNextData: {
         entry: ['assignNextPage'],
         invoke: {
-          src: 'loadData',
+          src: 'getUserInventoryData',
           onDone: [
             {
               cond: 'hasLoadedLastPage',
@@ -277,17 +306,18 @@ const InventoryMachine = createMachine(
         },
       },
       failedLoadingNextData: {
-        // entry: 'showFooter',
         on: {
-          [INVENTORY_EVENT.retry]: 'loadingNextData',
-          ...filterEvents,
+          RETRY: 'loadingNextData',
+          ...FILTER_EVENTS,
         },
       },
     },
   },
   {
     guards: {
-      hasData: (_, { data: { dataRes } }) => dataRes.total > 0,
+      hasData: (_, { data: { dataRes } }) => {
+        return dataRes.total > 0
+      },
       hasLoadedLastPage: (_, { data: { dataRes } }) =>
         dataRes.currentPage === Math.ceil(dataRes.total / dataRes.perPage),
       isLoadedLastPage: ({ dataResponse: r }) => r.currentPage === Math.ceil(r.total / r.perPage),
@@ -373,24 +403,25 @@ const InventoryMachine = createMachine(
         ctx.data = [...ctx.data, ...newData]
         ctx.marketData = response.marketDataRes
       }),
-      sendMarketDataToRelevantItems: pure<
-        InventoryContext,
-        { type: 'REFRESH_MARKET_DATA'; data: ItemMarketDataResponse[] }
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-      >((ctx, { data: marketData }) => {
-        return marketData
-          .map((itemMarketData) => {
-            const itemService = ctx.data.find(({ data }) => data.id === itemMarketData.ID_loser)
+      sendMarketDataToRelevantItems: pure((ctx, { data: marketData }) => {
+        marketData.forEach((itemMarketData) => {
+          const itemService = ctx.data.find(({ data }) => data.id === itemMarketData.ID_loser)
 
-            if (!itemService) return
+          if (!itemService) {
+            return undefined
+          }
 
-            return sendTo(itemService.ref, { type: 'REFRESH_MARKET_STATUS', data: itemMarketData })
+          sendTo(itemService.ref, {
+            type: 'REFRESH_MARKET_STATUS',
+            data: itemMarketData,
           })
-          .filter(Boolean)
+        })
+
+        return undefined
       }),
-      assignLoadingInitialDataError: assign((ctx, { data: response }) => {
-        ctx.dataResponse = response
+      assignLoadingInitialDataError: assign(() => {
+        // const { data: response } = e
+        // ctx.dataResponse = response
       }),
       assignNextPage: assign((ctx) => {
         ctx.filters.currentPage += 1
@@ -424,9 +455,9 @@ const InventoryMachine = createMachine(
       },
     },
     services: {
-      loadMarketDataInterval,
-      loadData,
-      loadEqValue,
+      getMarketItemsDataInterval,
+      getUserInventoryData,
+      getUserEqValue,
       sellEq,
     },
   },

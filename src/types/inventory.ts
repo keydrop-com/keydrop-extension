@@ -1,6 +1,11 @@
 import { ActorRefFrom } from 'xstate'
 
 import ItemMachine from '@/machines/InventoryItemMachine/InventoryItem.machine'
+import {
+  EqValueResponse,
+  ItemMarketDataResponse,
+  MyWinnerListResponse,
+} from '@/types/API/http/inventory'
 
 export type WeaponTypeOption = {
   name: string
@@ -16,16 +21,8 @@ export type InventoryItemRow = {
   actions: ItemService
 }
 
-export enum INVENTORY_EVENT {
-  toggleStateFilter = 'toggleStateFilter',
-  setActiveStateFilter = 'setActiveStateFilter',
-  setAllStateFilter = 'setAllStateFilter',
-  setWeaponTypeFilter = 'setWeaponTypeFilter',
-  setCategoryFilter = 'setCategoryFilter',
-  resetFilters = 'resetFilters',
-  loadMore = 'loadMore',
-  retry = 'retry',
-  sellEq = 'sellEq',
-  refreshEq = 'refreshEq',
-  setSortingVariant = 'setSortingVariant',
+export type UserInventoryData = {
+  dataRes: MyWinnerListResponse
+  marketDataRes: ItemMarketDataResponse[]
+  eqValue: EqValueResponse
 }

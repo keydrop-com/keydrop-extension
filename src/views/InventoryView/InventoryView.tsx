@@ -7,7 +7,7 @@ import { ViewBar } from '@/components/ViewBar'
 import { useAppContext } from '@/context/AppContext'
 import InventoryMachine from '@/machines/InventoryMachine/Inventory.machine'
 import { ActiveView } from '@/types/app'
-import { INVENTORY_EVENT, InventoryItemRow } from '@/types/inventory'
+import { InventoryItemRow } from '@/types/inventory'
 import { ActionsCellRender } from '@/views/InventoryView/components/Table/ActionsCellRender'
 import { DateCellRender } from '@/views/InventoryView/components/Table/DateCellRender'
 import { ItemsDetailsCellRender } from '@/views/InventoryView/components/Table/ItemsDetailsCellRender'
@@ -59,7 +59,7 @@ export const InventoryView: FC = () => {
   }
 
   const handleOnLoadMore = (): void => {
-    send(INVENTORY_EVENT.loadMore)
+    send('LOAD_MORE')
   }
 
   return (

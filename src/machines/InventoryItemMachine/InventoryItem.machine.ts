@@ -15,7 +15,7 @@ import {
   SellItemResponse,
 } from '@/types/API/http/inventory'
 
-type ItemContext = {
+export type ItemContext = {
   isPublic: boolean
   data: Item
   marketData?: ItemMarketDataResponse
