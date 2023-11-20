@@ -1,48 +1,100 @@
-import { FC } from 'react'
+import { useActor } from '@xstate/react'
+import { FC, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { SvgIcon } from '@/components/SvgIcon'
 import { ITEM_STATUS } from '@/types/API/http/inventory'
 import { IconsNames } from '@/types/icons'
+import { ItemService } from '@/types/inventory'
 import { cn } from '@/utils/styles'
 
 interface StatusBadgeInterface {
-  status: ITEM_STATUS
+  service: ItemService
 }
 
-const getStatusBadgeData = (status: ITEM_STATUS): { color: string; iconName: IconsNames } => {
-  switch (status) {
-    case ITEM_STATUS.NEW:
-      return { color: 'text-gold-400', iconName: 'new-fill' }
-    case ITEM_STATUS.COLLECTED:
-      return { color: 'text-lightgreen', iconName: 'success-fill' }
-    case ITEM_STATUS.SOLD:
-      return { color: 'text-red-550', iconName: 'hand-with-coins-fill' }
-    case ITEM_STATUS.FOR_EXCHANGE:
-      return { color: 'text-gold-400', iconName: 'new-fill' }
-    case ITEM_STATUS.EXCHANGED_OR_BLOCKED:
-      return { color: 'text-pink-400', iconName: 'exchange-fill' }
-    case ITEM_STATUS.PENDING:
-      return { color: 'text-gold-400', iconName: 'pending-fill' }
-    case ITEM_STATUS.UPGRADED:
-      return { color: 'text-lightgreen', iconName: 'upgrades-fill' }
-    case ITEM_STATUS.EXCHANGED:
-      return { color: 'text-pink-400', iconName: 'exchange-fill' }
-    default:
-      return { color: 'text-gold-400', iconName: 'question-fill' }
-  }
-}
+type StatusBadgeData = { isActive: boolean; color: string; iconName: IconsNames; label: string }
 
-export const StatusBadge: FC<StatusBadgeInterface> = ({ status }) => {
+export const StatusBadge: FC<StatusBadgeInterface> = ({ service }) => {
   const { t } = useTranslation('inventoryView', { keyPrefix: 'status' })
-  const { color, iconName } = getStatusBadgeData(status)
+  const [state] = useActor(service)
+
+  const { context, matches } = state
+  const { status } = context.data
+
+  const data: StatusBadgeData | undefined = useMemo(() => {
+    return (
+      [
+        {
+          isActive: matches('private.skin.status.new'),
+          color: 'text-gold-400',
+          iconName: 'new-fill',
+          label: t('new'),
+        },
+        {
+          isActive: matches('private.skin.status.collected'),
+          color: 'text-lightgreen',
+          iconName: 'success-fill',
+          label: t('collected'),
+        },
+        {
+          isActive: matches('private.skin.status.sold'),
+          color: 'text-red-550',
+          iconName: 'hand-with-coins-fill',
+          label: t('sold'),
+        },
+        {
+          isActive:
+            matches('private.skin.status.forExchange') ||
+            matches('private.skin.status.newFromSkinChanger'),
+          color: 'text-gold-400',
+          iconName: 'new-fill',
+          label: t('forExchange'),
+        },
+        {
+          isActive: matches('private.skin.status.exchangedOrBlocked'),
+          color: 'text-pink-400',
+          iconName: 'exchange-fill',
+          label: t('exchanged'),
+        },
+        {
+          isActive: matches('private.skin.status.pending'),
+          color: 'text-gold-400',
+          iconName: 'pending-fill',
+          label: t('pending'),
+        },
+        {
+          isActive: matches('private.skin.status.selling'),
+          color: 'text-gold-400',
+          iconName: 'pending-fill',
+          label: t('selling'),
+        },
+        {
+          isActive: status === ITEM_STATUS.UPGRADED,
+          color: 'text-lightgreen',
+          iconName: 'upgrades-fill',
+          label: t('upgraded'),
+        },
+        {
+          isActive: matches('private.skin.status.exchanged'),
+          color: 'text-pink-400',
+          iconName: 'exchange-fill',
+          label: t('exchanged'),
+        },
+      ] as StatusBadgeData[]
+    ).find(({ isActive }) => isActive)
+  }, [state])
 
   return (
     <div className="flex flex-col items-center justify-center gap-1">
       <div className="h-[18px] w-[18px] overflow-hidden rounded-full">
-        <SvgIcon iconName={iconName} className={cn('h-[18px] w-[18px]', color)} />
+        <SvgIcon
+          iconName={data?.iconName || 'question-fill'}
+          className={cn('h-[18px] w-[18px]', data?.color || 'text-gold-400')}
+        />
       </div>
-      <p className={cn('text-xs font-semibold uppercase', color)}>{t(status)}</p>
+      <p className={cn('text-xs font-semibold uppercase', data?.color || 'text-gold-400')}>
+        {data?.label || 'N/A'}
+      </p>
     </div>
   )
 }

@@ -10,6 +10,6 @@
     }
 
     .button--upgrade {
-        @apply border border-solid border-blue-550 bg-navy-700 text-blue-550 transition-colors hover:bg-blue-550 hover:bg-opacity-5 active:bg-navy-700/[.15] active:duration-0 disabled:pointer-events-none disabled:text-navy-300 disabled:[box-shadow:none];
+        @apply border border-solid border-blue-550 bg-navy-700 text-blue-550 transition-colors hover:bg-blue-550 hover:bg-opacity-5 active:bg-navy-700/[.15] active:duration-0 disabled:pointer-events-none disabled:[box-shadow:none];
     }
 }

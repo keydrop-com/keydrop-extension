@@ -1,6 +1,8 @@
 import { JSX, useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { TableVirtuoso } from 'react-virtuoso'
 
+import Loader from '@/components/Loader'
 import { cn } from '@/utils/styles'
 
 export interface TableColumnInterface<T> {
@@ -13,6 +15,8 @@ interface TableInterface<T> {
   columns: TableColumnInterface<T>[]
   data: T[]
   itemHeight?: number
+  allLoaded?: boolean
+  noData?: boolean
   height?: number
   onLoadMore?: () => void
   classNames?: {
@@ -31,7 +35,10 @@ export const Table = <T = unknown,>({
   height = 430,
   onLoadMore,
   classNames,
+  allLoaded = true,
+  noData = false,
 }: TableInterface<T>): JSX.Element => {
+  const { t } = useTranslation('common')
   const scrollContainerRef = useRef<HTMLElement | Window | null>(null)
 
   const renderCellValue = (row: T, column: TableColumnInterface<T>): JSX.Element | string => {
@@ -43,6 +50,14 @@ export const Table = <T = unknown,>({
     scrollContainerRef.current?.scrollTo({ top: 0 })
   }, [])
 
+  if (noData) {
+    return (
+      <div style={{ height }} className="flex w-full items-center justify-center">
+        <p>{t('noItemsFound')}</p>
+      </div>
+    )
+  }
+
   return (
     <TableVirtuoso
       scrollerRef={(ref) => (scrollContainerRef.current = ref)}
@@ -52,6 +67,9 @@ export const Table = <T = unknown,>({
       fixedItemHeight={itemHeight}
       className={cn('scrollbar-gold !overflow-y-scroll', classNames?.main)}
       increaseViewportBy={{ top: itemHeight * 2, bottom: itemHeight * 2 }}
+      fixedFooterContent={
+        allLoaded ? null : () => <Loader height={30} width={25} iconClassName="text-gold" />
+      }
       fixedHeaderContent={() => (
         <tr style={{ height: itemHeight }} className={cn(classNames?.thWrapper, classNames?.grid)}>
           {columns.map((column, index) => (
@@ -62,14 +80,16 @@ export const Table = <T = unknown,>({
         </tr>
       )}
       components={{
-        Table: (props) => <table {...props} className="table w-full bg-navy-750" />,
-        TableRow: (props) => {
+        Table: ({ style, ...props }) => (
+          <table className="table w-full bg-navy-750" style={style} {...props} />
+        ),
+        TableRow: ({ style, ...props }) => {
           const { item, ...restProps } = props
           return (
             <tr
-              {...restProps}
-              style={{ height: itemHeight }}
               className={cn(classNames?.tdWrapper, classNames?.grid)}
+              style={{ ...style, height: itemHeight }}
+              {...restProps}
             >
               {columns.map((column, colIndex) => (
                 <td key={colIndex} className="p-0">
@@ -81,6 +101,13 @@ export const Table = <T = unknown,>({
             </tr>
           )
         },
+        TableFoot: ({ style, ...props }) => (
+          <tfoot
+            className="w-full"
+            style={{ ...style, position: 'relative', height: itemHeight }}
+            {...props}
+          />
+        ),
       }}
     />
   )

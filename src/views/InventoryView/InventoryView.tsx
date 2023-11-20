@@ -18,7 +18,8 @@ export const InventoryView: FC = () => {
   const { appSend } = useAppContext()
   const [state, send] = useMachine(InventoryMachine)
 
-  const { data } = state.context
+  const { context, matches } = state
+  const { data } = context
 
   const tableData: InventoryItemRow[] = useMemo(() => {
     return data.map((item) => ({
@@ -71,6 +72,7 @@ export const InventoryView: FC = () => {
         data={tableData}
         columns={columns}
         onLoadMore={handleOnLoadMore}
+        allLoaded={matches('loadedAllItems')}
         classNames={{
           main: 'pr-[18px]',
           grid: 'grid grid-cols-[36%,14%,14%,36%]',

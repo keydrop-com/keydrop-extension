@@ -1,13 +1,18 @@
 import { useActor } from '@xstate/react'
-import { JSX, useMemo } from 'react'
+import { JSX, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Button } from '@/components/Button'
+import { CircleLoader } from '@/components/CircleLoader'
 import { SvgIcon } from '@/components/SvgIcon'
+import {
+  CAN_BE_COLLECTED_STATES,
+  CAN_BE_UPGRADED_OR_SOLD_STATES,
+  IS_LOADING_STATES,
+} from '@/constants/inventory'
 import { KEYDROP, STEAM } from '@/constants/urls'
 import { useAppContext } from '@/context/AppContext'
 import CommonClient from '@/services/browser/CommonClient'
-import { ITEM_STATUS } from '@/types/API/http/inventory'
 import { ItemService } from '@/types/inventory'
 import { formatCurrency } from '@/utils/numbers'
 import { cn } from '@/utils/styles'
@@ -17,50 +22,82 @@ export const ActionsCellRender = (service: ItemService): JSX.Element => {
   const { appState } = useAppContext()
   const [state, send] = useActor(service)
 
-  const { context } = state
-  const { id, status, price } = context.data
+  const { context, matches } = state
+  const { id, price, name } = context.data
 
-  const isActive = useMemo(
-    () => [ITEM_STATUS.FOR_EXCHANGE, ITEM_STATUS.NEW].some((_status) => status === _status),
-    [status],
-  )
+  const [canBeCollectedState] = useState(CAN_BE_COLLECTED_STATES.some(matches))
+
+  const isVoucher = name.startsWith('VOUCHER')
+  const canBeCollected = CAN_BE_COLLECTED_STATES.some(matches)
+  const canBeUpgradedOrSold = CAN_BE_UPGRADED_OR_SOLD_STATES.some(matches)
+  const isLoading = IS_LOADING_STATES.some(matches)
 
   const handleOnSellClick = (): void => {
+    if (!canBeUpgradedOrSold) return
     send('SELL')
   }
 
   const handleOnCollectClick = (): void => {
+    if (!canBeCollected) return
     send('COLLECT')
-    CommonClient.openInNewTab(STEAM.tradeOffers(appState.context.appData.steamId))
   }
+
+  useEffect(() => {
+    if (canBeCollectedState && matches('private.skin.status.pending')) {
+      CommonClient.openInNewTab(STEAM.tradeOffers(appState.context.appData.steamId))
+    }
+  }, [state])
 
   return (
     <div
       className={cn(
         'flex h-full w-full items-center justify-center gap-3.5',
-        !isActive && 'opacity-25',
+        isLoading && 'opacity-25',
       )}
     >
       <Button
         href={KEYDROP.upgradeItem(id)}
-        disabled={!isActive}
+        disabled={!canBeUpgradedOrSold || isLoading}
         className="button--upgrade h-[35px] w-[35px] rounded-[5px] p-0"
       >
-        <SvgIcon iconName="upgrades-fill" className="h-4 w-4" />
-        <span className="sr-only">{t('upgrade')}</span>
+        {isLoading ? (
+          <CircleLoader className="h-4 w-4 text-blue-550" />
+        ) : (
+          <>
+            <SvgIcon iconName="upgrades-fill" className="h-4 w-4" />
+            <span className="sr-only">{t('upgrade')}</span>
+          </>
+        )}
       </Button>
+
       <Button
-        label={`${t('sell')} ${formatCurrency(price)}`}
         onClick={handleOnSellClick}
-        disabled={!isActive}
-        className="button--primary h-[35px] min-w-[90px] rounded-[5px] px-4 py-0"
-      />
-      <Button
-        label={t('collect')}
-        onClick={handleOnCollectClick}
-        disabled={!isActive}
-        className="button--primary h-[35px] min-w-[90px] rounded-[5px] bg-gold px-4 py-0 text-navy-900 hover:bg-gold-400"
-      />
+        disabled={!canBeUpgradedOrSold || isLoading}
+        className={cn(
+          'button--primary h-[35px] rounded-[5px] px-4 py-0',
+          isVoucher ? 'min-w-[194px]' : 'min-w-[90px]',
+        )}
+      >
+        {isLoading ? (
+          <CircleLoader className="h-4 w-4" />
+        ) : (
+          <span>{`${t('sell')} ${formatCurrency(price)}`}</span>
+        )}
+      </Button>
+
+      {!isVoucher && (
+        <Button
+          onClick={handleOnCollectClick}
+          disabled={!canBeCollected || isLoading}
+          className="button--primary h-[35px] min-w-[90px] rounded-[5px] bg-gold px-4 py-0 text-navy-900 hover:bg-gold-400"
+        >
+          {isLoading ? (
+            <CircleLoader className="h-4 w-4 text-white" />
+          ) : (
+            <span>{t('collect')}</span>
+          )}
+        </Button>
+      )}
     </div>
   )
 }

@@ -213,7 +213,6 @@ const InventoryMachine = createMachine(
     initial: 'initialising',
     states: {
       initialising: {
-        entry: 'getDataFromLocalStorage',
         always: 'loadingInitialData',
       },
       idle: {
@@ -355,9 +354,6 @@ const InventoryMachine = createMachine(
           perPage: 18,
           currentPage: 1,
         }
-      }),
-      getDataFromLocalStorage: assign((ctx) => {
-        ctx.filters.state = window.localStorage.inventoryStateFilter || STATE_FILTER.ALL
       }),
       assignEqValue: assign((ctx, { data }) => {
         ctx.eqValue = data
