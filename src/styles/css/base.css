@@ -1,5 +1,9 @@
 @tailwind base;
 
+:root {
+    --toastify-toast-width: 460px !important;
+}
+
 @layer base {
     * {
       @apply select-none
@@ -12,4 +16,12 @@
     body {
         @apply font-sans overflow-hidden bg-navy-750 text-base text-white;
     }
+}
+
+.Toastify__toast-body {
+    @apply !gap-4;
+}
+
+.Toastify__toast-container--bottom-right {
+    @apply !bottom-0;
 }

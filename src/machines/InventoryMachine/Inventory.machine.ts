@@ -1,7 +1,9 @@
 import { assign } from '@xstate/immer'
+import { toast } from 'react-toastify'
 import { actions, createMachine, Sender, sendTo, spawn } from 'xstate'
 
 import { SORTING_OPTIONS, WEAPON_TYPE_OPTIONS } from '@/constants/inventory'
+import { translate } from '@/i18n'
 import ItemMachine from '@/machines/InventoryItemMachine/InventoryItem.machine'
 import InventoryClient from '@/services/http/InventoryClient'
 import {
@@ -126,15 +128,15 @@ const sellEq = async (): Promise<SellEqResponse> => {
 
 const FILTER_EVENTS = {
   TOGGLE_STATE_FILTER: {
-    actions: ['resetPagination', 'toggleStateFilter', 'saveDataToLocalStorage'],
+    actions: ['resetPagination', 'toggleStateFilter'],
     target: 'loadingInitialData',
   },
   SET_ACTIVE_STATE_FILTER: {
-    actions: ['resetPagination', 'setActiveStateFilter', 'saveDataToLocalStorage'],
+    actions: ['resetPagination', 'setActiveStateFilter'],
     target: 'loadingInitialData',
   },
   SET_ALL_STATE_FILTER: {
-    actions: ['resetPagination', 'setAllStateFilter', 'saveDataToLocalStorage'],
+    actions: ['resetPagination', 'setAllStateFilter'],
     target: 'loadingInitialData',
   },
   SET_WEAPON_TYPE_FILTER: {
@@ -420,35 +422,18 @@ const InventoryMachine = createMachine(
         return undefined
       }),
       assignLoadingInitialDataError: assign(() => {
-        // const { data: response } = e
-        // ctx.dataResponse = response
+        // TODO: action
       }),
       assignNextPage: assign((ctx) => {
         ctx.filters.currentPage += 1
       }),
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       notifyError: (_, _e) => {
-        // TODO: WINDOW FUNC
-        console.log(`
         const e = _e as { type: (typeof _e)['type']; data: { Info?: string; info?: string } }
-
-        window.__layout.toast({
-          type: 'error',
-          title: 'Error',
-          message: e?.data?.Info || e?.data?.info || i18n.t('profile:error.generic'),
-        })`)
+        toast.error(e?.data?.Info || e?.data?.info || translate('common:error'))
       },
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      notifySoldEq: (_, e) => {
-        // TODO: WINDOW FUNC
-        console.log(`window.__layout.toast({
-          type: 'success',
-          title: 'Sold',
-          message: e?.data?.info,
-        })`)
-      },
-      saveDataToLocalStorage: (ctx) => {
-        window.localStorage.inventoryStateFilter = ctx.filters.state
+      notifySoldEq: (_, _e) => {
+        const e = _e as { type: (typeof _e)['type']; data: { Info?: string; info?: string } }
+        toast.error(e?.data?.Info || e?.data?.info || translate('common:error'))
       },
       updateBalance: () => {
         window.__refetchBalance?.()

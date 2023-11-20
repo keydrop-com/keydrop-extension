@@ -6,7 +6,7 @@ import { cn } from '@/utils/styles'
 export interface TableColumnInterface<T> {
   header: string
   accessor: keyof T
-  cellRenderer?: (cellValue: T[keyof T], row: T) => JSX.Element
+  cellRenderer: (cellValue: T[keyof T], row: T) => JSX.Element
 }
 
 interface TableInterface<T> {

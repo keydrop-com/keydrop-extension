@@ -4,7 +4,9 @@ import { useTranslation } from 'react-i18next'
 
 import { Button } from '@/components/Button'
 import { SvgIcon } from '@/components/SvgIcon'
-import { KEYDROP } from '@/constants/urls'
+import { KEYDROP, STEAM } from '@/constants/urls'
+import { useAppContext } from '@/context/AppContext'
+import CommonClient from '@/services/browser/CommonClient'
 import { ITEM_STATUS } from '@/types/API/http/inventory'
 import { ItemService } from '@/types/inventory'
 import { formatCurrency } from '@/utils/numbers'
@@ -12,8 +14,11 @@ import { cn } from '@/utils/styles'
 
 export const ActionsCellRender = (service: ItemService): JSX.Element => {
   const { t } = useTranslation('inventoryView', { keyPrefix: 'action' })
+  const { appState } = useAppContext()
   const [state, send] = useActor(service)
-  const { id, status, price } = state.context.data
+
+  const { context } = state
+  const { id, status, price } = context.data
 
   const isActive = useMemo(
     () => [ITEM_STATUS.FOR_EXCHANGE, ITEM_STATUS.NEW].some((_status) => status === _status),
@@ -26,6 +31,7 @@ export const ActionsCellRender = (service: ItemService): JSX.Element => {
 
   const handleOnCollectClick = (): void => {
     send('COLLECT')
+    CommonClient.openInNewTab(STEAM.tradeOffers(appState.context.appData.steamId))
   }
 
   return (

@@ -1,6 +1,3 @@
-import '@/i18n'
-import '@/styles/index.css'
-
 import { AnimatePresence, motion } from 'framer-motion'
 import { FC } from 'react'
 

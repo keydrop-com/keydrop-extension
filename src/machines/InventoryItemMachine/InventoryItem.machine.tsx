@@ -1,7 +1,12 @@
 import { assign } from '@xstate/immer'
+import { toast } from 'react-toastify'
 import { createMachine, raise, sendParent } from 'xstate'
 import { choose } from 'xstate/lib/actions'
 
+import { Button } from '@/components/Button'
+import { KEYDROP } from '@/constants/urls'
+import { translate } from '@/i18n'
+import CommonClient from '@/services/browser/CommonClient'
 import InventoryClient from '@/services/http/InventoryClient'
 import {
   CollectGameResponse,
@@ -133,7 +138,6 @@ const ItemMachine = createMachine(
             states: {
               status: {
                 initial: 'determiningState',
-
                 states: {
                   determiningState: {
                     always: [
@@ -191,9 +195,8 @@ const ItemMachine = createMachine(
                       onDone: {
                         actions: [
                           'initMarketStatus',
-                          () => console.log(`window.__layout.updateCoinBalance()`),
-                          () => console.log(`window.__layout.updateBalanceAndSkinsValue()`),
                           'updateQuickSellInventory',
+                          () => window.__refetchBalance?.(),
                         ],
                         target: 'pending',
                       },
@@ -259,7 +262,6 @@ const ItemMachine = createMachine(
                   },
                   exchanged: { type: 'final' },
                 },
-
                 on: {
                   SET_SOLD: '.sold',
                 },
@@ -407,26 +409,23 @@ const ItemMachine = createMachine(
       }),
       initMarketStatus: raise('INIT_MARKET_STATUS'),
       refreshEq: sendParent('refreshEq'),
-      notifyError: () => {
-        // TODO: WINDOW FUNC
-        console.log(`window.__layout.toast({
-          type: 'error',
-          title: 'Error',
-          message:
-            e?.data?.Info || e?.data?.info || e?.data?.Error || i18n.t('profile:error.generic'),
-        })`)
+      notifyError: (_, _e) => {
+        const e = _e as { type: (typeof _e)['type']; data: { Info?: string; info?: string } }
+        toast.error(e?.data?.Info || e?.data?.info || translate('common:error'))
       },
-      exchange: () => {
-        // TODO: WINDOW FUNC
-        console.log('window?.__inventoryItem?.actions?.exchange(ctx.data.id)')
+      exchange: (ctx) => {
+        CommonClient.openInNewTab(KEYDROP.upgradeItem(ctx.data.id))
       },
       updateBalance: sendParent('UPDATE_BALANCE'),
       showKYCModal: () => {
-        // TODO: MODAL FUNC
-        console.log(`MicroModal.show('kyc-modal')`)
+        toast.error(
+          <span className="flex flex-col gap-4">
+            <span>{translate('common:kycConfirmIdentity')}</span>
+            <Button href={KEYDROP.kyc} label="KYC process" className="button--primary" />
+          </span>,
+          { autoClose: false },
+        )
       },
-      // TODO: WINDOW FUNC
-      updateQuickSellInventory: () => console.log('window.__layout?.updateQuickSell?.()'),
     },
     services: {
       sellSkin: async (ctx: ItemContext): Promise<SellItemResponse> => {
@@ -448,7 +447,7 @@ const ItemMachine = createMachine(
         if (!id) throw new Error('No id provided')
         const res = await InventoryClient.collectSkin({ id })
         if (!res.Status || res.Kyc === true) return Promise.reject(res)
-        return res
+        return Promise.resolve(res)
       },
       collectGame: async (ctx: ItemContext): Promise<CollectGameResponse> => {
         const id = ctx.data.id

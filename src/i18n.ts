@@ -16,3 +16,5 @@ export default i18next
       loadPath: `${window.location.origin}/locales/{{lng}}/{{ns}}.json`,
     },
   })
+
+export const translate = i18next.t

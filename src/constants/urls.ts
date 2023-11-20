@@ -5,8 +5,10 @@ export const KEYDROP = {
   refillBalanceWithCode: (code: string) => `https://key-drop.com/?code=${code}`,
   provablyFair: (id?: string) => `https://key-drop.com/provably-fair/check-roll/${id}`,
   upgradeItem: (id?: string) => `https://key-drop.com/skins/upgrader?item=${id}`,
+  kyc: 'https://key-drop.com/Kyc',
 }
 
 export const STEAM = {
   main: 'https://steamcommunity.com/',
+  tradeOffers: (steamId: string) => `https://steamcommunity.com/profiles/${steamId}/tradeoffers/`,
 }

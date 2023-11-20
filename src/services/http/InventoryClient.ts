@@ -30,22 +30,18 @@ class InventoryClient extends AbstractHttpService {
   }
 
   static async sellSkin(params: SellItemParams): Promise<SellItemResponse> {
-    // TODO: check response type
     return super.fetchWithAuth(INVENTORY_API.yourItemsSellSkin(params))
   }
 
   static async sellGame(params: SellGameParams): Promise<SellGameResponse> {
-    // TODO: check response type
     return super.fetchWithAuth(INVENTORY_API.yourItemsSellGame(params))
   }
 
   static async collectSkin(params: CollectSkinParams): Promise<CollectSkinResponse> {
-    // TODO: check response type
     return super.fetchWithAuth(INVENTORY_API.yourItemsCollectSkin(params))
   }
 
   static async collectGame(params: CollectGameParams): Promise<CollectGameResponse> {
-    // TODO: check response type
     return super.fetchWithAuth(INVENTORY_API.yourItemsCollectGame, {
       method: 'POST',
       body: JSON.stringify(params),
@@ -53,7 +49,6 @@ class InventoryClient extends AbstractHttpService {
   }
 
   static async sellEq(): Promise<SellEqResponse> {
-    // TODO: check response type
     return super.fetchWithAuth(INVENTORY_API.yourItemsSellEq)
   }
 }
