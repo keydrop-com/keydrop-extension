@@ -6,6 +6,7 @@ import {
   ItemMarketDataResponse,
   MyWinnerListResponse,
 } from '@/types/API/http/inventory'
+import { IconsNames } from '@/types/icons'
 
 export type WeaponTypeOption = {
   name: string
@@ -25,4 +26,11 @@ export type UserInventoryData = {
   dataRes: MyWinnerListResponse
   marketDataRes: ItemMarketDataResponse[]
   eqValue: EqValueResponse
+}
+
+export type StatusBadgeData = {
+  isActive: boolean
+  color: string
+  iconName: IconsNames
+  label: string
 }

@@ -3,6 +3,7 @@ import { createMachine } from 'xstate'
 
 import {
   INIT_APP_DATA,
+  INIT_APP_STORAGE,
   INIT_COUNTER_ANIMATIONS,
   INIT_USER_BALANCE,
   INIT_USER_PROFILE,
@@ -15,7 +16,7 @@ import BalanceClient from '@/services/http/BalanceClient'
 import ProfileClient from '@/services/http/ProfileClient'
 import { BalanceResponse } from '@/types/API/http/balance'
 import { ProfilePageResponse } from '@/types/API/http/profile'
-import { ActiveView, AppData, CountersAnimations } from '@/types/app'
+import { ActiveView, AppData, AppStorage, CountersAnimations } from '@/types/app'
 
 export type AppMachineServices = {
   getAppData: {
@@ -30,6 +31,9 @@ export type AppMachineServices = {
   authUser: {
     data: void
   }
+  getAppStorage: {
+    data: AppStorage
+  }
 }
 
 export type AppMachineEvent =
@@ -43,6 +47,7 @@ export interface AppMachineContext {
   userProfile: ProfilePageResponse
   userBalance: BalanceResponse
   countersAnimations: CountersAnimations
+  appStorage: AppStorage
 }
 
 export const INIT_APP_CONTEXT: AppMachineContext = {
@@ -51,6 +56,7 @@ export const INIT_APP_CONTEXT: AppMachineContext = {
   appData: INIT_APP_DATA,
   countersAnimations: INIT_COUNTER_ANIMATIONS,
   activeView: ActiveView.MAIN,
+  appStorage: INIT_APP_STORAGE,
 }
 
 export const AppMachine = createMachine(
@@ -67,8 +73,17 @@ export const AppMachine = createMachine(
     initial: 'gettingData',
     states: {
       gettingData: {
-        initial: 'gettingAppData',
+        initial: 'gettingAppStorage',
         states: {
+          gettingAppStorage: {
+            invoke: {
+              src: 'getAppStorage',
+              onDone: {
+                actions: 'assignAppStorage',
+                target: 'gettingAppData',
+              },
+            },
+          },
           gettingAppData: {
             invoke: {
               src: 'getAppData',
@@ -138,6 +153,9 @@ export const AppMachine = createMachine(
   },
   {
     actions: {
+      assignAppStorage: assign((ctx, e) => {
+        ctx.appStorage = e.data
+      }),
       assignAppData: assign((ctx, e) => {
         ctx.appData = e.data
       }),
@@ -173,6 +191,17 @@ export const AppMachine = createMachine(
       },
       getUserBalance: async () => {
         return await BalanceClient.getUserBalance({ skinsValue: false })
+      },
+      getAppStorage: async () => {
+        const storage = await CommonClient.getFromStorage<AppStorage>('storage')
+
+        if (storage.version === INIT_APP_STORAGE.version) {
+          return storage
+        } else {
+          await CommonClient.setInStorage(INIT_APP_STORAGE)
+        }
+
+        return INIT_APP_STORAGE
       },
     },
   },
