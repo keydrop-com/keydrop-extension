@@ -196,7 +196,7 @@ const ItemMachine = createMachine(
                         actions: [
                           'initMarketStatus',
                           'updateQuickSellInventory',
-                          () => window.__refetchBalance?.(),
+                          () => window?.__refetchBalance?.(),
                         ],
                         target: 'pending',
                       },

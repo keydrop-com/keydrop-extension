@@ -25,6 +25,8 @@ export const ActionsCellRender = (service: ItemService): JSX.Element => {
   const { context, matches } = state
   const { id, price, name } = context.data
 
+  const { steamId, currency } = appState.context.initUserData
+
   const [canBeCollectedState] = useState(CAN_BE_COLLECTED_STATES.some(matches))
 
   const isVoucher = name.startsWith('VOUCHER')
@@ -44,7 +46,7 @@ export const ActionsCellRender = (service: ItemService): JSX.Element => {
 
   useEffect(() => {
     if (canBeCollectedState && matches('private.skin.status.pending')) {
-      CommonClient.openInNewTab(STEAM.tradeOffers(appState.context.appData.steamId))
+      CommonClient.openInNewTab(STEAM.tradeOffers(steamId))
     }
   }, [state])
 
@@ -81,7 +83,7 @@ export const ActionsCellRender = (service: ItemService): JSX.Element => {
         {isLoading ? (
           <CircleLoader className="h-4 w-4" />
         ) : (
-          <span>{`${t('sell')} ${formatCurrency(price)}`}</span>
+          <span>{`${t('sell')} ${formatCurrency(price, currency)}`}</span>
         )}
       </Button>
 

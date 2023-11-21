@@ -6,6 +6,7 @@ import {
   INIT_APP_STORAGE,
   INIT_COUNTER_ANIMATIONS,
   INIT_USER_BALANCE,
+  INIT_USER_DATA,
   INIT_USER_PROFILE,
 } from '@/constants/app'
 import { KEYDROP } from '@/constants/urls'
@@ -15,7 +16,7 @@ import SteamClient from '@/services/browser/SteamClient'
 import BalanceClient from '@/services/http/BalanceClient'
 import ProfileClient from '@/services/http/ProfileClient'
 import { BalanceResponse } from '@/types/API/http/balance'
-import { ProfilePageResponse } from '@/types/API/http/profile'
+import { InitUserDataResponse, ProfilePageResponse } from '@/types/API/http/profile'
 import { ActiveView, AppData, AppStorage, CountersAnimations } from '@/types/app'
 
 export type AppMachineServices = {
@@ -34,6 +35,9 @@ export type AppMachineServices = {
   getAppStorage: {
     data: AppStorage
   }
+  getInitUserData: {
+    data: InitUserDataResponse
+  }
 }
 
 export type AppMachineEvent =
@@ -45,18 +49,22 @@ export interface AppMachineContext {
   appData: AppData
   activeView: ActiveView
   userProfile: ProfilePageResponse
+  initUserData: InitUserDataResponse
   userBalance: BalanceResponse
   countersAnimations: CountersAnimations
   appStorage: AppStorage
+  userBalanceValue: null | number
 }
 
 export const INIT_APP_CONTEXT: AppMachineContext = {
   userProfile: INIT_USER_PROFILE,
+  initUserData: INIT_USER_DATA,
   userBalance: INIT_USER_BALANCE,
   appData: INIT_APP_DATA,
   countersAnimations: INIT_COUNTER_ANIMATIONS,
   activeView: ActiveView.MAIN,
   appStorage: INIT_APP_STORAGE,
+  userBalanceValue: null,
 }
 
 export const AppMachine = createMachine(
@@ -89,19 +97,19 @@ export const AppMachine = createMachine(
               src: 'getAppData',
               onDone: {
                 actions: 'assignAppData',
-                target: 'gettingUserProfile',
+                target: 'gettingInitUserData',
               },
               onError: {
                 target: '#AppMachine.loggedOut',
               },
             },
           },
-          gettingUserProfile: {
+          gettingInitUserData: {
             invoke: {
-              src: 'getUserProfile',
+              src: 'getInitUserData',
               onDone: {
+                actions: 'assignInitUserData',
                 target: '#AppMachine.loggedIn',
-                actions: 'assignUserProfile',
               },
               onError: {
                 target: '#AppMachine.loggedOut',
@@ -126,7 +134,7 @@ export const AppMachine = createMachine(
         },
       },
       loggedIn: {
-        initial: 'gettingUserBalance',
+        initial: 'gettingUserProfile',
         on: {
           ACTIVE_VIEW_CHANGE: {
             actions: ['assignActiveView', 'assignCountersAnimations'],
@@ -136,6 +144,18 @@ export const AppMachine = createMachine(
           idle: {
             on: {
               REFETCH_BALANCE: 'gettingUserBalance',
+            },
+          },
+          gettingUserProfile: {
+            invoke: {
+              src: 'getUserProfile',
+              onDone: {
+                actions: 'assignUserProfile',
+                target: 'idle',
+              },
+              // onError: {
+              //   target: '#AppMachine.loggedOut',
+              // },
             },
           },
           gettingUserBalance: {
@@ -153,6 +173,10 @@ export const AppMachine = createMachine(
   },
   {
     actions: {
+      assignInitUserData: assign((ctx, e) => {
+        ctx.initUserData = e.data
+        ctx.userBalanceValue = e.data.balance // BALANCE UPDATE
+      }),
       assignAppStorage: assign((ctx, e) => {
         ctx.appStorage = e.data
       }),
@@ -170,6 +194,7 @@ export const AppMachine = createMachine(
       }),
       assignUserBalance: assign((ctx, e) => {
         ctx.userBalance = e.data
+        ctx.userBalanceValue = e.data.pkt // BALANCE UPDATE
       }),
     },
     services: {
@@ -180,6 +205,7 @@ export const AppMachine = createMachine(
       getAppData: async () => {
         const sessionId = await KeydropClient.getSessionId()
         const steamId = await SteamClient.getSteamId()
+
         if (!sessionId || !steamId) {
           throw new Error('No session id or steam id')
         } else {
@@ -202,6 +228,9 @@ export const AppMachine = createMachine(
         }
 
         return INIT_APP_STORAGE
+      },
+      getInitUserData: async () => {
+        return await ProfileClient.getInitUserData()
       },
     },
   },

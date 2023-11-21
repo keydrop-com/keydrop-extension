@@ -432,7 +432,7 @@ const InventoryMachine = createMachine(
         toast.error(e?.data?.Info || e?.data?.info || translate('common:error'))
       },
       updateBalance: () => {
-        window.__refetchBalance?.()
+        window?.__refetchBalance?.()
       },
     },
     services: {

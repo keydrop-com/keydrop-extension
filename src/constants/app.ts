@@ -1,11 +1,34 @@
 import { DEFAULT_MOTION } from '@/constants/common'
 import { BalanceResponse } from '@/types/API/http/balance'
-import { ProfilePageResponse } from '@/types/API/http/profile'
+import { InitUserDataResponse, ProfilePageResponse } from '@/types/API/http/profile'
 import { ActiveView, AppData, AppStorage, CountersAnimations } from '@/types/app'
 
 export const DEFAULT_APP_MOTION = {
   ...DEFAULT_MOTION,
   className: 'h-full w-full',
+}
+
+export const INIT_USER_DATA: InitUserDataResponse = {
+  userName: '',
+  tradeURL: '',
+  email: '',
+  steamId: '',
+  userKey: '',
+  avatar: '',
+  lang: 'en',
+  langList: {},
+  currency: 'USD',
+  currencyList: ['USD'],
+  balance: 0,
+  gold: '0',
+  eventIsActive: false,
+  eventCoin: 0,
+  accountPublic: true,
+  depositBonus: 0,
+  caseBattleTickets: 0,
+  rates: [{ id: 'USD', rate: 1 }],
+  supportNotifications: 0,
+  affiliateType: 'basic',
 }
 
 export const INIT_USER_PROFILE: ProfilePageResponse = {

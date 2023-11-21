@@ -1,3 +1,29 @@
+export type AffiliateType = 'basic' | 'creator'
+
+export type InitUserDataResponse = {
+  steamId: string
+  accountPublic: boolean
+  affiliateType: AffiliateType
+  balance: number
+  gold: string
+  userKey: string
+  eventCoin: number
+  eventIsActive: boolean
+  depositBonus: number
+  currency: string
+  currencyList: string[]
+  rates: { id: string; rate: number }[]
+  lang: string
+  langList: Record<string, string>
+  userName: string
+  avatar: string
+  email: string
+  newsletter?: boolean
+  tradeURL: string
+  supportNotifications: number
+  caseBattleTickets: number
+}
+
 export type ProfilePageParams = {
   steamId: string
 }
@@ -38,6 +64,5 @@ export type ProfilePageResponse = {
     avatar: string
     link: string
   }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  lang: any
+  lang: any // eslint-disable-line
 }

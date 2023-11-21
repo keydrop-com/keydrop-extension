@@ -12,8 +12,8 @@ import { ActiveView } from '@/types/app'
 export const Navbar: FC = () => {
   const { t } = useTranslation('common', { keyPrefix: 'navbar' })
   const { appState, appSend } = useAppContext()
-  const { activeView, userProfile } = appState.context
-  const { username, avatar } = userProfile.user
+  const { activeView, initUserData } = appState.context
+  const { userName, avatar } = initUserData
 
   const viewButtons: Omit<NavbarButtonInterface, 'onClick' | 'isActive'>[] = useMemo(
     () => [
@@ -53,7 +53,7 @@ export const Navbar: FC = () => {
             />
           ))}
         </div>
-        <Avatar src={avatar} alt={username} href={KEYDROP.profile} variant="small" />
+        <Avatar src={avatar} alt={userName} href={KEYDROP.profile} variant="small" />
       </div>
     </div>
   )

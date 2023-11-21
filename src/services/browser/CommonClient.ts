@@ -1,7 +1,5 @@
 import { storage, Tabs, tabs } from 'webextension-polyfill'
 
-import { AppStorage } from '@/types/app'
-
 class CommonClient {
   static async openInNewTab(url: string): Promise<Tabs.Tab> {
     return tabs.create({ url })
@@ -13,10 +11,6 @@ class CommonClient {
 
   static async setInStorage(value: Record<string, any>): Promise<void> {
     return await storage.sync.set(value)
-  }
-
-  static async getAppStorage(): Promise<AppStorage> {
-    return this.getFromStorage('appStorage')
   }
 }
 
