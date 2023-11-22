@@ -159,7 +159,7 @@ const FILTER_EVENTS = {
 
 const INIT_INVENTORY_CONTEXT: InventoryContext = {
   filters: {
-    state: STATE_FILTER.ALL,
+    state: STATE_FILTER.ACTIVE,
     weaponType: '',
     category: [],
     perPage: 18,
@@ -186,7 +186,7 @@ const INIT_INVENTORY_CONTEXT: InventoryContext = {
   },
 }
 
-const InventoryMachine = createMachine(
+export const InventoryMachine = createMachine(
   {
     id: 'InventoryMachine',
     predictableActionArguments: true,
@@ -425,14 +425,14 @@ const InventoryMachine = createMachine(
       }),
       notifyError: (_, _e) => {
         const e = _e as { type: (typeof _e)['type']; data: { Info?: string; info?: string } }
-        toast.error(e?.data?.Info || e?.data?.info || translate('common:error'))
+        toast.error(e?.data?.Info || e?.data?.info || translate('common:error.common'))
       },
       notifySoldEq: (_, _e) => {
         const e = _e as { type: (typeof _e)['type']; data: { Info?: string; info?: string } }
-        toast.error(e?.data?.Info || e?.data?.info || translate('common:error'))
+        toast.error(e?.data?.Info || e?.data?.info || translate('common:error.common'))
       },
       updateBalance: () => {
-        window.__refetchBalance?.()
+        window?.__refetchBalance?.()
       },
     },
     services: {
@@ -443,5 +443,3 @@ const InventoryMachine = createMachine(
     },
   },
 )
-
-export default InventoryMachine

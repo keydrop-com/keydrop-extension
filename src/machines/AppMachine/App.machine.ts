@@ -5,16 +5,18 @@ import {
   INIT_APP_DATA,
   INIT_COUNTER_ANIMATIONS,
   INIT_USER_BALANCE,
+  INIT_USER_DATA,
   INIT_USER_PROFILE,
 } from '@/constants/app'
 import { KEYDROP } from '@/constants/urls'
+import { changeLang } from '@/i18n'
 import CommonClient from '@/services/browser/CommonClient'
 import KeydropClient from '@/services/browser/KeydropClient'
 import SteamClient from '@/services/browser/SteamClient'
 import BalanceClient from '@/services/http/BalanceClient'
 import ProfileClient from '@/services/http/ProfileClient'
 import { BalanceResponse } from '@/types/API/http/balance'
-import { ProfilePageResponse } from '@/types/API/http/profile'
+import { InitUserDataResponse, ProfilePageResponse } from '@/types/API/http/profile'
 import { ActiveView, AppData, CountersAnimations } from '@/types/app'
 
 export type AppMachineServices = {
@@ -30,6 +32,12 @@ export type AppMachineServices = {
   authUser: {
     data: void
   }
+  getInitUserData: {
+    data: InitUserDataResponse
+  }
+  userProfileErrorToast: {
+    data: void
+  }
 }
 
 export type AppMachineEvent =
@@ -41,16 +49,20 @@ export interface AppMachineContext {
   appData: AppData
   activeView: ActiveView
   userProfile: ProfilePageResponse
+  initUserData: InitUserDataResponse
   userBalance: BalanceResponse
   countersAnimations: CountersAnimations
+  userBalanceValue: null | number
 }
 
 export const INIT_APP_CONTEXT: AppMachineContext = {
   userProfile: INIT_USER_PROFILE,
+  initUserData: INIT_USER_DATA,
   userBalance: INIT_USER_BALANCE,
   appData: INIT_APP_DATA,
   countersAnimations: INIT_COUNTER_ANIMATIONS,
   activeView: ActiveView.MAIN,
+  userBalanceValue: null,
 }
 
 export const AppMachine = createMachine(
@@ -74,19 +86,19 @@ export const AppMachine = createMachine(
               src: 'getAppData',
               onDone: {
                 actions: 'assignAppData',
-                target: 'gettingUserProfile',
+                target: 'gettingInitUserData',
               },
               onError: {
                 target: '#AppMachine.loggedOut',
               },
             },
           },
-          gettingUserProfile: {
+          gettingInitUserData: {
             invoke: {
-              src: 'getUserProfile',
+              src: 'getInitUserData',
               onDone: {
+                actions: ['assignInitUserData', 'assignBalanceValueFromInitData', 'assignLang'],
                 target: '#AppMachine.loggedIn',
-                actions: 'assignUserProfile',
               },
               onError: {
                 target: '#AppMachine.loggedOut',
@@ -111,7 +123,7 @@ export const AppMachine = createMachine(
         },
       },
       loggedIn: {
-        initial: 'gettingUserBalance',
+        initial: 'gettingUserProfile',
         on: {
           ACTIVE_VIEW_CHANGE: {
             actions: ['assignActiveView', 'assignCountersAnimations'],
@@ -123,11 +135,27 @@ export const AppMachine = createMachine(
               REFETCH_BALANCE: 'gettingUserBalance',
             },
           },
+          gettingUserProfile: {
+            invoke: {
+              src: 'getUserProfile',
+              onDone: {
+                actions: 'assignUserProfile',
+                target: 'idle',
+              },
+              onError: 'userProfileError',
+            },
+          },
+          userProfileError: {
+            invoke: {
+              src: 'userProfileErrorToast',
+              onDone: 'idle',
+            },
+          },
           gettingUserBalance: {
             invoke: {
               src: 'getUserBalance',
               onDone: {
-                actions: 'assignUserBalance',
+                actions: ['assignUserBalance', 'assignBalanceValueBalanceData'],
                 target: 'idle',
               },
             },
@@ -138,6 +166,15 @@ export const AppMachine = createMachine(
   },
   {
     actions: {
+      assignBalanceValueFromInitData: assign((ctx, e) => {
+        ctx.userBalanceValue = e.data.balance
+      }),
+      assignBalanceValueBalanceData: assign((ctx, e) => {
+        ctx.userBalanceValue = e.data.pkt
+      }),
+      assignInitUserData: assign((ctx, e) => {
+        ctx.initUserData = e.data
+      }),
       assignAppData: assign((ctx, e) => {
         ctx.appData = e.data
       }),
@@ -153,6 +190,11 @@ export const AppMachine = createMachine(
       assignUserBalance: assign((ctx, e) => {
         ctx.userBalance = e.data
       }),
+      assignLang: async (_, e) => {
+        const lang = e.data.lang.toLowerCase()
+        await changeLang(e.data.lang.toLowerCase())
+        localStorage.setItem('i18nextLng', lang)
+      },
     },
     services: {
       authUser: async () => {
@@ -162,6 +204,7 @@ export const AppMachine = createMachine(
       getAppData: async () => {
         const sessionId = await KeydropClient.getSessionId()
         const steamId = await SteamClient.getSteamId()
+
         if (!sessionId || !steamId) {
           throw new Error('No session id or steam id')
         } else {
@@ -173,6 +216,9 @@ export const AppMachine = createMachine(
       },
       getUserBalance: async () => {
         return await BalanceClient.getUserBalance({ skinsValue: false })
+      },
+      getInitUserData: async () => {
+        return await ProfileClient.getInitUserData()
       },
     },
   },

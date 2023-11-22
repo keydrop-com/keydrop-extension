@@ -20,23 +20,12 @@
     "128": "favicon-128x128.png"
   },
   "permissions": [
-    "cookies",
-    "storage"
+    "cookies"
   ],
   "host_permissions": ["*://*.key-drop.com/*", "*://*.steamcommunity.com/*"],
-  "background": {
-    "service_worker": "service-worker.js",
-    "type": "module"
-  },
-  "web_accessible_resources" : [
-    {
-      "resources": ["common.js"],
-      "matches": ["*://*.key-drop.com/*", "*://*.steamcommunity.com/*"]
-    }
-  ],
   "content_scripts": [
     {
-      "matches": ["*://*.key-drop.com/*", "*://*.steamcommunity.com/*"],
+      "matches": ["*://*.steamcommunity.com/*"],
       "js": ["content-script.js"],
       "css": ["content-script.css"]
     }

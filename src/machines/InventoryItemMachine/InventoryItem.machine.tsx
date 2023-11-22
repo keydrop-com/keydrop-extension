@@ -196,7 +196,7 @@ const ItemMachine = createMachine(
                         actions: [
                           'initMarketStatus',
                           'updateQuickSellInventory',
-                          () => window.__refetchBalance?.(),
+                          () => window?.__refetchBalance?.(),
                         ],
                         target: 'pending',
                       },
@@ -411,7 +411,7 @@ const ItemMachine = createMachine(
       refreshEq: sendParent('refreshEq'),
       notifyError: (_, _e) => {
         const e = _e as { type: (typeof _e)['type']; data: { Info?: string; info?: string } }
-        toast.error(e?.data?.Info || e?.data?.info || translate('common:error'))
+        toast.error(e?.data?.Info || e?.data?.info || translate('common:error.common'))
       },
       exchange: (ctx) => {
         CommonClient.openInNewTab(KEYDROP.upgradeItem(ctx.data.id))

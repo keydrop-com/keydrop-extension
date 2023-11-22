@@ -7,3 +7,10 @@ export type TwComponent<CustomProps = unknown> = (
     children?: ReactNode
   } & CustomProps,
 ) => JSX.Element
+
+export type OptionType = {
+  value: string
+  label: string | JSX.Element
+  link?: string
+  icon?: string
+}

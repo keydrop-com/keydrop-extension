@@ -13,8 +13,8 @@ export const MainView: FC = () => {
   const { t } = useTranslation('mainView')
 
   const { appState, appSend } = useAppContext()
-  const { userProfile, userBalance, appData, countersAnimations } = appState.context
-  const { steamId } = appData
+  const { initUserData, userBalanceValue, userProfile, countersAnimations } = appState.context
+  const { steamId } = initUserData
 
   const isCounterAnimationEnabled = countersAnimations[ActiveView.MAIN]
 
@@ -27,8 +27,8 @@ export const MainView: FC = () => {
       <div className="flex flex-col gap-[30px] px-5">
         <UserProfile
           steamId={steamId}
-          userProfile={userProfile}
-          userBalance={userBalance}
+          initUserData={initUserData}
+          balanceValue={userBalanceValue}
           isCounterAnimationEnabled={isCounterAnimationEnabled}
         />
         <Button className="button--primary h-[50px] w-full gap-2" onClick={handleOnClick}>

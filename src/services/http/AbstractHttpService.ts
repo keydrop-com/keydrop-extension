@@ -67,7 +67,7 @@ class AbstractHttpService {
     return fetch(url, {
       credentials: 'include',
       ...options,
-      headers: { ...headers, ...options.headers },
+      headers: options.headers || headers,
     })
       .then(async (res) => {
         if (resolveResponse) {

@@ -29,8 +29,6 @@ const config = {
         entry: {
           main: [paths.appIndexJs].filter(Boolean),
           'content-script': './src/browser/content-script/content-script.ts',
-          'service-worker': './src/browser/service-worker/service-worker.ts',
-          common: './src/browser/web_accessible_resources/common.ts',
         },
         output: {
           ...webpackConfig.output,

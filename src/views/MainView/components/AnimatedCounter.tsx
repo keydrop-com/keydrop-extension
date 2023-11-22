@@ -7,22 +7,24 @@ type CounterProps = {
   from: number
   to: number
   format?: boolean
+  currency?: string
   isEnabled?: boolean
 }
 
-const getFormattedValue = (value: number, format: boolean): string => {
-  return format ? formatCurrency(value) : String(Math.round(value))
+const getFormattedValue = (value: number, format: boolean, currency: string): string => {
+  return format ? formatCurrency(value, currency) : String(Math.round(value))
 }
 
 export const AnimatedCounter: FC<CounterProps> = ({
   from,
   to,
   format = false,
+  currency = 'USD',
   isEnabled = true,
 }) => {
   const ref = useRef(null)
   const count = useMotionValue(from)
-  const rounded = useTransform(count, (latest) => getFormattedValue(latest, format))
+  const rounded = useTransform(count, (latest) => getFormattedValue(latest, format, currency))
 
   useEffect(() => {
     if (!isEnabled) return
@@ -31,7 +33,9 @@ export const AnimatedCounter: FC<CounterProps> = ({
 
   return (
     <span>
-      <motion.span ref={ref}>{isEnabled ? rounded : getFormattedValue(to, format)}</motion.span>
+      <motion.span ref={ref}>
+        {isEnabled ? rounded : getFormattedValue(to, format, currency)}
+      </motion.span>
     </span>
   )
 }

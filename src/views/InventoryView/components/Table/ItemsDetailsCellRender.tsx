@@ -15,7 +15,13 @@ export const ItemsDetailsCellRender = (service: ItemService): JSX.Element => {
   return (
     <div className="grid h-full w-full grid-cols-[90px,1fr] gap-[22px] border-r border-[#2E3244] px-4">
       <div className="relative z-0 flex h-full w-full items-center justify-center">
-        <img src={image} alt={name} height={65} width={90} className="relative z-[2]" />
+        <img
+          src={image}
+          alt={name}
+          height={65}
+          width={90}
+          className="relative z-[2] transition group-hover:rotate-3 group-hover:scale-90"
+        />
         <SvgIcon
           iconName="keydrop-signet"
           className="absolute left-1/2 top-1/2 z-[1] h-[50px] w-[44px] -translate-x-1/2 -translate-y-1/2 text-[#23232D]"

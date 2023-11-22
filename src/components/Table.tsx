@@ -87,7 +87,7 @@ export const Table = <T = unknown,>({
           const { item, ...restProps } = props
           return (
             <tr
-              className={cn(classNames?.tdWrapper, classNames?.grid)}
+              className={cn('group', classNames?.tdWrapper, classNames?.grid)}
               style={{ ...style, height: itemHeight }}
               {...restProps}
             >

@@ -1,11 +1,10 @@
-import { useMachine } from '@xstate/react'
 import { FC, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Table, TableColumnInterface } from '@/components/Table'
 import { ViewBar } from '@/components/ViewBar'
 import { useAppContext } from '@/context/AppContext'
-import InventoryMachine from '@/machines/InventoryMachine/Inventory.machine'
+import { useInventoryContext } from '@/context/InventoryContext'
 import { ActiveView } from '@/types/app'
 import { InventoryItemRow } from '@/types/inventory'
 import { ActionsCellRender } from '@/views/InventoryView/components/Table/ActionsCellRender'
@@ -16,9 +15,9 @@ import { StatusCellRender } from '@/views/InventoryView/components/Table/StatusC
 export const InventoryView: FC = () => {
   const { t } = useTranslation('inventoryView')
   const { appSend } = useAppContext()
-  const [state, send] = useMachine(InventoryMachine)
+  const { inventoryState, inventorySend } = useInventoryContext()
 
-  const { context, matches } = state
+  const { context, matches } = inventoryState
   const { data } = context
 
   const tableData: InventoryItemRow[] = useMemo(() => {
@@ -60,7 +59,7 @@ export const InventoryView: FC = () => {
   }
 
   const handleOnLoadMore = (): void => {
-    send('LOAD_MORE')
+    inventorySend('LOAD_MORE')
   }
 
   return (

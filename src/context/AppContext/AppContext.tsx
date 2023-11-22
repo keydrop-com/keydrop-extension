@@ -1,5 +1,7 @@
 import { useMachine } from '@xstate/react'
 import { createContext, FC, ReactNode, useContext, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { toast } from 'react-toastify'
 import { Sender, StateFrom } from 'xstate'
 
 import { AppMachine, AppMachineEvent } from '@/machines/AppMachine/App.machine'
@@ -19,7 +21,15 @@ export const AppContext = createContext<AppContextInterface>({
 })
 
 export const AppContextProvider: FC<AppContextProvider> = ({ children }) => {
-  const [state, send] = useMachine(AppMachine)
+  const { t } = useTranslation('common')
+  const [state, send] = useMachine(AppMachine, {
+    services: {
+      userProfileErrorToast: () => {
+        toast.error(t('error.userProfile'))
+        return Promise.resolve()
+      },
+    },
+  })
 
   useEffect(() => {
     window.__refetchBalance = () => send('REFETCH_BALANCE')
