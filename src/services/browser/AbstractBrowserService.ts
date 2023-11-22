@@ -10,13 +10,23 @@ class AbstractBrowserService {
   }
 
   static async getCookie(domain: string, name: string): Promise<string | null> {
-    const cookie = await cookies.get({ url: domain, name: name })
+    const cookie = await cookies.get({ url: domain, name })
     if (!cookie) return null
     return normalizeCookie(cookie)
   }
 
   static async removeCookie(domain: string, name: string): Promise<void> {
-    await cookies.remove({ url: domain, name: name })
+    await cookies.remove({ url: domain, name })
+    return
+  }
+
+  static async setCookie(
+    domain: string,
+    name: string,
+    value: string,
+    expirationDate: number,
+  ): Promise<void> {
+    await cookies.set({ url: domain, name, value, expirationDate })
     return
   }
 }

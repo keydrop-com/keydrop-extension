@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { FC } from 'react'
+import { withTranslation } from 'react-i18next'
 
 import { DEFAULT_APP_MOTION } from '@/constants/app'
 import { useAppContext } from '@/context/AppContext'
@@ -48,4 +49,4 @@ const App: FC = () => {
   )
 }
 
-export default App
+export default withTranslation()(App)

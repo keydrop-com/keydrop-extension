@@ -10,6 +10,7 @@ import {
   INIT_USER_PROFILE,
 } from '@/constants/app'
 import { KEYDROP } from '@/constants/urls'
+import { changeLang } from '@/i18n'
 import CommonClient from '@/services/browser/CommonClient'
 import KeydropClient from '@/services/browser/KeydropClient'
 import SteamClient from '@/services/browser/SteamClient'
@@ -37,6 +38,9 @@ export type AppMachineServices = {
   }
   getInitUserData: {
     data: InitUserDataResponse
+  }
+  userProfileErrorToast: {
+    data: void
   }
 }
 
@@ -108,7 +112,11 @@ export const AppMachine = createMachine(
             invoke: {
               src: 'getInitUserData',
               onDone: {
-                actions: 'assignInitUserData',
+                actions: [
+                  'assignInitUserData',
+                  'assignBalanceValueFromInitData',
+                  'assignLangFromWebsite',
+                ],
                 target: '#AppMachine.loggedIn',
               },
               onError: {
@@ -153,16 +161,20 @@ export const AppMachine = createMachine(
                 actions: 'assignUserProfile',
                 target: 'idle',
               },
-              // onError: {
-              //   target: '#AppMachine.loggedOut',
-              // },
+              onError: 'userProfileError',
+            },
+          },
+          userProfileError: {
+            invoke: {
+              src: 'userProfileErrorToast',
+              onDone: 'idle',
             },
           },
           gettingUserBalance: {
             invoke: {
               src: 'getUserBalance',
               onDone: {
-                actions: 'assignUserBalance',
+                actions: ['assignUserBalance', 'assignBalanceValueBalanceData'],
                 target: 'idle',
               },
             },
@@ -173,9 +185,14 @@ export const AppMachine = createMachine(
   },
   {
     actions: {
+      assignBalanceValueFromInitData: assign((ctx, e) => {
+        ctx.userBalanceValue = e.data.balance
+      }),
+      assignBalanceValueBalanceData: assign((ctx, e) => {
+        ctx.userBalanceValue = e.data.pkt
+      }),
       assignInitUserData: assign((ctx, e) => {
         ctx.initUserData = e.data
-        ctx.userBalanceValue = e.data.balance // BALANCE UPDATE
       }),
       assignAppStorage: assign((ctx, e) => {
         ctx.appStorage = e.data
@@ -194,8 +211,12 @@ export const AppMachine = createMachine(
       }),
       assignUserBalance: assign((ctx, e) => {
         ctx.userBalance = e.data
-        ctx.userBalanceValue = e.data.pkt // BALANCE UPDATE
       }),
+      assignLangFromWebsite: async (_, e) => {
+        const lang = e.data.lang.toLowerCase()
+        await changeLang(lang)
+        window.localStorage.setItem('i18nextLng', lang)
+      },
     },
     services: {
       authUser: async () => {

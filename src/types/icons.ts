@@ -16,3 +16,4 @@ export type IconsNames =
   | 'pending-fill'
   | 'question-fill'
   | 'new-fill'
+  | 'arrow-down'

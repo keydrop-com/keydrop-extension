@@ -425,11 +425,11 @@ const InventoryMachine = createMachine(
       }),
       notifyError: (_, _e) => {
         const e = _e as { type: (typeof _e)['type']; data: { Info?: string; info?: string } }
-        toast.error(e?.data?.Info || e?.data?.info || translate('common:error'))
+        toast.error(e?.data?.Info || e?.data?.info || translate('common:error.common'))
       },
       notifySoldEq: (_, _e) => {
         const e = _e as { type: (typeof _e)['type']; data: { Info?: string; info?: string } }
-        toast.error(e?.data?.Info || e?.data?.info || translate('common:error'))
+        toast.error(e?.data?.Info || e?.data?.info || translate('common:error.common'))
       },
       updateBalance: () => {
         window?.__refetchBalance?.()

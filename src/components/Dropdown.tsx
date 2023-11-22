@@ -2,35 +2,32 @@ import { Menu, Portal, Transition } from '@headlessui/react'
 import React, { FC, Fragment, JSX, useEffect, useRef, useState } from 'react'
 import { usePopper } from 'react-popper'
 
+import { SvgIcon } from '@/components/SvgIcon'
 import { OptionType } from '@/types/common'
 import { cn } from '@/utils/styles'
 
-export type DropdownProps = {
+export interface DropdownInterface {
   initialValue?: string
   options: OptionType[]
   onChange?(value: string, label: string | null): void
-  className?: string
-  buttonClassName?: string
   renderSelectedLabel?: (selectedValue: string, selectedLabel: string) => JSX.Element
-  listClassName?: string
-  listItemClassName?: string
   title?: string
-  hideOnMobile?: boolean
-  hideOnDesktop?: boolean
+  className?: string
+  classNames?: {
+    button?: string
+    list?: string
+    listItem?: string
+  }
 }
 
-export const Dropdown: FC<DropdownProps> = ({
+export const Dropdown: FC<DropdownInterface> = ({
   className = '',
-  buttonClassName = '',
-  listItemClassName = '',
-  listClassName = '',
   initialValue,
   options,
   onChange,
   renderSelectedLabel,
   title,
-  hideOnMobile = false,
-  hideOnDesktop = false,
+  classNames,
 }) => {
   const [selectedValue, setSelectedValue] = useState(initialValue || options[0]?.value)
   const [targetElement, setTargetElement] = React.useState<null | HTMLButtonElement>(null)
@@ -53,33 +50,28 @@ export const Dropdown: FC<DropdownProps> = ({
   }, [initialValue])
 
   return (
-    <Menu
-      as="div"
-      className={cn(
-        'z-0 grid place-content-center',
-        hideOnMobile && '!hidden lg:!grid',
-        hideOnDesktop && '!grid lg:!hidden',
-        className,
-      )}
-    >
+    <Menu as="div" className={cn('z-0', className)}>
       {({ open }) => (
         <>
           <Menu.Button
             ref={setTargetElement}
             title={title}
             className={cn(
-              'flex h-[47px] items-center gap-1 rounded-lg px-4',
-              open && 'bg-light-500',
-              buttonClassName,
+              'flex h-[60px] w-full items-center gap-1 rounded-[5px] bg-[#23232D] pl-3.5 pr-5',
+              open && 'bg-red',
+              classNames?.button,
             )}
           >
             {renderSelectedLabel?.(selectedValue, selectedLabel || '') || (
-              <span className="whitespace-nowrap font-bold">{selectedLabel}</span>
+              <span className="w-full whitespace-nowrap text-left text-sm">{selectedLabel}</span>
             )}
-            {/*<SvgIcon*/}
-            {/*  iconName=""*/}
-            {/*  className={cn('transition-transform', open ? 'rotate-180' : 'rotate-0')}*/}
-            {/*/>*/}
+            <SvgIcon
+              iconName="arrow-down"
+              className={cn(
+                'h-[6px] w-[12px] transition-transform',
+                open ? 'rotate-180' : 'rotate-0',
+              )}
+            />
           </Menu.Button>
 
           <Portal>
@@ -103,8 +95,8 @@ export const Dropdown: FC<DropdownProps> = ({
                 <Menu.Items
                   static
                   className={cn(
-                    'bg-light-400 mt-2 w-full origin-top-right overflow-hidden rounded-lg shadow-lg',
-                    listClassName,
+                    'scrollbar-gold mt-2 max-h-[180px] w-full origin-top-right overflow-y-auto rounded-[5px] bg-[#23232D] shadow-lg',
+                    classNames?.list,
                   )}
                 >
                   {options.map(({ value, label }: OptionType) => (
@@ -113,9 +105,9 @@ export const Dropdown: FC<DropdownProps> = ({
                         <div
                           onClick={() => selectValue(value, label)}
                           className={cn(
-                            'hover:bg-light-500 cursor-pointer px-4 py-2 font-bold transition-colors',
-                            (active || value === selectedValue) && 'bg-light-500',
-                            listItemClassName,
+                            'flex h-[60px] cursor-pointer items-center pl-3.5 pr-5 text-sm transition-colors hover:bg-red',
+                            (active || value === selectedValue) && 'bg-red',
+                            classNames?.listItem,
                           )}
                         >
                           {label || value}
