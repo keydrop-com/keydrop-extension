@@ -1,28 +1,26 @@
 import './content-script.css'
 
-import { consoleLog } from '@/utils/common'
+import { checkUrl } from '@/browser/content-script/scripts/checkUrl'
+import { insertFonts } from '@/browser/content-script/scripts/insertFonts'
+import { insertKeydropBanner } from '@/browser/content-script/scripts/insertKeydropBanner'
 
 class ExtensionContentScript {
   async main(): Promise<void> {
-    console.log('running content script')
+    const ok = await checkUrl()
+    if (!ok) return
+    await insertFonts()
+    await insertKeydropBanner()
   }
 
   async init(): Promise<void> {
-    try {
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', async () => {
-          await this.main()
-        })
-      } else {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', async () => {
         await this.main()
-      }
-    } catch (e) {
-      consoleLog('content-script error', e)
+      })
+    } else {
+      await this.main()
     }
   }
 }
 
-new ExtensionContentScript()
-  .init()
-  .then(() => consoleLog('content-script initialized'))
-  .catch((e) => consoleLog('content-script error', e))
+new ExtensionContentScript().init().catch((e) => console.log('content-script error', e))

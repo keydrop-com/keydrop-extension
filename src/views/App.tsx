@@ -12,6 +12,7 @@ import LoginView from '@/views/LoginView'
 import MainView from '@/views/MainView'
 import SettingsView from '@/views/SettingsView'
 
+import { InventoryContextProvider } from '../context/InventoryContext/InvenyoryContext'
 import { InventoryView } from './InventoryView/InventoryView'
 
 const App: FC = () => {
@@ -32,13 +33,15 @@ const App: FC = () => {
         )}
 
         {isLoggedIn ? (
-          <MainLayout>
-            <motion.div key={activeView} {...DEFAULT_APP_MOTION}>
-              {activeView === ActiveView.MAIN && <MainView />}
-              {activeView === ActiveView.SETTINGS && <SettingsView />}
-              {activeView === ActiveView.INVENTORY && <InventoryView />}
-            </motion.div>
-          </MainLayout>
+          <InventoryContextProvider>
+            <MainLayout>
+              <motion.div key={activeView} {...DEFAULT_APP_MOTION}>
+                {activeView === ActiveView.MAIN && <MainView />}
+                {activeView === ActiveView.SETTINGS && <SettingsView />}
+                {activeView === ActiveView.INVENTORY && <InventoryView />}
+              </motion.div>
+            </MainLayout>
+          </InventoryContextProvider>
         ) : (
           <BaseLayout>
             <LoginView />

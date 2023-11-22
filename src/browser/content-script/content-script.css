@@ -1,1 +1,42 @@
 /* key-drop extension content script styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+#keydrop-banner * {
+    all: initial;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+#keydrop-banner.keydrop-banner {
+    @apply w-full mb-4 bg-navy-750 h-[90px] animate-show-banner overflow-hidden origin-top;
+}
+
+#keydrop-banner .keydrop-banner-content {
+    background: -moz-linear-gradient(90deg, rgba(255,203,119,0.1) 0%, transparent 100%);
+    background: -webkit-linear-gradient(90deg, rgba(255,203,119,0.1) 0%, transparent 100%);
+    background: linear-gradient(90deg, rgba(255,203,119,0.1) 0%, transparent 100%);
+    @apply flex justify-between w-[calc(100%_-_48px)] h-full px-6 gap-6;
+}
+
+#keydrop-banner .keydrop-banner-text-wrapper {
+    @apply grid grid-cols-[34px,1fr] w-full gap-3.5 h-full items-center;
+}
+
+#keydrop-banner .keydrop-banner-warning {
+    @apply h-[34px] w-[34px] bg-[#231C11] text-[22px] text-gold-400 font-semibold flex justify-center items-center rounded-full;
+}
+
+#keydrop-banner .keydrop-banner-text {
+    @apply flex flex-col gap-1;
+}
+
+#keydrop-banner .keydrop-banner-text-first {
+    @apply text-sm font-semibold text-white;
+}
+
+#keydrop-banner .keydrop-banner-text-second {
+    @apply text-xs text-white;
+}
+
+#keydrop-banner .keydrop-banner-text-second > span {
+    @apply font-semibold text-gold-400 text-xs;
+}

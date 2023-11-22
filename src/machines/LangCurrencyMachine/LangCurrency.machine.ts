@@ -26,6 +26,9 @@ type LangCurrencyMachineServices = {
   saveData: {
     data: void
   }
+  failToast: {
+    data: void
+  }
 }
 
 const INIT_LANG_CURRENCY_CONTEXT: LangCurrencyMachineContext = {
@@ -86,6 +89,13 @@ export const LangCurrencyMachine = createMachine(
             actions: ['assignSavedData'],
             target: 'idle',
           },
+          onError: 'fail',
+        },
+      },
+      fail: {
+        invoke: {
+          src: 'failToast',
+          onDone: 'idle',
         },
       },
     },

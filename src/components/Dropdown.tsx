@@ -10,6 +10,7 @@ export interface DropdownInterface {
   initialValue?: string
   options: OptionType[]
   onChange?(value: string, label: string | null): void
+  disabled?: boolean
   renderSelectedLabel?: (selectedValue: string, selectedLabel: string) => JSX.Element
   title?: string
   className?: string
@@ -24,6 +25,7 @@ export const Dropdown: FC<DropdownInterface> = ({
   className = '',
   initialValue,
   options,
+  disabled = false,
   onChange,
   renderSelectedLabel,
   title,
@@ -56,6 +58,7 @@ export const Dropdown: FC<DropdownInterface> = ({
           <Menu.Button
             ref={setTargetElement}
             title={title}
+            disabled={disabled}
             className={cn(
               'flex h-[60px] w-full items-center gap-1 rounded-[5px] bg-[#23232D] pl-3.5 pr-5',
               open && 'bg-red',

@@ -1,8 +1,10 @@
 import { useMachine } from '@xstate/react'
 import { FC, JSX, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { toast } from 'react-toastify'
 
 import { Button } from '@/components/Button'
+import { CircleLoader } from '@/components/CircleLoader'
 import { Dropdown } from '@/components/Dropdown'
 import { ViewBar } from '@/components/ViewBar'
 import { SUPPORTED_CURRENCIES } from '@/constants/currency'
@@ -36,9 +38,18 @@ export const SettingsView: FC = () => {
         currency: _currency,
       },
     },
+    services: {
+      failToast: () => {
+        toast.success(t('toast.fail'))
+        return Promise.resolve()
+      },
+    },
   })
 
-  const { currency, language } = state.context
+  const { context, matches } = state
+  const { currency, language } = context
+
+  const isLoading = useMemo(() => matches('saving'), [state.value])
 
   const langOptions = useMemo(() => {
     return Object.entries(langList || SUPPORTED_LANGUAGES).map(([key, label]) => ({
@@ -87,6 +98,7 @@ export const SettingsView: FC = () => {
               onChange={handleOnLangChange}
               initialValue={language || 'en'}
               renderSelectedLabel={(v) => renderCurrentLangLabel(v)}
+              disabled={isLoading}
             />
           </div>
           <div className="flex w-full flex-col gap-2.5">
@@ -96,10 +108,13 @@ export const SettingsView: FC = () => {
               className="w-full"
               onChange={handleOnCurrencyChange}
               initialValue={currency || 'USD'}
+              disabled={isLoading}
             />
           </div>
         </div>
-        <Button label={t('save')} className="button--primary h-[50px]" onClick={handleOnSubmit} />
+        <Button className="button--primary h-[50px]" disabled={isLoading} onClick={handleOnSubmit}>
+          {isLoading ? <CircleLoader className="h-4 w-4" /> : t('save')}
+        </Button>
       </div>
     </div>
   )

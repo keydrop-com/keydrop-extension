@@ -159,7 +159,7 @@ const FILTER_EVENTS = {
 
 const INIT_INVENTORY_CONTEXT: InventoryContext = {
   filters: {
-    state: STATE_FILTER.ALL,
+    state: STATE_FILTER.ACTIVE,
     weaponType: '',
     category: [],
     perPage: 18,
@@ -186,7 +186,7 @@ const INIT_INVENTORY_CONTEXT: InventoryContext = {
   },
 }
 
-const InventoryMachine = createMachine(
+export const InventoryMachine = createMachine(
   {
     id: 'InventoryMachine',
     predictableActionArguments: true,
@@ -443,5 +443,3 @@ const InventoryMachine = createMachine(
     },
   },
 )
-
-export default InventoryMachine
