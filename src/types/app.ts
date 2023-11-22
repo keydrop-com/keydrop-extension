@@ -13,8 +13,3 @@ export enum ActiveView {
 export type CountersAnimations = {
   [key in ActiveView]: boolean
 }
-
-export type AppStorage = {
-  lang: string
-  version: string
-}
