@@ -112,11 +112,7 @@ export const AppMachine = createMachine(
             invoke: {
               src: 'getInitUserData',
               onDone: {
-                actions: [
-                  'assignInitUserData',
-                  'assignBalanceValueFromInitData',
-                  'assignLangFromWebsite',
-                ],
+                actions: ['assignInitUserData', 'assignBalanceValueFromInitData', 'assignLang'],
                 target: '#AppMachine.loggedIn',
               },
               onError: {
@@ -212,10 +208,10 @@ export const AppMachine = createMachine(
       assignUserBalance: assign((ctx, e) => {
         ctx.userBalance = e.data
       }),
-      assignLangFromWebsite: async (_, e) => {
+      assignLang: async (_, e) => {
         const lang = e.data.lang.toLowerCase()
-        await changeLang(lang)
-        window.localStorage.setItem('i18nextLng', lang)
+        await changeLang(e.data.lang.toLowerCase())
+        localStorage.setItem('i18nextLng', lang)
       },
     },
     services: {

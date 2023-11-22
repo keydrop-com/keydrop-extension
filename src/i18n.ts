@@ -8,7 +8,7 @@ export default i18next
   .use(Fetch)
   .use(initReactI18next)
   .init({
-    lng: window.localStorage.getItem('i18nextLng')?.toLowerCase() || 'en',
+    lng: 'en',
     fallbackLng: 'en',
     ns: ['common', 'inventoryView', 'loginView', 'mainView', 'settingsView'],
     defaultNS: 'common',
