@@ -31,7 +31,6 @@ yarn-error.log*
 .eslintcache
 
 # i18nexus
-/public/locales
 @types/i18nextResources.ts
 
 # typescript

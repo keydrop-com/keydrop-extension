@@ -21,7 +21,7 @@ export const AppContext = createContext<AppContextInterface>({
 })
 
 export const AppContextProvider: FC<AppContextProvider> = ({ children }) => {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation('main', { keyPrefix: 'common' })
   const [state, send] = useMachine(AppMachine, {
     services: {
       userProfileErrorToast: () => {

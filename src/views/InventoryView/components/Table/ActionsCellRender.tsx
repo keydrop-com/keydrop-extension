@@ -18,7 +18,7 @@ import { formatCurrency } from '@/utils/numbers'
 import { cn } from '@/utils/styles'
 
 export const ActionsCellRender = (service: ItemService): JSX.Element => {
-  const { t } = useTranslation('inventoryView', { keyPrefix: 'action' })
+  const { t } = useTranslation('main', { keyPrefix: 'inventoryView.action' })
   const { appState } = useAppContext()
   const [state, send] = useActor(service)
 

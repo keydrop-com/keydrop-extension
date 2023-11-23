@@ -23,7 +23,7 @@ export const UserProfile: FC<UserProfileInterface> = ({
   balanceValue,
   isCounterAnimationEnabled,
 }) => {
-  const { t } = useTranslation('mainView')
+  const { t } = useTranslation('main', { keyPrefix: 'userView' })
   const { avatar, userName, currency } = initUserData
 
   return (

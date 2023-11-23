@@ -13,7 +13,7 @@ import { ItemsDetailsCellRender } from '@/views/InventoryView/components/Table/I
 import { StatusCellRender } from '@/views/InventoryView/components/Table/StatusCellRender'
 
 export const InventoryView: FC = () => {
-  const { t } = useTranslation('inventoryView')
+  const { t } = useTranslation('main', { keyPrefix: 'inventoryView' })
   const { appSend } = useAppContext()
   const { inventoryState, inventorySend } = useInventoryContext()
 

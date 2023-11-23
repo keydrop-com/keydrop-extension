@@ -7,7 +7,7 @@ import { KEYDROP } from '@/constants/urls'
 import { ItemService } from '@/types/inventory'
 
 export const DateCellRender = (service: ItemService): JSX.Element => {
-  const { t } = useTranslation('inventoryView')
+  const { t } = useTranslation('main', { keyPrefix: 'inventoryView' })
   const [state] = useActor(service)
   const { createdAt, id } = state.context.data
   const formattedTime = new Date(createdAt).toLocaleTimeString()

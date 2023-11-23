@@ -38,7 +38,7 @@ export const Table = <T = unknown,>({
   allLoaded = true,
   noData = false,
 }: TableInterface<T>): JSX.Element => {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation('main', { keyPrefix: 'common' })
   const scrollContainerRef = useRef<HTMLElement | Window | null>(null)
 
   const renderCellValue = (row: T, column: TableColumnInterface<T>): JSX.Element | string => {

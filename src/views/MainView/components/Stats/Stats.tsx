@@ -18,7 +18,7 @@ export const Stats: FC<StatsInterface> = ({
   userProfile: { stats },
   isCounterAnimationEnabled,
 }) => {
-  const { t } = useTranslation('mainView', { keyPrefix: 'stats' })
+  const { t } = useTranslation('main', { keyPrefix: 'userView.stats' })
 
   const statistics: Statistics = useMemo(
     () => [

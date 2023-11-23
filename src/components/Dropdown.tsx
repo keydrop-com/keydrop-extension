@@ -60,8 +60,8 @@ export const Dropdown: FC<DropdownInterface> = ({
             title={title}
             disabled={disabled}
             className={cn(
-              'flex h-[60px] w-full items-center gap-1 rounded-[5px] bg-[#23232D] pl-3.5 pr-5',
-              open && 'bg-red',
+              'flex h-[60px] w-full items-center gap-1 rounded-[5px] bg-[#23232D] pl-3.5 pr-5 transition-colors hover:bg-[#393942]',
+              open && 'bg-[#393942]',
               classNames?.button,
             )}
           >
@@ -106,10 +106,14 @@ export const Dropdown: FC<DropdownInterface> = ({
                     <Menu.Item key={value}>
                       {({ active }) => (
                         <div
-                          onClick={() => selectValue(value, label)}
+                          onClick={() => {
+                            selectValue(value, label)
+                          }}
                           className={cn(
-                            'flex h-[60px] cursor-pointer items-center pl-3.5 pr-5 text-sm transition-colors hover:bg-red',
-                            (active || value === selectedValue) && 'bg-red',
+                            'flex h-[60px] cursor-pointer items-center pl-3.5 pr-5 text-sm transition-colors hover:bg-[#393942]',
+                            value?.toUpperCase() === selectedValue?.toUpperCase() &&
+                              'text-gold-500',
+                            active && 'bg-[#393942]',
                             classNames?.listItem,
                           )}
                         >
