@@ -23,19 +23,19 @@ yarn dev
 ## Available commands
 
 ### `yarn build:quick`
-The command builds the **dev** version of the extension for **chromium** based browsers, without downloading translations.
+The command builds the **dev** version of the extension for **chromium** based browsers.
 
 ### `yarn dev`
-The command watches the changes and builds the **dev** version of the extension for **chromium** based browsers, without downloading translations.
+The command watches the changes and builds the **dev** version of the extension for **chromium** based browsers.
 
 ### `yarn build:dev:chromium`
-The command builds the **dev** version of the extension for **chromium** based browsers, with downloading translations.
+The command builds the **dev** version of the extension for **chromium** based browsers.
 
 ### `yarn build:prod:chromium`
-The command builds the **prod** version of the extension for **chromium** based browsers, with downloading translations.
+The command builds the **prod** version of the extension for **chromium** based browsers.
 
 ### `yarn build:dev:gecko`
-The command builds the **dev** version of the extension for **gecko** based browsers, with downloading translations.
+The command builds the **dev** version of the extension for **gecko** based browsers.
 
 ### `yarn build:prod:gecko`
-The command builds the **prod** version of the extension for **gecko** based browsers, with downloading translations.
+The command builds the **prod** version of the extension for **gecko** based browsers.
