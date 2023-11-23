@@ -30,9 +30,6 @@ yarn-error.log*
 # eslint
 .eslintcache
 
-# i18nexus
-@types/i18nextResources.ts
-
 # typescript
 *.tsbuildinfo
 next-env.d.ts
