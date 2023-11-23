@@ -10,8 +10,8 @@ export default i18next
   .init({
     lng: 'en',
     fallbackLng: 'en',
-    ns: ['common', 'inventoryView', 'loginView', 'mainView', 'settingsView'],
-    defaultNS: 'common',
+    ns: ['main'],
+    defaultNS: 'main',
     supportedLngs: Object.keys(SUPPORTED_LANGUAGES).map((v) => v.toLowerCase()),
     backend: {
       loadPath: `${window.location.origin}/locales/{{lng}}/{{ns}}.json`,

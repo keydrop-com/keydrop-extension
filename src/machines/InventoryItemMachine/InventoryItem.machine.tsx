@@ -411,7 +411,7 @@ const ItemMachine = createMachine(
       refreshEq: sendParent('refreshEq'),
       notifyError: (_, _e) => {
         const e = _e as { type: (typeof _e)['type']; data: { Info?: string; info?: string } }
-        toast.error(e?.data?.Info || e?.data?.info || translate('common:error.common'))
+        toast.error(e?.data?.Info || e?.data?.info || translate('main:common.error.common'))
       },
       exchange: (ctx) => {
         CommonClient.openInNewTab(KEYDROP.upgradeItem(ctx.data.id))
@@ -420,7 +420,7 @@ const ItemMachine = createMachine(
       showKYCModal: () => {
         toast.error(
           <span className="flex flex-col gap-4">
-            <span>{translate('common:kycConfirmIdentity')}</span>
+            <span>{translate('main:common.kycConfirmIdentity')}</span>
             <Button href={KEYDROP.kyc} label="KYC process" className="button--primary" />
           </span>,
           { autoClose: false },

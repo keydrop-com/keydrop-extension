@@ -10,7 +10,7 @@ import { useAppContext } from '@/context/AppContext'
 import { ActiveView } from '@/types/app'
 
 export const Navbar: FC = () => {
-  const { t } = useTranslation('common', { keyPrefix: 'navbar' })
+  const { t } = useTranslation('main', { keyPrefix: 'common.navbar' })
   const { appState, appSend } = useAppContext()
   const { activeView, initUserData } = appState.context
   const { userName, avatar } = initUserData

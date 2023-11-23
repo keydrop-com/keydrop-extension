@@ -7,7 +7,7 @@ import { SvgIcon } from '@/components/SvgIcon'
 import { useAppContext } from '@/context/AppContext'
 
 export const LoginView: FC = () => {
-  const { t } = useTranslation('loginView')
+  const { t } = useTranslation('main', { keyPrefix: 'loginView' })
   const { appSend } = useAppContext()
 
   const handleOnClick = async (): Promise<void> => {

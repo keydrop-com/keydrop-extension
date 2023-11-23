@@ -8,7 +8,7 @@ import { ItemService, StatusBadgeData } from '@/types/inventory'
 import { cn } from '@/utils/styles'
 
 export const StatusCellRender = (service: ItemService): JSX.Element => {
-  const { t } = useTranslation('inventoryView', { keyPrefix: 'status' })
+  const { t } = useTranslation('main', { keyPrefix: 'inventoryView.status' })
   const [state] = useActor(service)
 
   const { context, matches } = state

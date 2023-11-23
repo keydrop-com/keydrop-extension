@@ -11,7 +11,7 @@ interface RefillButtonInterface {
 }
 
 export const RefillButton: FC<RefillButtonInterface> = ({ bonus, code }) => {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation('main', { keyPrefix: 'common' })
 
   return (
     <Button

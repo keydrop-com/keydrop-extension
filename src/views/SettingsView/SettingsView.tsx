@@ -23,7 +23,7 @@ const renderLangLabel = (value: string, label?: string): JSX.Element => (
 )
 
 export const SettingsView: FC = () => {
-  const { t } = useTranslation('settingsView')
+  const { t } = useTranslation('main', { keyPrefix: 'settingsView' })
   const { appState, appSend } = useAppContext()
   const { langList, currencyList, lang: _lang, currency: _currency } = appState.context.initUserData
 

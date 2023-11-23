@@ -13,7 +13,7 @@ interface BalanceInterface {
 }
 
 export const Balance: FC<BalanceInterface> = ({ value, currency, isCounterAnimationEnabled }) => {
-  const { t } = useTranslation('mainView')
+  const { t } = useTranslation('main', { keyPrefix: 'userView' })
   const isBalanceLoaded = typeof value === 'number'
 
   return (
@@ -35,7 +35,7 @@ export const Balance: FC<BalanceInterface> = ({ value, currency, isCounterAnimat
                 />
               ) : (
                 <span>
-                  <Trans i18nKey="loading" ns="common" />
+                  <Trans i18nKey="common.loading" ns="main" />
                   ...
                 </span>
               )}

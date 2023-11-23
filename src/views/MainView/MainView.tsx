@@ -10,7 +10,7 @@ import { Stats } from '@/views/MainView/components/Stats/Stats'
 import { UserProfile } from '@/views/MainView/components/UserProfile'
 
 export const MainView: FC = () => {
-  const { t } = useTranslation('mainView')
+  const { t } = useTranslation('main', { keyPrefix: 'userView' })
 
   const { appState, appSend } = useAppContext()
   const { initUserData, userBalanceValue, userProfile, countersAnimations } = appState.context
