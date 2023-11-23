@@ -12,7 +12,7 @@ import i18nextResources from './i18nextResources.ts'
 
 declare module 'i18next' {
   interface CustomTypeOptions {
-    defaultNS: 'common'
+    defaultNS: 'main'
     resources: typeof i18nextResources
   }
 }
