@@ -1,1 +1,103 @@
-{"common":{"back":"后退","error":{"common":"出了些问题","userProfile":"下载统计数据失败"},"kycConfirmIdentity":"为了完成皮肤支付，您必须确认您的身份。","loading":"加载中","navbar":{"button":{"main":{"label":"家"},"notifications":{"label":"通知"},"settings":{"label":"设置"}}},"noItemsFound":"没有找到项目","refill":"补充装"},"inventoryView":{"action":{"collect":"收集","sell":"卖","upgrade":"升级"},"checkRoll":"检查卷","status":{"collected":"已收到","exchanged":"已交换","forExchange":"新的","new":"新的","pending":"待办的","selling":"销售","sold":"卖","upgraded":"升级版"},"title":"您的库存"},"loginView":{"button":{"label":"使用 Keydrop 登录"},"description":"扩展您最喜欢的战利品页面以查看并获得更多！"},"settingsView":{"currency":{"label":"设置您的货币"},"lang":{"label":"设置您的语言"},"save":"保存设置","title":"设置","toast":{"fail":"设置尚未保存"}},"userView":{"inventory":{"button":{"label":"您的库存"}},"profile":{"keydrop":{"label":"配置文件钥匙扣"}},"stats":{"battle":{"label":"案件大战"},"cases":{"label":"已打开的案例"},"contract":{"label":"合约"},"freeCases":{"label":"日常案例"},"upgrades":{"label":"皮肤升级"}},"wallet":{"balance":{"label":"钱包余额"}},"yourStatistics":{"hr":"您的统计数据"}}}
+{
+  "common": {
+    "back": "后退",
+    "error": {
+      "common": "出了些问题",
+      "userProfile": "下载统计数据失败"
+    },
+    "kycConfirmIdentity": "为了完成皮肤支付，您必须确认您的身份。",
+    "loading": "加载中",
+    "navbar": {
+      "button": {
+        "main": {
+          "label": "家"
+        },
+        "notifications": {
+          "label": "通知"
+        },
+        "settings": {
+          "label": "设置"
+        }
+      }
+    },
+    "noItemsFound": "没有找到项目",
+    "refill": "补充装"
+  },
+  "inventoryView": {
+    "action": {
+      "collect": "收集",
+      "sell": "卖",
+      "upgrade": "升级"
+    },
+    "checkRoll": "检查卷",
+    "status": {
+      "collected": "已收到",
+      "exchanged": "已交换",
+      "forExchange": "新的",
+      "new": "新的",
+      "pending": "待办的",
+      "sold": "卖",
+      "upgraded": "升级版"
+    },
+    "offerSent": "已发放",
+    "title": "您的库存",
+    "noActiveItems": "您没有活跃物品",
+    "openCases": "打开宝盒"
+  },
+  "loginView": {
+    "button": {
+      "label": "使用 Keydrop 登录"
+    },
+    "description": "扩展您最喜欢的战利品页面以查看并获得更多！"
+  },
+  "settingsView": {
+    "currency": {
+      "label": "设置您的货币"
+    },
+    "lang": {
+      "label": "设置您的语言"
+    },
+    "save": "保存设置",
+    "title": "设置",
+    "toast": {
+      "fail": "设置尚未保存"
+    }
+  },
+  "userView": {
+    "inventory": {
+      "button": {
+        "label": "您的库存"
+      }
+    },
+    "profile": {
+      "keydrop": {
+        "label": "配置文件钥匙扣"
+      }
+    },
+    "stats": {
+      "battle": {
+        "label": "案件大战"
+      },
+      "cases": {
+        "label": "已打开的案例"
+      },
+      "contract": {
+        "label": "合约"
+      },
+      "freeCases": {
+        "label": "日常案例"
+      },
+      "upgrades": {
+        "label": "皮肤升级"
+      }
+    },
+    "wallet": {
+      "balance": {
+        "label": "钱包余额"
+      }
+    },
+    "yourStatistics": {
+      "hr": "您的统计数据"
+    }
+  }
+}

@@ -1,1 +1,103 @@
-{"common":{"back":"Dos","error":{"common":"Quelque chose s'est mal passé","userProfile":"Échec du téléchargement des statistiques"},"kycConfirmIdentity":"Afin de finaliser le paiement du skin, vous devez confirmer votre identité.","loading":"Chargement","navbar":{"button":{"main":{"label":"Maison"},"notifications":{"label":"Notifications"},"settings":{"label":"Paramètres"}}},"noItemsFound":"Aucun article trouvé","refill":"Recharge"},"inventoryView":{"action":{"collect":"Collecter","sell":"Vendre","upgrade":"Mise à niveau"},"checkRoll":"Vérifier le rouleau","status":{"collected":"Reçu","exchanged":"Échangé","forExchange":"Nouveau","new":"Nouveau","pending":"En attente","selling":"Vente","sold":"Vendu","upgraded":"Mise à niveau"},"title":"Votre inventaire"},"loginView":{"button":{"label":"Connectez-vous avec Keydrop"},"description":"Étendez votre page de lootbox préférée pour voir et obtenir plus !"},"settingsView":{"currency":{"label":"Définissez votre devise"},"lang":{"label":"Définissez votre langue"},"save":"Enregistrer les paramètres","title":"Paramètres","toast":{"fail":"Les paramètres n'ont pas été enregistrés"}},"userView":{"inventory":{"button":{"label":"Votre inventaire"}},"profile":{"keydrop":{"label":"Dépôt de clé de profil"}},"stats":{"battle":{"label":"Batailles d'affaires"},"cases":{"label":"Cas ouverts"},"contract":{"label":"Contrats"},"freeCases":{"label":"Cas quotidiens"},"upgrades":{"label":"Améliorations de la peau"}},"wallet":{"balance":{"label":"Solde du portefeuille"}},"yourStatistics":{"hr":"Vos statistiques"}}}
+{
+  "common": {
+    "back": "Dos",
+    "error": {
+      "common": "Quelque chose s'est mal passé",
+      "userProfile": "Échec du téléchargement des statistiques"
+    },
+    "kycConfirmIdentity": "Afin de finaliser le paiement du skin, vous devez confirmer votre identité.",
+    "loading": "Chargement",
+    "navbar": {
+      "button": {
+        "main": {
+          "label": "Maison"
+        },
+        "notifications": {
+          "label": "Notifications"
+        },
+        "settings": {
+          "label": "Paramètres"
+        }
+      }
+    },
+    "noItemsFound": "Aucun article trouvé",
+    "refill": "Recharge"
+  },
+  "inventoryView": {
+    "action": {
+      "collect": "Collecter",
+      "sell": "Vendre",
+      "upgrade": "Mise à niveau"
+    },
+    "checkRoll": "Vérifier le rouleau",
+    "status": {
+      "collected": "Reçu",
+      "exchanged": "Échangé",
+      "forExchange": "Nouveau",
+      "new": "Nouveau",
+      "pending": "En attente",
+      "sold": "Vendu",
+      "upgraded": "Mise à niveau"
+    },
+    "offerSent": "Votre commande a été envoyé",
+    "title": "Votre inventaire",
+    "noActiveItems": "Vous n'avez pas d'items actifs",
+    "openCases": "Ouvrez les caisses"
+  },
+  "loginView": {
+    "button": {
+      "label": "Connectez-vous avec Keydrop"
+    },
+    "description": "Étendez votre page de lootbox préférée pour voir et obtenir plus !"
+  },
+  "settingsView": {
+    "currency": {
+      "label": "Définissez votre devise"
+    },
+    "lang": {
+      "label": "Définissez votre langue"
+    },
+    "save": "Enregistrer les paramètres",
+    "title": "Paramètres",
+    "toast": {
+      "fail": "Les paramètres n'ont pas été enregistrés"
+    }
+  },
+  "userView": {
+    "inventory": {
+      "button": {
+        "label": "Votre inventaire"
+      }
+    },
+    "profile": {
+      "keydrop": {
+        "label": "Dépôt de clé de profil"
+      }
+    },
+    "stats": {
+      "battle": {
+        "label": "Batailles d'affaires"
+      },
+      "cases": {
+        "label": "Cas ouverts"
+      },
+      "contract": {
+        "label": "Contrats"
+      },
+      "freeCases": {
+        "label": "Cas quotidiens"
+      },
+      "upgrades": {
+        "label": "Améliorations de la peau"
+      }
+    },
+    "wallet": {
+      "balance": {
+        "label": "Solde du portefeuille"
+      }
+    },
+    "yourStatistics": {
+      "hr": "Vos statistiques"
+    }
+  }
+}

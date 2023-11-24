@@ -1,1 +1,103 @@
-{"common":{"back":"Назад","error":{"common":"Что-то пошло не так","userProfile":"Не удалось загрузить статистику"},"kycConfirmIdentity":"Для завершения выплаты скина вам необходимо подтвердить свою личность.","loading":"Загрузка","navbar":{"button":{"main":{"label":"Дом"},"notifications":{"label":"Уведомления"},"settings":{"label":"Настройки"}}},"noItemsFound":"Ни один элемент не найден","refill":"Пополнение"},"inventoryView":{"action":{"collect":"Собирать","sell":"Продавать","upgrade":"Обновление"},"checkRoll":"Проверка рулона","status":{"collected":"Полученный","exchanged":"обменян","forExchange":"Новый","new":"Новый","pending":"В ожидании","selling":"Продажа","sold":"Продал","upgraded":"Модернизированный"},"title":"Ваш инвентарь"},"loginView":{"button":{"label":"Войти с помощью Keydrop"},"description":"Расширьте свою любимую страницу лутбокса, чтобы увидеть и получить больше!"},"settingsView":{"currency":{"label":"Установите свою валюту"},"lang":{"label":"Установите свой язык"},"save":"Сохранить настройки","title":"Настройки","toast":{"fail":"Настройки не сохранились"}},"userView":{"inventory":{"button":{"label":"Ваш инвентарь"}},"profile":{"keydrop":{"label":"Ключ профиля"}},"stats":{"battle":{"label":"Кейсовые битвы"},"cases":{"label":"Открытые дела"},"contract":{"label":"Контракты"},"freeCases":{"label":"Ежедневные дела"},"upgrades":{"label":"Улучшения скина"}},"wallet":{"balance":{"label":"Баланс Кошелька"}},"yourStatistics":{"hr":"Ваша статистика"}}}
+{
+  "common": {
+    "back": "Назад",
+    "error": {
+      "common": "Что-то пошло не так",
+      "userProfile": "Не удалось загрузить статистику"
+    },
+    "kycConfirmIdentity": "Для завершения выплаты скина вам необходимо подтвердить свою личность.",
+    "loading": "Загрузка",
+    "navbar": {
+      "button": {
+        "main": {
+          "label": "Дом"
+        },
+        "notifications": {
+          "label": "Уведомления"
+        },
+        "settings": {
+          "label": "Настройки"
+        }
+      }
+    },
+    "noItemsFound": "Ни один элемент не найден",
+    "refill": "Пополнение"
+  },
+  "inventoryView": {
+    "action": {
+      "collect": "Собирать",
+      "sell": "Продавать",
+      "upgrade": "Обновление"
+    },
+    "checkRoll": "Проверка рулона",
+    "status": {
+      "collected": "Полученный",
+      "exchanged": "обменян",
+      "forExchange": "Новый",
+      "new": "Новый",
+      "pending": "В ожидании",
+      "sold": "Продал",
+      "upgraded": "Модернизированный"
+    },
+    "offerSent": "Оформление отправлено",
+    "title": "Ваш инвентарь",
+    "noActiveItems": "У вас нет активных предметов",
+    "openCases": "Открыть кейсы"
+  },
+  "loginView": {
+    "button": {
+      "label": "Войти с помощью Keydrop"
+    },
+    "description": "Расширьте свою любимую страницу лутбокса, чтобы увидеть и получить больше!"
+  },
+  "settingsView": {
+    "currency": {
+      "label": "Установите свою валюту"
+    },
+    "lang": {
+      "label": "Установите свой язык"
+    },
+    "save": "Сохранить настройки",
+    "title": "Настройки",
+    "toast": {
+      "fail": "Настройки не сохранились"
+    }
+  },
+  "userView": {
+    "inventory": {
+      "button": {
+        "label": "Ваш инвентарь"
+      }
+    },
+    "profile": {
+      "keydrop": {
+        "label": "Ключ профиля"
+      }
+    },
+    "stats": {
+      "battle": {
+        "label": "Кейсовые битвы"
+      },
+      "cases": {
+        "label": "Открытые дела"
+      },
+      "contract": {
+        "label": "Контракты"
+      },
+      "freeCases": {
+        "label": "Ежедневные дела"
+      },
+      "upgrades": {
+        "label": "Улучшения скина"
+      }
+    },
+    "wallet": {
+      "balance": {
+        "label": "Баланс Кошелька"
+      }
+    },
+    "yourStatistics": {
+      "hr": "Ваша статистика"
+    }
+  }
+}

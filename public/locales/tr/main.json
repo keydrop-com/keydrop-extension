@@ -1,1 +1,103 @@
-{"common":{"back":"Geri","error":{"common":"Bir şeyler yanlış gitti","userProfile":"İstatistikler indirilemedi"},"kycConfirmIdentity":"Cilt ödemesini tamamlamak için kimliğinizi doğrulamanız gerekir.","loading":"Yükleniyor","navbar":{"button":{"main":{"label":"Ev"},"notifications":{"label":"Bildirimler"},"settings":{"label":"Ayarlar"}}},"noItemsFound":"Hiçbir öğe bulunamadı","refill":"Yeniden doldurma"},"inventoryView":{"action":{"collect":"TOPLAMAK","sell":"Satmak","upgrade":"Güncelleme"},"checkRoll":"Ruloyu kontrol et","status":{"collected":"Kabul edilmiş","exchanged":"Değiştirildi","forExchange":"Yeni","new":"Yeni","pending":"Askıda olması","selling":"Satış","sold":"Satılmış","upgraded":"Yükseltildi"},"title":"Envanteriniz"},"loginView":{"button":{"label":"Keydrop ile giriş yapın"},"description":"Daha fazlasını görmek ve almak için favori ganimet kutusu sayfanızı genişletin!"},"settingsView":{"currency":{"label":"Para biriminizi ayarlayın"},"lang":{"label":"Dilinizi ayarlayın"},"save":"Ayarları kaydet","title":"Ayarlar","toast":{"fail":"Ayarlar kaydedilmedi"}},"userView":{"inventory":{"button":{"label":"Envanteriniz"}},"profile":{"keydrop":{"label":"Profil Anahtar Bırakma"}},"stats":{"battle":{"label":"Vaka Savaşları"},"cases":{"label":"Açılan vakalar"},"contract":{"label":"Sözleşmeler"},"freeCases":{"label":"Günlük vakalar"},"upgrades":{"label":"Cilt yükseltmeleri"}},"wallet":{"balance":{"label":"Cüzdan Bakiyesi"}},"yourStatistics":{"hr":"İstatistikleriniz"}}}
+{
+  "common": {
+    "back": "Geri",
+    "error": {
+      "common": "Bir şeyler yanlış gitti",
+      "userProfile": "İstatistikler indirilemedi"
+    },
+    "kycConfirmIdentity": "Cilt ödemesini tamamlamak için kimliğinizi doğrulamanız gerekir.",
+    "loading": "Yükleniyor",
+    "navbar": {
+      "button": {
+        "main": {
+          "label": "Ev"
+        },
+        "notifications": {
+          "label": "Bildirimler"
+        },
+        "settings": {
+          "label": "Ayarlar"
+        }
+      }
+    },
+    "noItemsFound": "Hiçbir öğe bulunamadı",
+    "refill": "Yeniden doldurma"
+  },
+  "inventoryView": {
+    "action": {
+      "collect": "TOPLAMAK",
+      "sell": "Satmak",
+      "upgrade": "Güncelleme"
+    },
+    "checkRoll": "Ruloyu kontrol et",
+    "status": {
+      "collected": "Kabul edilmiş",
+      "exchanged": "Değiştirildi",
+      "forExchange": "Yeni",
+      "new": "Yeni",
+      "pending": "Askıda olması",
+      "sold": "Satılmış",
+      "upgraded": "Yükseltildi"
+    },
+    "offerSent": "Ofertayı başarıyla sıfırl",
+    "title": "Envanteriniz",
+    "noActiveItems": "Aktif iteminiz yok",
+    "openCases": "Kasaları aç"
+  },
+  "loginView": {
+    "button": {
+      "label": "Keydrop ile giriş yapın"
+    },
+    "description": "Daha fazlasını görmek ve almak için favori ganimet kutusu sayfanızı genişletin!"
+  },
+  "settingsView": {
+    "currency": {
+      "label": "Para biriminizi ayarlayın"
+    },
+    "lang": {
+      "label": "Dilinizi ayarlayın"
+    },
+    "save": "Ayarları kaydet",
+    "title": "Ayarlar",
+    "toast": {
+      "fail": "Ayarlar kaydedilmedi"
+    }
+  },
+  "userView": {
+    "inventory": {
+      "button": {
+        "label": "Envanteriniz"
+      }
+    },
+    "profile": {
+      "keydrop": {
+        "label": "Profil Anahtar Bırakma"
+      }
+    },
+    "stats": {
+      "battle": {
+        "label": "Vaka Savaşları"
+      },
+      "cases": {
+        "label": "Açılan vakalar"
+      },
+      "contract": {
+        "label": "Sözleşmeler"
+      },
+      "freeCases": {
+        "label": "Günlük vakalar"
+      },
+      "upgrades": {
+        "label": "Cilt yükseltmeleri"
+      }
+    },
+    "wallet": {
+      "balance": {
+        "label": "Cüzdan Bakiyesi"
+      }
+    },
+    "yourStatistics": {
+      "hr": "İstatistikleriniz"
+    }
+  }
+}

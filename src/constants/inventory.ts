@@ -59,7 +59,6 @@ export const CAN_BE_UPGRADED_OR_SOLD_STATES = [
 ]
 
 export const IS_LOADING_STATES = [
-  'private.skin.status.pending',
   'private.skin.status.selling',
   'private.skin.status.collecting',
   'private.skin.status.exchanging',

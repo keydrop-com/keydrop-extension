@@ -1,1 +1,103 @@
-{"common":{"back":"Z powrotem","error":{"common":"Coś poszło nie tak","userProfile":"Nie udało się pobrać statystyk"},"kycConfirmIdentity":"Aby dokończyć wypłatę skinów, musisz potwierdzić swoją tożsamość.","loading":"Ładowanie","navbar":{"button":{"main":{"label":"Dom"},"notifications":{"label":"Powiadomienia"},"settings":{"label":"Ustawienia"}}},"noItemsFound":"Nie znaleziono żadnego elementu","refill":"Wkład"},"inventoryView":{"action":{"collect":"Zbierać","sell":"Sprzedać","upgrade":"Aktualizacja"},"checkRoll":"Sprawdź rolkę","status":{"collected":"Otrzymane","exchanged":"Wymienione","forExchange":"Nowy","new":"Nowy","pending":"Aż do","selling":"Sprzedawanie","sold":"Sprzedany","upgraded":"Ulepszony"},"title":"Twój ekwipunek"},"loginView":{"button":{"label":"Zaloguj się za pomocą Keydropa"},"description":"Rozszerz swoją ulubioną stronę z łupami, aby zobaczyć i zyskać więcej!"},"settingsView":{"currency":{"label":"Ustaw swoją walutę"},"lang":{"label":"Ustaw swój język"},"save":"Zapisz ustawienia","title":"Ustawienia","toast":{"fail":"Ustawienia nie zostały zapisane"}},"userView":{"inventory":{"button":{"label":"Twój ekwipunek"}},"profile":{"keydrop":{"label":"Upuszczenie klucza profilu"}},"stats":{"battle":{"label":"Bitwy skrzynek"},"cases":{"label":"Otwarte skrzynki"},"contract":{"label":"Umowy"},"freeCases":{"label":"Codzienne przypadki"},"upgrades":{"label":"Ulepszenia skóry"}},"wallet":{"balance":{"label":"Saldo portfela"}},"yourStatistics":{"hr":"Twoje statystyki"}}}
+{
+  "common": {
+    "back": "Powrót",
+    "error": {
+      "common": "Coś poszło nie tak",
+      "userProfile": "Nie udało się pobrać statystyk"
+    },
+    "kycConfirmIdentity": "Aby dokończyć wypłatę skinów, musisz potwierdzić swoją tożsamość.",
+    "loading": "Ładowanie",
+    "navbar": {
+      "button": {
+        "main": {
+          "label": "Dom"
+        },
+        "notifications": {
+          "label": "Powiadomienia"
+        },
+        "settings": {
+          "label": "Ustawienia"
+        }
+      }
+    },
+    "noItemsFound": "Nie znaleziono żadnego elementu",
+    "refill": "Wkład"
+  },
+  "inventoryView": {
+    "action": {
+      "collect": "Zbierać",
+      "sell": "Sprzedać",
+      "upgrade": "Aktualizacja"
+    },
+    "checkRoll": "Sprawdź rolkę",
+    "status": {
+      "collected": "Otrzymane",
+      "exchanged": "Wymienione",
+      "forExchange": "Nowy",
+      "new": "Nowy",
+      "pending": "Aż do",
+      "sold": "Sprzedany",
+      "upgraded": "Ulepszony"
+    },
+    "offerSent": "Oferta wysłana",
+    "title": "Twój ekwipunek",
+    "noActiveItems": "Nie posiadasz aktywnych przedmiotów",
+    "openCases": "Otwieraj skrzynie"
+  },
+  "loginView": {
+    "button": {
+      "label": "Zaloguj się za pomocą Keydropa"
+    },
+    "description": "Rozszerz swoją ulubioną stronę z łupami, aby zobaczyć i zyskać więcej!"
+  },
+  "settingsView": {
+    "currency": {
+      "label": "Ustaw swoją walutę"
+    },
+    "lang": {
+      "label": "Ustaw swój język"
+    },
+    "save": "Zapisz ustawienia",
+    "title": "Ustawienia",
+    "toast": {
+      "fail": "Ustawienia nie zostały zapisane"
+    }
+  },
+  "userView": {
+    "inventory": {
+      "button": {
+        "label": "Twój ekwipunek"
+      }
+    },
+    "profile": {
+      "keydrop": {
+        "label": "Upuszczenie klucza profilu"
+      }
+    },
+    "stats": {
+      "battle": {
+        "label": "Bitwy skrzynek"
+      },
+      "cases": {
+        "label": "Otwarte skrzynki"
+      },
+      "contract": {
+        "label": "Umowy"
+      },
+      "freeCases": {
+        "label": "Codzienne przypadki"
+      },
+      "upgrades": {
+        "label": "Ulepszenia skóry"
+      }
+    },
+    "wallet": {
+      "balance": {
+        "label": "Saldo portfela"
+      }
+    },
+    "yourStatistics": {
+      "hr": "Twoje statystyki"
+    }
+  }
+}
