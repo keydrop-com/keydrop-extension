@@ -1,8 +1,8 @@
-import { Tabs, tabs } from 'webextension-polyfill'
+import { tabs } from 'webextension-polyfill'
 
 class CommonClient {
-  static async openInNewTab(url: string): Promise<Tabs.Tab> {
-    return tabs.create({ url })
+  static async openInNewTab(url: string): Promise<void> {
+    return tabs.create({ url }).then(() => window.close())
   }
 }
 

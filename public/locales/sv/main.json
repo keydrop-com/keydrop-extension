@@ -1,1 +1,103 @@
-{"common":{"back":"Tillbaka","error":{"common":"Något gick fel","userProfile":"Det gick inte att ladda ner statistik"},"kycConfirmIdentity":"För att kunna slutföra skin-utbetalningen måste du bekräfta din identitet.","loading":"Läser in","navbar":{"button":{"main":{"label":"Hem"},"notifications":{"label":"Aviseringar"},"settings":{"label":"inställningar"}}},"noItemsFound":"Inget objekt hittades","refill":"Påfyllning"},"inventoryView":{"action":{"collect":"Samla","sell":"Sälja","upgrade":"Uppgradera"},"checkRoll":"Kontrollera rulle","status":{"collected":"Mottagen","exchanged":"Bytt","forExchange":"Ny","new":"Ny","pending":"I väntan på","selling":"Försäljning","sold":"Såld","upgraded":"Uppgraderad"},"title":"Ditt lager"},"loginView":{"button":{"label":"Logga in med Keydrop"},"description":"Utöka din favorit lootbox-sida för att se och få mer!"},"settingsView":{"currency":{"label":"Ställ in din valuta"},"lang":{"label":"Ställ in ditt språk"},"save":"Spara inställningar","title":"inställningar","toast":{"fail":"Inställningarna har inte sparats"}},"userView":{"inventory":{"button":{"label":"Ditt lager"}},"profile":{"keydrop":{"label":"Profil Key-Drop"}},"stats":{"battle":{"label":"Fallstrider"},"cases":{"label":"Öppnade fall"},"contract":{"label":"Kontrakt"},"freeCases":{"label":"Dagliga fall"},"upgrades":{"label":"Huduppgraderingar"}},"wallet":{"balance":{"label":"Saldo i plånbok"}},"yourStatistics":{"hr":"Din statistik"}}}
+{
+  "common": {
+    "back": "Tillbaka",
+    "error": {
+      "common": "Något gick fel",
+      "userProfile": "Det gick inte att ladda ner statistik"
+    },
+    "kycConfirmIdentity": "För att kunna slutföra skin-utbetalningen måste du bekräfta din identitet.",
+    "loading": "Läser in",
+    "navbar": {
+      "button": {
+        "main": {
+          "label": "Hem"
+        },
+        "notifications": {
+          "label": "Aviseringar"
+        },
+        "settings": {
+          "label": "inställningar"
+        }
+      }
+    },
+    "noItemsFound": "Inget objekt hittades",
+    "refill": "Påfyllning"
+  },
+  "inventoryView": {
+    "action": {
+      "collect": "Samla",
+      "sell": "Sälja",
+      "upgrade": "Uppgradera"
+    },
+    "checkRoll": "Kontrollera rulle",
+    "status": {
+      "collected": "Mottagen",
+      "exchanged": "Bytt",
+      "forExchange": "Ny",
+      "new": "Ny",
+      "pending": "I väntan på",
+      "sold": "Såld",
+      "upgraded": "Uppgraderad"
+    },
+    "offerSent": "Ofertällningen har sparats",
+    "title": "Ditt lager",
+    "noActiveItems": "Du har inga aktiva varor",
+    "openCases": "Öppna lådorna"
+  },
+  "loginView": {
+    "button": {
+      "label": "Logga in med Keydrop"
+    },
+    "description": "Utöka din favorit lootbox-sida för att se och få mer!"
+  },
+  "settingsView": {
+    "currency": {
+      "label": "Ställ in din valuta"
+    },
+    "lang": {
+      "label": "Ställ in ditt språk"
+    },
+    "save": "Spara inställningar",
+    "title": "inställningar",
+    "toast": {
+      "fail": "Inställningarna har inte sparats"
+    }
+  },
+  "userView": {
+    "inventory": {
+      "button": {
+        "label": "Ditt lager"
+      }
+    },
+    "profile": {
+      "keydrop": {
+        "label": "Profil Key-Drop"
+      }
+    },
+    "stats": {
+      "battle": {
+        "label": "Fallstrider"
+      },
+      "cases": {
+        "label": "Öppnade fall"
+      },
+      "contract": {
+        "label": "Kontrakt"
+      },
+      "freeCases": {
+        "label": "Dagliga fall"
+      },
+      "upgrades": {
+        "label": "Huduppgraderingar"
+      }
+    },
+    "wallet": {
+      "balance": {
+        "label": "Saldo i plånbok"
+      }
+    },
+    "yourStatistics": {
+      "hr": "Din statistik"
+    }
+  }
+}

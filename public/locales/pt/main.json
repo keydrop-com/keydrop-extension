@@ -1,1 +1,103 @@
-{"common":{"back":"Voltar","error":{"common":"Algo deu errado","userProfile":"Falha ao baixar estatísticas"},"kycConfirmIdentity":"Para concluir o pagamento do skin, você deve confirmar sua identidade.","loading":"Carregando","navbar":{"button":{"main":{"label":"Lar"},"notifications":{"label":"Notificações"},"settings":{"label":"Configurações"}}},"noItemsFound":"Nenhum item encontrado","refill":"Reabastecer"},"inventoryView":{"action":{"collect":"Coletar","sell":"Vender","upgrade":"Atualizar"},"checkRoll":"Verifique o rolo","status":{"collected":"Recebido","exchanged":"Trocado","forExchange":"Novo","new":"Novo","pending":"Pendente","selling":"Vendendo","sold":"Vendido","upgraded":"Atualizado"},"title":"Seu inventário"},"loginView":{"button":{"label":"Faça login com Keydrop"},"description":"Amplie sua página de saque favorita para ver e obter mais!"},"settingsView":{"currency":{"label":"Defina sua moeda"},"lang":{"label":"Defina seu idioma"},"save":"Salvar configurações","title":"Configurações","toast":{"fail":"As configurações não foram salvas"}},"userView":{"inventory":{"button":{"label":"Seu inventário"}},"profile":{"keydrop":{"label":"Soltar chave de perfil"}},"stats":{"battle":{"label":"Batalhas de Casos"},"cases":{"label":"Casos abertos"},"contract":{"label":"Contratos"},"freeCases":{"label":"Casos diários"},"upgrades":{"label":"Atualizações de skin"}},"wallet":{"balance":{"label":"Saldo da Carteira"}},"yourStatistics":{"hr":"Suas estatísticas"}}}
+{
+  "common": {
+    "back": "Voltar",
+    "error": {
+      "common": "Algo deu errado",
+      "userProfile": "Falha ao baixar estatísticas"
+    },
+    "kycConfirmIdentity": "Para concluir o pagamento do skin, você deve confirmar sua identidade.",
+    "loading": "Carregando",
+    "navbar": {
+      "button": {
+        "main": {
+          "label": "Lar"
+        },
+        "notifications": {
+          "label": "Notificações"
+        },
+        "settings": {
+          "label": "Configurações"
+        }
+      }
+    },
+    "noItemsFound": "Nenhum item encontrado",
+    "refill": "Reabastecer"
+  },
+  "inventoryView": {
+    "action": {
+      "collect": "Coletar",
+      "sell": "Vender",
+      "upgrade": "Atualizar"
+    },
+    "checkRoll": "Verifique o rolo",
+    "status": {
+      "collected": "Recebido",
+      "exchanged": "Trocado",
+      "forExchange": "Novo",
+      "new": "Novo",
+      "pending": "Pendente",
+      "sold": "Vendido",
+      "upgraded": "Atualizado"
+    },
+    "offerSent": "Oferta recebida",
+    "title": "Seu inventário",
+    "noActiveItems": "Você não tem itens ativos",
+    "openCases": "Abra as caixas"
+  },
+  "loginView": {
+    "button": {
+      "label": "Faça login com Keydrop"
+    },
+    "description": "Amplie sua página de saque favorita para ver e obter mais!"
+  },
+  "settingsView": {
+    "currency": {
+      "label": "Defina sua moeda"
+    },
+    "lang": {
+      "label": "Defina seu idioma"
+    },
+    "save": "Salvar configurações",
+    "title": "Configurações",
+    "toast": {
+      "fail": "As configurações não foram salvas"
+    }
+  },
+  "userView": {
+    "inventory": {
+      "button": {
+        "label": "Seu inventário"
+      }
+    },
+    "profile": {
+      "keydrop": {
+        "label": "Soltar chave de perfil"
+      }
+    },
+    "stats": {
+      "battle": {
+        "label": "Batalhas de Casos"
+      },
+      "cases": {
+        "label": "Casos abertos"
+      },
+      "contract": {
+        "label": "Contratos"
+      },
+      "freeCases": {
+        "label": "Casos diários"
+      },
+      "upgrades": {
+        "label": "Atualizações de skin"
+      }
+    },
+    "wallet": {
+      "balance": {
+        "label": "Saldo da Carteira"
+      }
+    },
+    "yourStatistics": {
+      "hr": "Suas estatísticas"
+    }
+  }
+}

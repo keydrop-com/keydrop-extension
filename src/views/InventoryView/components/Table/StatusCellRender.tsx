@@ -1,6 +1,6 @@
 import { useActor } from '@xstate/react'
 import { JSX, useMemo } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import { SvgIcon } from '@/components/SvgIcon'
 import { ITEM_STATUS } from '@/types/API/http/inventory'
@@ -56,10 +56,11 @@ export const StatusCellRender = (service: ItemService): JSX.Element => {
           label: t('pending'),
         },
         {
-          isActive: matches('private.skin.status.selling'),
+          isActive:
+            matches('private.skin.status.collecting') || matches('private.skin.status.selling'),
           color: 'text-gold-400',
           iconName: 'pending-fill',
-          label: t('selling'),
+          label: <Trans i18nKey="common.loading" ns="main" />,
         },
         {
           isActive: status === ITEM_STATUS.UPGRADED,

@@ -17,6 +17,7 @@ interface TableInterface<T> {
   itemHeight?: number
   allLoaded?: boolean
   noData?: boolean
+  noDataJSX?: JSX.Element
   height?: number
   onLoadMore?: () => void
   classNames?: {
@@ -37,6 +38,7 @@ export const Table = <T = unknown,>({
   classNames,
   allLoaded = true,
   noData = false,
+  noDataJSX,
 }: TableInterface<T>): JSX.Element => {
   const { t } = useTranslation('main', { keyPrefix: 'common' })
   const scrollContainerRef = useRef<HTMLElement | Window | null>(null)
@@ -49,6 +51,10 @@ export const Table = <T = unknown,>({
   useEffect(() => {
     scrollContainerRef.current?.scrollTo({ top: 0 })
   }, [])
+
+  if (noData && noDataJSX) {
+    return noDataJSX
+  }
 
   if (noData) {
     return (

@@ -1,8 +1,10 @@
 import { FC, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { Button } from '@/components/Button'
 import { Table, TableColumnInterface } from '@/components/Table'
 import { ViewBar } from '@/components/ViewBar'
+import { KEYDROP } from '@/constants/urls'
 import { useAppContext } from '@/context/AppContext'
 import { useInventoryContext } from '@/context/InventoryContext'
 import { ActiveView } from '@/types/app'
@@ -72,9 +74,20 @@ export const InventoryView: FC = () => {
         columns={columns}
         onLoadMore={handleOnLoadMore}
         allLoaded={matches('loadedAllItems')}
+        noData={matches('noData')}
+        noDataJSX={
+          <div className="flex w-full flex-col items-center justify-center gap-1">
+            <p className="text-lg">{t('noActiveItems')}</p>
+            <Button
+              href={KEYDROP.main}
+              label={t('openCases')}
+              className="rounded-none p-0 text-base font-bold normal-case text-gold-400 hover:text-white"
+            />
+          </div>
+        }
         classNames={{
           main: 'pr-[18px]',
-          grid: 'grid grid-cols-[36%,14%,14%,36%]',
+          grid: 'grid grid-cols-[36%,12%,14%,38%]',
           tdWrapper: 'h-[70px] bg-[#1F1F27] mt-1',
           thWrapper: 'h-[56px] bg-navy-750/[.9] place-items-center backdrop-blur-sm shadow-sm',
           th: 'text-xs font-medium text-[#B8BCD0] uppercase',

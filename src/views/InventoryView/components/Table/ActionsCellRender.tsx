@@ -1,6 +1,6 @@
 import { useActor } from '@xstate/react'
 import { JSX, useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import { Button } from '@/components/Button'
 import { CircleLoader } from '@/components/CircleLoader'
@@ -33,6 +33,8 @@ export const ActionsCellRender = (service: ItemService): JSX.Element => {
   const canBeCollected = CAN_BE_COLLECTED_STATES.some(matches)
   const canBeUpgradedOrSold = CAN_BE_UPGRADED_OR_SOLD_STATES.some(matches)
   const isLoading = IS_LOADING_STATES.some(matches)
+  const isPending = matches('private.skin.status.pending')
+  const isSold = matches('private.skin.status.sold')
 
   const handleOnSellClick = (): void => {
     if (!canBeUpgradedOrSold) return
@@ -45,56 +47,73 @@ export const ActionsCellRender = (service: ItemService): JSX.Element => {
   }
 
   useEffect(() => {
-    if (canBeCollectedState && matches('private.skin.status.pending')) {
+    if (canBeCollectedState && isPending) {
       CommonClient.openInNewTab(STEAM.tradeOffers(steamId))
     }
   }, [state])
 
+  if (isPending) {
+    return (
+      <div className="flex h-full w-full items-center justify-center">
+        <p className="text-sm font-semibold uppercase text-gold-400">
+          <Trans i18nKey="inventoryView.offerSent" ns="main" />
+        </p>
+      </div>
+    )
+  }
+
   return (
     <div
       className={cn(
-        'flex h-full w-full items-center justify-center gap-3.5',
-        isLoading && 'opacity-25',
+        'grid h-full w-full items-center gap-3.5 px-3.5',
+        !isVoucher && !isSold && 'grid-cols-[35px,1fr,1fr]',
+        isVoucher && !isSold && 'grid-cols-[35px,1fr]',
+        !isVoucher && isSold && 'grid-cols-1',
       )}
     >
-      <Button
-        href={KEYDROP.upgradeItem(id)}
-        disabled={!canBeUpgradedOrSold || isLoading}
-        className="button--upgrade h-[35px] w-[35px] rounded-[5px] p-0"
-      >
-        {isLoading ? (
-          <CircleLoader className="h-4 w-4 text-blue-550" />
-        ) : (
-          <>
-            <SvgIcon iconName="upgrades-fill" className="h-4 w-4" />
-            <span className="sr-only">{t('upgrade')}</span>
-          </>
-        )}
-      </Button>
+      {!isSold && (
+        <Button
+          href={KEYDROP.upgradeItem(id)}
+          disabled={!canBeUpgradedOrSold || isLoading}
+          className="button--upgrade h-[35px] min-w-[35px] rounded-[5px] p-0"
+        >
+          {isLoading ? (
+            <CircleLoader className="h-4 w-4 !text-blue-550" />
+          ) : (
+            <>
+              <SvgIcon iconName="upgrades-fill" className="h-4 w-4" />
+              <span className="sr-only">{t('upgrade')}</span>
+            </>
+          )}
+        </Button>
+      )}
 
       <Button
         onClick={handleOnSellClick}
-        disabled={!canBeUpgradedOrSold || isLoading}
+        disabled={!canBeUpgradedOrSold || isLoading || isSold}
         className={cn(
-          'button--primary h-[35px] rounded-[5px] px-4 py-0',
-          isVoucher ? 'min-w-[194px]' : 'min-w-[90px]',
+          'button--primary h-[35px] min-w-[90px] rounded-[5px] px-4 py-0',
+          isSold && ' border-navy-300 bg-navy-400 text-navy-300',
         )}
       >
         {isLoading ? (
-          <CircleLoader className="h-4 w-4" />
+          <CircleLoader className="h-4 w-4 text-gold-400" />
         ) : (
-          <span>{`${t('sell')} ${formatCurrency(price, currency)}`}</span>
+          <span>
+            {isSold ? <Trans i18nKey="inventoryView.status.sold" ns="main" /> : t('sell')}{' '}
+            {formatCurrency(price, currency)}
+          </span>
         )}
       </Button>
 
-      {!isVoucher && (
+      {!isVoucher && !isSold && (
         <Button
           onClick={handleOnCollectClick}
           disabled={!canBeCollected || isLoading}
           className="button--primary h-[35px] min-w-[90px] rounded-[5px] bg-gold px-4 py-0 text-navy-900 hover:bg-gold-400"
         >
           {isLoading ? (
-            <CircleLoader className="h-4 w-4 text-white" />
+            <CircleLoader className="h-4 w-4 text-navy-900" />
           ) : (
             <span>{t('collect')}</span>
           )}

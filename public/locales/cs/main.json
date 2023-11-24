@@ -1,1 +1,103 @@
-{"common":{"back":"Zadní","error":{"common":"Něco se pokazilo","userProfile":"Stažení statistik se nezdařilo"},"kycConfirmIdentity":"Abyste mohli dokončit výplatu kůže, musíte potvrdit svou totožnost.","loading":"načítání","navbar":{"button":{"main":{"label":"Domov"},"notifications":{"label":"Oznámení"},"settings":{"label":"Nastavení"}}},"noItemsFound":"Nebyla nalezena žádná položka","refill":"Doplňte"},"inventoryView":{"action":{"collect":"Sbírat","sell":"Prodat","upgrade":"Vylepšit"},"checkRoll":"Zkontrolujte roli","status":{"collected":"Přijato","exchanged":"Vyměněno","forExchange":"Nový","new":"Nový","pending":"čekající","selling":"Prodejní","sold":"Prodáno","upgraded":"Upgradováno"},"title":"Váš inventář"},"loginView":{"button":{"label":"Přihlaste se pomocí Keydrop"},"description":"Rozšiřte svou oblíbenou stránku lootboxu, abyste viděli a získali více!"},"settingsView":{"currency":{"label":"Nastavte si měnu"},"lang":{"label":"Nastavte si jazyk"},"save":"Uložit nastavení","title":"Nastavení","toast":{"fail":"Nastavení nebyla uložena"}},"userView":{"inventory":{"button":{"label":"Váš inventář"}},"profile":{"keydrop":{"label":"Profil Key-Drop"}},"stats":{"battle":{"label":"Případové bitvy"},"cases":{"label":"Otevřené případy"},"contract":{"label":"Smlouvy"},"freeCases":{"label":"Denní případy"},"upgrades":{"label":"Upgrady kůže"}},"wallet":{"balance":{"label":"Zůstatek v Peněžence"}},"yourStatistics":{"hr":"Vaše statistiky"}}}
+{
+  "common": {
+    "back": "Zadní",
+    "error": {
+      "common": "Něco se pokazilo",
+      "userProfile": "Stažení statistik se nezdařilo"
+    },
+    "kycConfirmIdentity": "Abyste mohli dokončit výplatu kůže, musíte potvrdit svou totožnost.",
+    "loading": "načítání",
+    "navbar": {
+      "button": {
+        "main": {
+          "label": "Domov"
+        },
+        "notifications": {
+          "label": "Oznámení"
+        },
+        "settings": {
+          "label": "Nastavení"
+        }
+      }
+    },
+    "noItemsFound": "Nebyla nalezena žádná položka",
+    "refill": "Doplňte"
+  },
+  "inventoryView": {
+    "action": {
+      "collect": "Sbírat",
+      "sell": "Prodat",
+      "upgrade": "Vylepšit"
+    },
+    "checkRoll": "Zkontrolujte roli",
+    "status": {
+      "collected": "Přijato",
+      "exchanged": "Vyměněno",
+      "forExchange": "Nový",
+      "new": "Nový",
+      "pending": "čekající",
+      "sold": "Prodáno",
+      "upgraded": "Upgradováno"
+    },
+    "offerSent": "Oferta odeslán",
+    "title": "Váš inventář",
+    "noActiveItems": "Nemáte aktivní předměty",
+    "openCases": "Otevřít bedny"
+  },
+  "loginView": {
+    "button": {
+      "label": "Přihlaste se pomocí Keydrop"
+    },
+    "description": "Rozšiřte svou oblíbenou stránku lootboxu, abyste viděli a získali více!"
+  },
+  "settingsView": {
+    "currency": {
+      "label": "Nastavte si měnu"
+    },
+    "lang": {
+      "label": "Nastavte si jazyk"
+    },
+    "save": "Uložit nastavení",
+    "title": "Nastavení",
+    "toast": {
+      "fail": "Nastavení nebyla uložena"
+    }
+  },
+  "userView": {
+    "inventory": {
+      "button": {
+        "label": "Váš inventář"
+      }
+    },
+    "profile": {
+      "keydrop": {
+        "label": "Profil Key-Drop"
+      }
+    },
+    "stats": {
+      "battle": {
+        "label": "Případové bitvy"
+      },
+      "cases": {
+        "label": "Otevřené případy"
+      },
+      "contract": {
+        "label": "Smlouvy"
+      },
+      "freeCases": {
+        "label": "Denní případy"
+      },
+      "upgrades": {
+        "label": "Upgrady kůže"
+      }
+    },
+    "wallet": {
+      "balance": {
+        "label": "Zůstatek v Peněžence"
+      }
+    },
+    "yourStatistics": {
+      "hr": "Vaše statistiky"
+    }
+  }
+}

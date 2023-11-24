@@ -20,10 +20,12 @@ export const DateCellRender = (service: ItemService): JSX.Element => {
         <span>{formattedDate}</span>
       </p>
       <Button
-        label={t('checkRoll')}
+        title={t('checkRoll')}
         href={KEYDROP.provablyFair(id)}
-        className="h-fit w-fit p-0 underline"
-      />
+        className="h-fit w-fit truncate rounded-none p-0 underline"
+      >
+        <span className="max-w-[82px] truncate">{t('checkRoll')}</span>
+      </Button>
     </div>
   )
 }

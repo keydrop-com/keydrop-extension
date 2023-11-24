@@ -7,7 +7,7 @@ export const CircleLoader: React.FC<{ className?: string }> = ({ className = 'w-
     <div className={cn('transform transition duration-200', className)}>
       <svg
         data-testid="loader"
-        className="h-full w-full animate-spin text-gold"
+        className="h-full w-full animate-spin text-current"
         fill="none"
         viewBox="0 0 24 24"
         role="alert"
