@@ -63,22 +63,20 @@ export const ActionsCellRender = (service: ItemService): JSX.Element => {
   }
 
   return (
-    <div
-      className={cn(
-        'grid h-full w-full items-center gap-3.5 px-3.5',
-        !isVoucher && !isSold && 'grid-cols-[35px,1fr,1fr]',
-        isVoucher && !isSold && 'grid-cols-[35px,1fr]',
-        !isVoucher && isSold && 'grid-cols-1',
-      )}
-    >
-      {!isSold && (
+    <div className="flex w-full items-center justify-center">
+      <div
+        className={cn(
+          'grid h-full w-full grid-rows-[27px,27px] gap-2 px-2',
+          isVoucher ? 'grid-cols-1' : 'grid-cols-[27px,1fr]',
+        )}
+      >
         <Button
           href={KEYDROP.upgradeItem(id)}
-          disabled={!canBeUpgradedOrSold || isLoading}
-          className="button--upgrade h-[35px] min-w-[35px] rounded-[5px] p-0"
+          disabled={!canBeUpgradedOrSold || isLoading || isSold}
+          className="button--upgrade col-span-1 h-[27px] min-w-[27px] rounded-[5px] p-0 text-2xs"
         >
           {isLoading ? (
-            <CircleLoader className="h-4 w-4 !text-blue-550" />
+            <CircleLoader className="h-3 w-3 text-blue-550" />
           ) : (
             <>
               <SvgIcon iconName="upgrades-fill" className="h-4 w-4" />
@@ -86,39 +84,39 @@ export const ActionsCellRender = (service: ItemService): JSX.Element => {
             </>
           )}
         </Button>
-      )}
 
-      <Button
-        onClick={handleOnSellClick}
-        disabled={!canBeUpgradedOrSold || isLoading || isSold}
-        className={cn(
-          'button--primary h-[35px] min-w-[90px] rounded-[5px] px-4 py-0',
-          isSold && ' border-navy-300 bg-navy-400 text-navy-300',
+        {!isVoucher && (
+          <Button
+            onClick={handleOnCollectClick}
+            disabled={!canBeCollected || isLoading || isSold}
+            className="button--primary col-span-1 h-[27px] min-w-[90px] rounded-[5px] bg-gold px-4 py-0 text-2xs text-navy-900 hover:bg-gold-400"
+          >
+            {isLoading ? (
+              <CircleLoader className="h-3 w-3 text-navy-900" />
+            ) : (
+              <span>{t('collect')}</span>
+            )}
+          </Button>
         )}
-      >
-        {isLoading ? (
-          <CircleLoader className="h-4 w-4 text-gold-400" />
-        ) : (
-          <span>
-            {isSold ? <Trans i18nKey="inventoryView.status.sold" ns="main" /> : t('sell')}{' '}
-            {formatCurrency(price, currency)}
-          </span>
-        )}
-      </Button>
 
-      {!isVoucher && !isSold && (
         <Button
-          onClick={handleOnCollectClick}
-          disabled={!canBeCollected || isLoading}
-          className="button--primary h-[35px] min-w-[90px] rounded-[5px] bg-gold px-4 py-0 text-navy-900 hover:bg-gold-400"
+          onClick={handleOnSellClick}
+          disabled={!canBeUpgradedOrSold || isLoading || isSold}
+          className={cn(
+            'button--primary h-[27px] min-w-[90px] rounded-[5px] px-4 py-0 text-2xs',
+            isVoucher ? 'col-span-1' : 'col-span-2',
+          )}
         >
           {isLoading ? (
-            <CircleLoader className="h-4 w-4 text-navy-900" />
+            <CircleLoader className="h-3 w-3 text-gold-400" />
           ) : (
-            <span>{t('collect')}</span>
+            <span>
+              {isSold ? <Trans i18nKey="inventoryView.status.sold" ns="main" /> : t('sell')}{' '}
+              {formatCurrency(price, currency)}
+            </span>
           )}
         </Button>
-      )}
+      </div>
     </div>
   )
 }

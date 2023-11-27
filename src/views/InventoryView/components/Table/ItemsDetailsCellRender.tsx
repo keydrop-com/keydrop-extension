@@ -31,7 +31,7 @@ export const ItemsDetailsCellRender = (service: ItemService): JSX.Element => {
           className="absolute inset-x-0 bottom-0 z-[2] h-[1px] w-[90px]"
         />
       </div>
-      <div className="flex h-full max-w-[139px] flex-col justify-center">
+      <div className="flex h-full max-w-[189px] flex-col justify-center">
         <p className="w-full truncate text-sm">
           <span className="text-[#B8BCD0]">{skinNameWithoutStatTrak(title)}</span>{' '}
           <span className="font-semibold">{subtitle}</span>

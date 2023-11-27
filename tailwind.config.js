@@ -13,15 +13,6 @@ module.exports = {
       height: {
         'screen-without-nav': 'calc(600px - 70px)',
       },
-      animation: {
-        'show-banner': 'show 0.2s linear',
-      },
-      keyframes: {
-        show: {
-          '0%': { transform: 'scaleY(0)', opacity: 0 },
-          '100%': { transform: 'scaleY(1)', opacity: 1 },
-        },
-      },
     },
   },
 }

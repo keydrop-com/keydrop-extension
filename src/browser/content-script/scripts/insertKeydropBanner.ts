@@ -7,17 +7,17 @@ export async function insertKeydropBanner(): Promise<void> {
   mainContent.insertAdjacentHTML(
     'afterbegin',
     `
-        <div id="keydrop-banner" class="keydrop-banner">
-            <div class="keydrop-banner-content">
-                <div class="keydrop-banner-text-wrapper">
-                    <div class="keydrop-banner-warning">!</div>
-                    <div class="keydrop-banner-text">
-                        <p class="keydrop-banner-text-first">Are you waiting for the skin?</p>
-                        <p class="keydrop-banner-text-second">transactions may take <span>few minutes.</span></p>
+        <div id="extension-banner" class="extension-banner">
+            <div class="extension-banner-content">
+                <div class="extension-banner-text-wrapper">
+                    <div class="extension-banner-warning">!</div>
+                    <div class="extension-banner-text">
+                        <p class="extension-banner-text-first">Are you waiting for the skin?</p>
+                        <p class="extension-banner-text-second">transactions may take <span>few minutes.</span></p>
                     </div>
                 </div>
-                <div>
-                    <img src="${IMAGES.KEYDROP_MASCOT}" alt="Keydrop">
+                <div class="extension-banner-img-wrapper">
+                    <img src="${IMAGES.KEYDROP_MASCOT}" class="extension-banner-img" alt="Keydrop">
                 </div>
             </div>
         </div>
