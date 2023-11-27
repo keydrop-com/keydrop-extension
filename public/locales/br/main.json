@@ -40,7 +40,9 @@
       "upgraded": "Atualizado"
     },
     "offerSent": "Oferta enviada",
-    "title": "Seu inventário"
+    "title": "Seus itens ativos",
+    "noActiveItems": "Você não tem inventário",
+    "openCases": "Abrir os casos"
   },
   "loginView": {
     "button": {
