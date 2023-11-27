@@ -11,5 +11,5 @@ export const KEYDROP = {
 export const STEAM = {
   main: 'https://steamcommunity.com/',
   tradeOffers: (steamId: string) =>
-    `https://steamcommunity.com/profiles/${steamId}/tradeoffers/?provider=keydrop`,
+    `https://steamcommunity.com/profiles/${steamId}/tradeoffers/?provider=extension`,
 }
