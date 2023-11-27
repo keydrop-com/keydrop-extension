@@ -87,8 +87,8 @@ export const InventoryView: FC = () => {
         }
         classNames={{
           main: 'pr-[18px]',
-          grid: 'grid grid-cols-[36%,12%,14%,38%]',
-          tdWrapper: 'h-[70px] bg-[#1F1F27] mt-1',
+          grid: 'grid grid-cols-[42%,13%,19%,25%]',
+          tdWrapper: 'h-[70px] bg-[#1F1F27] hover:bg-[#292933] transition-colors mt-1',
           thWrapper: 'h-[56px] bg-navy-750/[.9] place-items-center backdrop-blur-sm shadow-sm',
           th: 'text-xs font-medium text-[#B8BCD0] uppercase',
         }}

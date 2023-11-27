@@ -2,14 +2,14 @@
 
 @layer components {
     .button {
-        @apply flex h-11 appearance-none items-center justify-center whitespace-nowrap rounded-lg px-8 text-center text-xs font-semibold uppercase text-white outline-none transition-colors duration-200 focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold disabled:pointer-events-none disabled:cursor-default;
+        @apply flex h-11 appearance-none items-center justify-center whitespace-nowrap rounded-lg px-8 text-center text-xs font-semibold uppercase text-white outline-none transition-colors duration-200 focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold disabled:[box-shadow:none] disabled:pointer-events-none disabled:cursor-default disabled:border-navy-300 disabled:bg-navy-400 disabled:text-navy-300 disabled:opacity-50;
     }
 
     .button--primary {
-        @apply border border-solid border-gold bg-gold-900 hover:bg-gold-850 disabled:opacity-50;
+        @apply border border-solid border-gold bg-gold-900 hover:bg-gold-850;
     }
 
     .button--upgrade {
-        @apply border border-solid border-blue-550 bg-navy-700 text-blue-550 transition-colors hover:bg-blue-550 hover:bg-opacity-5 active:bg-navy-700/[.15] active:duration-0 disabled:pointer-events-none disabled:[box-shadow:none];
+        @apply border border-solid border-blue-550 bg-navy-700 text-blue-550 transition-colors hover:bg-blue-550 hover:bg-opacity-5 active:bg-navy-700/[.15] active:duration-0;
     }
 }
