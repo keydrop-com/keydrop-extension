@@ -3,7 +3,7 @@ import AbstractBrowserService from '@/services/browser/AbstractBrowserService'
 import { NormalizedCookies } from '@/types/API/browser/cookies'
 
 class KeydropClient extends AbstractBrowserService {
-  static async getAllCookies(): Promise<NormalizedCookies> {
+  static async getAllCookies(): Promise<NormalizedCookies | null> {
     return super.getCookies(KEYDROP.main)
   }
 
@@ -23,10 +23,6 @@ class KeydropClient extends AbstractBrowserService {
     await super.setCookie(KEYDROP.main, 'key-lang', value.toUpperCase(), expireTime)
     return Promise.resolve()
   }
-
-  // static async setCurrencyCookie(value: string): Promise<void> {
-  //   return super.setCookie(KEYDROP.main, 'currency', value.toUpperCase())
-  // }
 }
 
 export default KeydropClient

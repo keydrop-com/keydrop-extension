@@ -1,9 +1,9 @@
-export const isStatTrak = (hashName: string): boolean => {
-  return hashName?.includes('StatTrak™')
+export const isStatTrak = (hashName?: string): boolean => {
+  return Boolean(hashName?.includes('StatTrak™'))
 }
 
 export const skinNameWithoutStatTrak = (hashName: string): string => {
-  return hashName?.replace('StatTrak™ ', '')
+  return hashName.replace('StatTrak™ ', '')
 }
 
 export const splitHashName = (
@@ -15,15 +15,11 @@ export const splitHashName = (
   if (nameParts?.length === 3) {
     return [
       // Title - Sticker
-      nameParts[0],
+      (nameParts?.[0] || '').trim(),
       // Player | Tournament & Date
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      `${/^[^\(]+/g.exec(nameParts[1])[0]} | ${nameParts[2]}`,
+      `${/^[^\(]+/g.exec(nameParts[1])?.[0] || ''} | ${nameParts[2]}`.trim(),
       // Variant
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      /(\(.+\))/g.test(nameParts[1]) ? /(\(.+\))/g.exec(nameParts[1])[0] : '',
+      (/(\(.+\))/g.test(nameParts[1]) ? /(\(.+\))/g.exec(nameParts[1])?.[0] || '' : '').trim(),
     ]
   }
 
@@ -32,5 +28,7 @@ export const splitHashName = (
     ? /^(.+?)\s?\|\s?(.+?)(\(.+\))$/g.exec(hashName)
     : /^(.+?)\s?\|\s?(.+?)$/g.exec(hashName)
 
-  return result ? [result[1], result[2], result[3]] : [hashName, '', '']
+  return result
+    ? [result[1].trim(), result[2].trim(), (result[3] || '').trim()]
+    : [hashName, '', '']
 }
