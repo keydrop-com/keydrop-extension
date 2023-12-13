@@ -9,7 +9,7 @@ import { ItemService } from '@/types/inventory'
 export const DateCellRender = (service: ItemService): JSX.Element => {
   const { t } = useTranslation('main', { keyPrefix: 'inventoryView' })
   const [state] = useActor(service)
-  const { createdAt, id } = state.context.data
+  const { createdAt, id, pfId } = state.context.data
   const formattedTime = new Date(createdAt).toLocaleTimeString()
   const formattedDate = new Date(createdAt).toLocaleDateString().split('.').reverse().join('-')
 
@@ -19,13 +19,15 @@ export const DateCellRender = (service: ItemService): JSX.Element => {
         <span>{formattedTime}</span>
         <span>{formattedDate}</span>
       </p>
-      <Button
-        title={t('checkRoll')}
-        href={KEYDROP.provablyFair(id)}
-        className="h-fit w-fit truncate rounded-none p-0 underline"
-      >
-        <span className="max-w-[120px] truncate">{t('checkRoll')}</span>
-      </Button>
+      {pfId && (
+        <Button
+          title={t('checkRoll')}
+          href={KEYDROP.provablyFair(id)}
+          className="h-fit w-fit truncate rounded-none p-0 underline"
+        >
+          <span className="max-w-[120px] truncate">{t('checkRoll')}</span>
+        </Button>
+      )}
     </div>
   )
 }
