@@ -2,15 +2,15 @@
   "common": {
     "back": "Geri",
     "error": {
-      "common": "Bir şeyler yanlış gitti",
+      "common": "Bir şeyler ters gitti",
       "userProfile": "İstatistikler indirilemedi"
     },
-    "kycConfirmIdentity": "Cilt ödemesini tamamlamak için kimliğinizi doğrulamanız gerekir.",
+    "kycConfirmIdentity": "Skin ödemesini tamamlamak için kimliğinizi doğrulamalısınız.",
     "loading": "Yükleniyor",
     "navbar": {
       "button": {
         "main": {
-          "label": "Ev"
+          "label": "Ana Sayfa"
         },
         "notifications": {
           "label": "Bildirimler"
@@ -20,47 +20,47 @@
         }
       }
     },
-    "noItemsFound": "Hiçbir öğe bulunamadı",
-    "refill": "Yeniden doldurma"
+    "noItemsFound": "Öge bulunamadı",
+    "refill": "Doldur"
   },
   "inventoryView": {
     "action": {
-      "collect": "TOPLAMAK",
-      "sell": "Satmak",
-      "upgrade": "Güncelleme"
+      "collect": "Topla",
+      "sell": "Sat",
+      "upgrade": "Geliştir"
     },
-    "checkRoll": "Ruloyu kontrol et",
+    "checkRoll": "Kontrol et",
     "status": {
-      "collected": "Kabul edilmiş",
-      "exchanged": "Değiştirildi",
+      "collected": "Alındı",
+      "exchanged": "Takas edildi",
       "forExchange": "Yeni",
       "new": "Yeni",
-      "pending": "Askıda olması",
-      "sold": "Satılmış",
-      "upgraded": "Yükseltildi"
+      "pending": "Bekliyor",
+      "sold": "Satıldı",
+      "upgraded": "Geliştirildi"
     },
-    "offerSent": "Ofertayı başarıyla sıfırl",
-    "title": "Envanteriniz",
-    "noActiveItems": "Aktif iteminiz yok",
-    "openCases": "Kasaları aç"
+    "offerSent": "Teklif gönderildi",
+    "title": "Aktif ögeleriniz",
+    "noActiveItems": "Aktif ögeniz yok",
+    "openCases": "Kasaları açın"
   },
   "loginView": {
     "button": {
       "label": "Keydrop ile giriş yapın"
     },
-    "description": "Daha fazlasını görmek ve almak için favori ganimet kutusu sayfanızı genişletin!"
+    "description": "Daha fazla görmek ve almak için favori ganimet kutusu sayfanızı genişletin"
   },
   "settingsView": {
     "currency": {
-      "label": "Para biriminizi ayarlayın"
+      "label": "Para biriminizi seçin"
     },
     "lang": {
-      "label": "Dilinizi ayarlayın"
+      "label": "Dilinizi seçin"
     },
     "save": "Ayarları kaydet",
     "title": "Ayarlar",
     "toast": {
-      "fail": "Ayarlar kaydedilmedi"
+      "fail": "Ayarlar kaydedilemedi"
     }
   },
   "userView": {
@@ -71,24 +71,24 @@
     },
     "profile": {
       "keydrop": {
-        "label": "Profil Anahtar Bırakma"
+        "label": "Key-Drop Profili"
       }
     },
     "stats": {
       "battle": {
-        "label": "Vaka Savaşları"
+        "label": "Kasa Savaşları"
       },
       "cases": {
-        "label": "Açılan vakalar"
+        "label": "Açılan kasalar"
       },
       "contract": {
         "label": "Sözleşmeler"
       },
       "freeCases": {
-        "label": "Günlük vakalar"
+        "label": "Günlük kasalar"
       },
       "upgrades": {
-        "label": "Cilt yükseltmeleri"
+        "label": "Skin geliştirmeleri"
       }
     },
     "wallet": {

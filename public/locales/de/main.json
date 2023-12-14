@@ -3,14 +3,14 @@
     "back": "Zurück",
     "error": {
       "common": "Etwas ist schief gelaufen",
-      "userProfile": "Statistiken konnten nicht heruntergeladen werden"
+      "userProfile": "Download der Statistik fehlgeschlagen"
     },
-    "kycConfirmIdentity": "Um die Skin-Auszahlung abzuschließen, müssen Sie Ihre Identität bestätigen.",
-    "loading": "Wird geladen",
+    "kycConfirmIdentity": "Um die Auszahlung des Skins abzuschließen, musst du deine Identität bestätigen.",
+    "loading": "Laden",
     "navbar": {
       "button": {
         "main": {
-          "label": "Heim"
+          "label": "Startseite"
         },
         "notifications": {
           "label": "Benachrichtigungen"
@@ -20,42 +20,42 @@
         }
       }
     },
-    "noItemsFound": "Kein Artikel gefunden",
-    "refill": "Nachfüllung"
+    "noItemsFound": "Kein Item gefunden",
+    "refill": "Nachfüllen"
   },
   "inventoryView": {
     "action": {
       "collect": "Sammeln",
       "sell": "Verkaufen",
-      "upgrade": "Aktualisierung"
+      "upgrade": "Upgrade"
     },
     "checkRoll": "Rolle prüfen",
     "status": {
-      "collected": "Erhalten",
-      "exchanged": "Umgetauscht",
+      "collected": "Empfangen",
+      "exchanged": "Ausgetauscht",
       "forExchange": "Neu",
       "new": "Neu",
       "pending": "Ausstehend",
       "sold": "Verkauft",
-      "upgraded": "Aktualisiert"
+      "upgraded": "Aufgewertet"
     },
-    "offerSent": "Bestätigung erfolgreich",
-    "title": "Ihr Inventar",
+    "offerSent": "Angebot gesendet",
+    "title": "Deine aktiven Items",
     "noActiveItems": "Sie haben keine aktiven Gegenstände",
     "openCases": "Öffne die Herausforderungen"
   },
   "loginView": {
     "button": {
-      "label": "Melden Sie sich mit Keydrop an"
+      "label": "Anmeldung mit Keydrop"
     },
-    "description": "Erweitern Sie Ihre Lieblings-Lootbox-Seite, um mehr zu sehen und zu erhalten!"
+    "description": "Erweitere deine Lieblings-Lootbox-Seite, um mehr zu sehen und zu bekommen!"
   },
   "settingsView": {
     "currency": {
-      "label": "Legen Sie Ihre Währung fest"
+      "label": "Lege deine Währung fest"
     },
     "lang": {
-      "label": "Stellen Sie Ihre Sprache ein"
+      "label": "Lege deine Sprache fest"
     },
     "save": "Einstellungen speichern",
     "title": "Einstellungen",
@@ -66,38 +66,38 @@
   "userView": {
     "inventory": {
       "button": {
-        "label": "Ihr Inventar"
+        "label": "Dein Inventar"
       }
     },
     "profile": {
       "keydrop": {
-        "label": "Profil-Key-Drop"
+        "label": "Profil Key-Drop"
       }
     },
     "stats": {
       "battle": {
-        "label": "Fallschlachten"
+        "label": "Case Battles"
       },
       "cases": {
-        "label": "Geöffnete Fälle"
+        "label": "Geöffnete herausforderungen"
       },
       "contract": {
         "label": "Verträge"
       },
       "freeCases": {
-        "label": "Tägliche Fälle"
+        "label": "Tägliche Kisten"
       },
       "upgrades": {
-        "label": "Skin-Upgrades"
+        "label": "Skins-upgrades"
       }
     },
     "wallet": {
       "balance": {
-        "label": "Wallet-Guthaben"
+        "label": "Wallet Kontostand"
       }
     },
     "yourStatistics": {
-      "hr": "Ihre Statistiken"
+      "hr": "Deine Statistik"
     }
   }
 }

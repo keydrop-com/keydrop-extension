@@ -4,8 +4,9 @@ import { NormalizedCookies } from '@/types/API/browser/cookies'
 import { normalizeCookie, normalizeCookies } from '@/utils/API/browser/helpers'
 
 class AbstractBrowserService {
-  static async getCookies(domain: string): Promise<NormalizedCookies> {
+  static async getCookies(domain: string): Promise<NormalizedCookies | null> {
     const allCookies = await cookies.getAll({ url: domain })
+    if (!allCookies.length) return null
     return normalizeCookies(allCookies)
   }
 

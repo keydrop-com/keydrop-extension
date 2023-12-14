@@ -1,64 +1,64 @@
 {
   "common": {
-    "back": "späť",
+    "back": "Späť",
     "error": {
       "common": "Niečo sa pokazilo",
-      "userProfile": "Sťahovanie štatistík zlyhalo"
+      "userProfile": "Nepodarilo sa stiahnuť štatistiky"
     },
-    "kycConfirmIdentity": "Ak chcete dokončiť výplatu kože, musíte potvrdiť svoju totožnosť.",
-    "loading": "Načítava",
+    "kycConfirmIdentity": "Na dokončenie výplaty skinu musíte potvrdiť svoju totožnosť.",
+    "loading": "Načítanie stránky",
     "navbar": {
       "button": {
         "main": {
           "label": "Domov"
         },
         "notifications": {
-          "label": "Upozornenia"
+          "label": "Oznámenia"
         },
         "settings": {
-          "label": "nastavenie"
+          "label": "Nastavenia"
         }
       }
     },
     "noItemsFound": "Nenašla sa žiadna položka",
-    "refill": "Doplňte"
+    "refill": "Doplniť"
   },
   "inventoryView": {
     "action": {
-      "collect": "zbierať",
+      "collect": "Zbierať",
       "sell": "Predať",
-      "upgrade": "Inovovať"
+      "upgrade": "Upgradovať"
     },
-    "checkRoll": "Kontrolný kotúč",
+    "checkRoll": "Kontrola rolky",
     "status": {
       "collected": "Prijaté",
       "exchanged": "Vymenené",
-      "forExchange": "Nový",
-      "new": "Nový",
-      "pending": "Čaká na spracovanie",
+      "forExchange": "Nové",
+      "new": "Nové",
+      "pending": "Čaká sa",
       "sold": "Predané",
-      "upgraded": "Inovované"
+      "upgraded": "Upgradované"
     },
-    "offerSent": "Ofertácia reumpletna",
-    "title": "Váš inventár",
+    "offerSent": "Ponuka odoslaná",
+    "title": "Vaše aktívne položky",
     "noActiveItems": "Nemáte aktívne položky",
-    "openCases": "Otvoriť schránky"
+    "openCases": "Otvorte debny"
   },
   "loginView": {
     "button": {
       "label": "Prihláste sa pomocou Keydrop"
     },
-    "description": "Rozšírte svoju obľúbenú stránku lootboxu, aby ste videli a získali viac!"
+    "description": "Rozšírte svoju obľúbenú lootbox stránku, aby ste videli a Získali viac!"
   },
   "settingsView": {
     "currency": {
-      "label": "Nastavte si menu"
+      "label": "Nastavte si svoju menu"
     },
     "lang": {
-      "label": "Nastavte si jazyk"
+      "label": "Nastavte si svoj jazyk"
     },
-    "save": "Uložiť nastavenia",
-    "title": "nastavenie",
+    "save": "Uložte nastavenia",
+    "title": "Nastavenia",
     "toast": {
       "fail": "Nastavenia neboli uložené"
     }
@@ -76,28 +76,28 @@
     },
     "stats": {
       "battle": {
-        "label": "Prípadové bitky"
+        "label": "Debnové Bitky"
       },
       "cases": {
-        "label": "Otvorené prípady"
+        "label": "Otvorené debny"
       },
       "contract": {
-        "label": "zmluvy"
+        "label": "Zmluvy"
       },
       "freeCases": {
-        "label": "Denné prípady"
+        "label": "Denné debny"
       },
       "upgrades": {
-        "label": "Upgrady pleti"
+        "label": "Upgrady skinov"
       }
     },
     "wallet": {
       "balance": {
-        "label": "Zostatok v Peňaženke"
+        "label": "Stav Peňaženky"
       }
     },
     "yourStatistics": {
-      "hr": "Vaše štatistiky"
+      "hr": "Vaše Štatistiky"
     }
   }
 }
