@@ -1,46 +1,46 @@
 {
   "common": {
-    "back": "Atrás",
+    "back": "Volver",
     "error": {
-      "common": "Algo salió mal",
-      "userProfile": "No se pudieron descargar las estadísticas"
+      "common": "Algo ha ido mal",
+      "userProfile": "Fallo al descargar las estadísticas"
     },
-    "kycConfirmIdentity": "Para completar el pago del aspecto, debe confirmar su identidad.",
+    "kycConfirmIdentity": "Para completar el pago de skins, debes confirmar tu identidad.",
     "loading": "Cargando",
     "navbar": {
       "button": {
         "main": {
-          "label": "Hogar"
+          "label": "Inicio"
         },
         "notifications": {
           "label": "Notificaciones"
         },
         "settings": {
-          "label": "Ajustes"
+          "label": "Configuración"
         }
       }
     },
-    "noItemsFound": "No se encontró ningún artículo",
-    "refill": "Rellenar"
+    "noItemsFound": "No se ha encontrado ningún artículo",
+    "refill": "Recargar"
   },
   "inventoryView": {
     "action": {
-      "collect": "Recolectar",
+      "collect": "Recoger",
       "sell": "Vender",
-      "upgrade": "Mejora"
+      "upgrade": "Mejorar"
     },
-    "checkRoll": "comprobar rollo",
+    "checkRoll": "Comprobar tirada",
     "status": {
-      "collected": "Recibió",
+      "collected": "Recibido",
       "exchanged": "Intercambiado",
       "forExchange": "Nuevo",
       "new": "Nuevo",
       "pending": "Pendiente",
       "sold": "Vendido",
-      "upgraded": "Actualizado"
+      "upgraded": "Mejorado"
     },
-    "offerSent": "Se ha enviado el pedido",
-    "title": "Tu inventario",
+    "offerSent": "Oferta enviada",
+    "title": "Tus artículos activos",
     "noActiveItems": "No tienes artículos activos",
     "openCases": "Abrir las cajas"
   },
@@ -48,56 +48,56 @@
     "button": {
       "label": "Iniciar sesión con Keydrop"
     },
-    "description": "¡Extiende tu página de botín favorita para ver y obtener más!"
+    "description": "¡Amplía tu página favorita de lootbox para ver y conseguir más!"
   },
   "settingsView": {
     "currency": {
-      "label": "Establece tu moneda"
+      "label": "Define tu moneda"
     },
     "lang": {
-      "label": "Configura tu idioma"
+      "label": "Define tu idioma"
     },
-    "save": "Guardar ajustes",
-    "title": "Ajustes",
+    "save": "Guardar configuración",
+    "title": "Configuración",
     "toast": {
-      "fail": "La configuración no se ha guardado."
+      "fail": "No se ha guardado la configuración"
     }
   },
   "userView": {
     "inventory": {
       "button": {
-        "label": "Tu inventario"
+        "label": "Tu Inventario"
       }
     },
     "profile": {
       "keydrop": {
-        "label": "Caída de clave de perfil"
+        "label": "Perfil Key-Drop"
       }
     },
     "stats": {
       "battle": {
-        "label": "Batallas de casos"
+        "label": "Caja de Batalla"
       },
       "cases": {
-        "label": "Casos abiertos"
+        "label": "Cajas abiertas"
       },
       "contract": {
         "label": "Contratos"
       },
       "freeCases": {
-        "label": "Casos diarios"
+        "label": "Cajas diarias"
       },
       "upgrades": {
-        "label": "Actualizaciones de piel"
+        "label": "Mejoras de skins"
       }
     },
     "wallet": {
       "balance": {
-        "label": "Saldo de billetera"
+        "label": "Saldo de la Cartera"
       }
     },
     "yourStatistics": {
-      "hr": "Tus estadísticas"
+      "hr": "Tus Estadísticas"
     }
   }
 }

@@ -2,15 +2,15 @@
   "common": {
     "back": "Vissza",
     "error": {
-      "common": "Valami elromlott",
+      "common": "Valami rosszul sült el",
       "userProfile": "Nem sikerült letölteni a statisztikákat"
     },
-    "kycConfirmIdentity": "A skin kifizetés teljesítéséhez meg kell erősítenie személyazonosságát.",
+    "kycConfirmIdentity": "A skin kifizetés befejezéséhez meg kell erősítened a személyazonosságodat.",
     "loading": "Betöltés",
     "navbar": {
       "button": {
         "main": {
-          "label": "itthon"
+          "label": "Főoldal"
         },
         "notifications": {
           "label": "Értesítések"
@@ -20,44 +20,44 @@
         }
       }
     },
-    "noItemsFound": "Nem található elem",
-    "refill": "Utántöltés"
+    "noItemsFound": "Tárgy nem található",
+    "refill": "Újratöltés"
   },
   "inventoryView": {
     "action": {
-      "collect": "Gyűjt",
-      "sell": "Elad",
-      "upgrade": "Frissítés"
+      "collect": "Begyűjtés",
+      "sell": "Eladás",
+      "upgrade": "Fejlesztés"
     },
-    "checkRoll": "Ellenőrizze a tekercset",
+    "checkRoll": "Ellenőrizd a dobást",
     "status": {
-      "collected": "Megérkezett",
-      "exchanged": "Cserélve",
+      "collected": "Beérkezett",
+      "exchanged": "Cserélt",
       "forExchange": "Új",
       "new": "Új",
-      "pending": "Függőben levő",
+      "pending": "Függőben",
       "sold": "Eladott",
-      "upgraded": "Frissítve"
+      "upgraded": "Fejlesztett"
     },
-    "offerSent": "Az ��n készlete a tekercset",
-    "title": "Az Ön készlete",
-    "noActiveItems": "Nem rendelkezel aktív tárggyal",
-    "openCases": "Ládák kinyitása"
+    "offerSent": "Elküldött ajánlat",
+    "title": "Az aktív tárgyaid",
+    "noActiveItems": "Nincsenek aktív tárgyaid",
+    "openCases": "Nyisd ki a ládákat"
   },
   "loginView": {
     "button": {
-      "label": "Jelentkezzen be a Keydrop segítségével"
+      "label": "Bejelentkezés a Keydrop segítségével"
     },
-    "description": "Bővítse kedvenc lootbox oldalát, hogy többet tudjon meg!"
+    "description": "Bővítsd kedvenc lootbox oldalad, hogy többet láss és kapj!"
   },
   "settingsView": {
     "currency": {
-      "label": "Állítsa be a pénznemet"
+      "label": "Állítsa be a pénznemed"
     },
     "lang": {
-      "label": "Állítsa be a nyelvet"
+      "label": "Állítsa be a nyelved"
     },
-    "save": "Beállítások mentése",
+    "save": "Mentsd el a beállításokat",
     "title": "Beállítások",
     "toast": {
       "fail": "A beállítások nem lettek elmentve"
@@ -66,38 +66,38 @@
   "userView": {
     "inventory": {
       "button": {
-        "label": "Az Ön készlete"
+        "label": "A raktárad"
       }
     },
     "profile": {
       "keydrop": {
-        "label": "Profilkulcs-ledobás"
+        "label": "Key-Drop profil "
       }
     },
     "stats": {
       "battle": {
-        "label": "Case Battles"
+        "label": "Láda csaták"
       },
       "cases": {
-        "label": "Nyitott ügyek"
+        "label": "Kinyitott ládák"
       },
       "contract": {
         "label": "Szerződések"
       },
       "freeCases": {
-        "label": "Napi esetek"
+        "label": "Napi ládák"
       },
       "upgrades": {
-        "label": "Bőrfrissítések"
+        "label": "Skin fejlesztések"
       }
     },
     "wallet": {
       "balance": {
-        "label": "Wallet-egyenleg"
+        "label": "Pénztárca egyenleg"
       }
     },
     "yourStatistics": {
-      "hr": "Az Ön statisztikái"
+      "hr": "Statisztikáid"
     }
   }
 }

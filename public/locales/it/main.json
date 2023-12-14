@@ -5,12 +5,12 @@
       "common": "Qualcosa è andato storto",
       "userProfile": "Impossibile scaricare le statistiche"
     },
-    "kycConfirmIdentity": "Per completare il pagamento della skin, devi confermare la tua identità.",
+    "kycConfirmIdentity": "Per completare il pagamento della skin, è necessario confermare la propria identità.",
     "loading": "Caricamento",
     "navbar": {
       "button": {
         "main": {
-          "label": "Casa"
+          "label": "Home"
         },
         "notifications": {
           "label": "Notifiche"
@@ -25,37 +25,37 @@
   },
   "inventoryView": {
     "action": {
-      "collect": "Raccogliere",
-      "sell": "Vendere",
+      "collect": "Raccogli",
+      "sell": "Vendi",
       "upgrade": "Aggiornamento"
     },
-    "checkRoll": "Controlla il rotolo",
+    "checkRoll": "Controlla il risultato",
     "status": {
       "collected": "Ricevuto",
       "exchanged": "Scambiato",
       "forExchange": "Nuovo",
       "new": "Nuovo",
-      "pending": "In attesa di",
+      "pending": "In attesa",
       "sold": "Venduto",
       "upgraded": "Aggiornato"
     },
-    "offerSent": "Il tuo ordine è stato inviato",
-    "title": "Il tuo inventario",
-    "noActiveItems": "Non hai oggetti attivi",
+    "offerSent": "Offerta inviata",
+    "title": "I tuoi articoli attivi",
+    "noActiveItems": "Non hai articoli attivi",
     "openCases": "Apri le casse"
   },
   "loginView": {
     "button": {
       "label": "Accedi con Keydrop"
     },
-    "description": "Estendi la tua pagina del bottino preferito per vedere e ottenere di più!"
+    "description": "Estendi la tua pagina lootbox preferita per vedere e ottenere di più!"
   },
   "settingsView": {
     "currency": {
       "label": "Imposta la tua valuta"
     },
     "lang": {
-      "label": "Imposta la tua lingua"
+      "label": "Imposta la lingua"
     },
     "save": "Salva le impostazioni",
     "title": "Impostazioni",
@@ -71,24 +71,24 @@
     },
     "profile": {
       "keydrop": {
-        "label": "Rilascio chiave del profilo"
+        "label": "Profilo - Tasto di scelta"
       }
     },
     "stats": {
       "battle": {
-        "label": "Battaglie di casi"
+        "label": "Battaglie di casse"
       },
       "cases": {
-        "label": "Casi aperti"
+        "label": "Casse aperte"
       },
       "contract": {
         "label": "Contratti"
       },
       "freeCases": {
-        "label": "Casi quotidiani"
+        "label": "Casse giornaliere"
       },
       "upgrades": {
-        "label": "Aggiornamenti della pelle"
+        "label": "Potenziamenti della skin"
       }
     },
     "wallet": {

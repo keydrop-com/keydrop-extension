@@ -2,11 +2,11 @@
   "common": {
     "back": "Înapoi",
     "error": {
-      "common": "Ceva n-a mers bine",
-      "userProfile": "Nu s-au putut descărca statisticile"
+      "common": "Ceva nu a funcționat bine",
+      "userProfile": "Eșec în descărcarea statisticilor"
     },
-    "kycConfirmIdentity": "Pentru a finaliza plata skinului, trebuie să vă confirmați identitatea.",
-    "loading": "Se încarcă",
+    "kycConfirmIdentity": "Pentru a completa plata skin-ului, trebuie să îți confirmi identitatea.",
+    "loading": "Încărcare",
     "navbar": {
       "button": {
         "main": {
@@ -20,42 +20,42 @@
         }
       }
     },
-    "noItemsFound": "Nu a fost găsit niciun articol",
-    "refill": "Reumpleți"
+    "noItemsFound": "Nu a fost găsit nici un articol",
+    "refill": "Realimentează"
   },
   "inventoryView": {
     "action": {
-      "collect": "Colectarea",
+      "collect": "Colectează",
       "sell": "Vinde",
-      "upgrade": "Actualizare"
+      "upgrade": "Îmbunătățește"
     },
-    "checkRoll": "Verificați rola",
+    "checkRoll": "Verifică rola",
     "status": {
       "collected": "Primit",
-      "exchanged": "Schimbat",
+      "exchanged": "Tranzacționat",
       "forExchange": "Nou",
       "new": "Nou",
-      "pending": "In asteptarea",
+      "pending": "În așteptare",
       "sold": "Vândut",
-      "upgraded": "Actualizat"
+      "upgraded": "Îmbunătățit"
     },
-    "offerSent": "Ofertă reumple��i",
-    "title": "Inventarul dvs",
-    "noActiveItems": "Nu aveți articole active",
-    "openCases": "Deschideți cutiile"
+    "offerSent": "Ofertă trimisă",
+    "title": "Articolele tale active",
+    "noActiveItems": "Nu ai articole active",
+    "openCases": "Deschide cufere"
   },
   "loginView": {
     "button": {
-      "label": "Conectați-vă cu Keydrop"
+      "label": "Loghează-te cu Keydrop"
     },
-    "description": "Extindeți-vă pagina de lootbox preferată pentru a vedea și a obține mai mult!"
+    "description": "Extinde pagina cutiei tale de pradă favorite pentru a vedea și Obține mai Mult! "
   },
   "settingsView": {
     "currency": {
-      "label": "Setați-vă moneda"
+      "label": "Setează-ți moneda de schimb"
     },
     "lang": {
-      "label": "Setați-vă limba"
+      "label": "Setează-ți limba"
     },
     "save": "Salvează setările",
     "title": "Setări",
@@ -66,7 +66,7 @@
   "userView": {
     "inventory": {
       "button": {
-        "label": "Inventarul dvs"
+        "label": "Inventarul tău"
       }
     },
     "profile": {
@@ -76,19 +76,19 @@
     },
     "stats": {
       "battle": {
-        "label": "Bătălii de caz"
+        "label": "Bătălia Cuferelor"
       },
       "cases": {
-        "label": "Cazuri deschise"
+        "label": "Cufere deschise"
       },
       "contract": {
         "label": "Contracte"
       },
       "freeCases": {
-        "label": "Cazuri zilnice"
+        "label": "Cufere zilnice"
       },
       "upgrades": {
-        "label": "Upgrade-uri de piele"
+        "label": "Îmbunătățiri ale skin-ului"
       }
     },
     "wallet": {

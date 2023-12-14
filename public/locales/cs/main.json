@@ -1,16 +1,16 @@
 {
   "common": {
-    "back": "Zadní",
+    "back": "Zpět ",
     "error": {
       "common": "Něco se pokazilo",
-      "userProfile": "Stažení statistik se nezdařilo"
+      "userProfile": "Nepodařilo se stáhnout statistiky"
     },
-    "kycConfirmIdentity": "Abyste mohli dokončit výplatu kůže, musíte potvrdit svou totožnost.",
-    "loading": "načítání",
+    "kycConfirmIdentity": "Pro dokončení výplaty skinu musíte potvrdit svou totožnost.",
+    "loading": "Načítání stránky",
     "navbar": {
       "button": {
         "main": {
-          "label": "Domov"
+          "label": "Domovská stránka"
         },
         "notifications": {
           "label": "Oznámení"
@@ -21,43 +21,43 @@
       }
     },
     "noItemsFound": "Nebyla nalezena žádná položka",
-    "refill": "Doplňte"
+    "refill": "Přidat"
   },
   "inventoryView": {
     "action": {
       "collect": "Sbírat",
-      "sell": "Prodat",
-      "upgrade": "Vylepšit"
+      "sell": "Prodej",
+      "upgrade": "Upgradovat"
     },
-    "checkRoll": "Zkontrolujte roli",
+    "checkRoll": "Kontrolní role",
     "status": {
       "collected": "Přijato",
-      "exchanged": "Vyměněno",
+      "exchanged": "Nahrazeno",
       "forExchange": "Nový",
       "new": "Nový",
-      "pending": "čekající",
+      "pending": "Čekající na vyřízení",
       "sold": "Prodáno",
-      "upgraded": "Upgradováno"
+      "upgraded": "Upgradovano"
     },
-    "offerSent": "Oferta odeslán",
-    "title": "Váš inventář",
-    "noActiveItems": "Nemáte aktivní předměty",
-    "openCases": "Otevřít bedny"
+    "offerSent": "Odeslaná nabídka",
+    "title": "Vaše aktivní položky",
+    "noActiveItems": "Nemáte žádné aktivní položky",
+    "openCases": "Otevřené bedny"
   },
   "loginView": {
     "button": {
-      "label": "Přihlaste se pomocí Keydrop"
+      "label": "Přihlaste se pomocí funkce Keydrop"
     },
-    "description": "Rozšiřte svou oblíbenou stránku lootboxu, abyste viděli a získali více!"
+    "description": "Rozbalte svou oblíbenou stránku lootboxu a získejte více!"
   },
   "settingsView": {
     "currency": {
-      "label": "Nastavte si měnu"
+      "label": "Nastavte si menu"
     },
     "lang": {
-      "label": "Nastavte si jazyk"
+      "label": "Nastavte si svůj jazyk"
     },
-    "save": "Uložit nastavení",
+    "save": "Uložte si nastavení",
     "title": "Nastavení",
     "toast": {
       "fail": "Nastavení nebyla uložena"
@@ -76,24 +76,24 @@
     },
     "stats": {
       "battle": {
-        "label": "Případové bitvy"
+        "label": "Bitvy o bedny"
       },
       "cases": {
-        "label": "Otevřené případy"
+        "label": "Otevření beden"
       },
       "contract": {
         "label": "Smlouvy"
       },
       "freeCases": {
-        "label": "Denní případy"
+        "label": "Denní bedny"
       },
       "upgrades": {
-        "label": "Upgrady kůže"
+        "label": "Upgradovaní skinu"
       }
     },
     "wallet": {
       "balance": {
-        "label": "Zůstatek v Peněžence"
+        "label": "Stav peněženky"
       }
     },
     "yourStatistics": {
