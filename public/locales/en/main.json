@@ -42,13 +42,13 @@
     "offerSent": "Offer sent",
     "title": "Your active items",
     "noActiveItems": "You don't have active items",
-    "openCases": "Open the cases"
+    "openCases": "Open cases"
   },
   "loginView": {
     "button": {
-      "label": "Login with Keydrop"
+      "label": "Login with Key-Drop"
     },
-    "description": "Extend your favorite lootbox page to see and Get More!"
+    "description": "Expand your favorite lootbox page to see and Get More!"
   },
   "settingsView": {
     "currency": {
@@ -71,7 +71,7 @@
     },
     "profile": {
       "keydrop": {
-        "label": "Profile Key-Drop"
+        "label": "Key-Drop Profile"
       }
     },
     "stats": {

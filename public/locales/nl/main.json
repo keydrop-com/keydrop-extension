@@ -1,16 +1,16 @@
 {
   "common": {
-    "back": "Rug",
+    "back": "Terug",
     "error": {
-      "common": "Er is iets fout gegaan",
-      "userProfile": "Kan statistieken niet downloaden"
+      "common": "Er ging iets mis",
+      "userProfile": "Downloaden van statistieken mislukt"
     },
-    "kycConfirmIdentity": "Om de skin-uitbetaling te voltooien, moet u uw identiteit bevestigen.",
-    "loading": "Bezig met laden",
+    "kycConfirmIdentity": "Om de uitbetaling van de skin te voltooien, moet je je identiteit bevestigen.",
+    "loading": "Aan het laden",
     "navbar": {
       "button": {
         "main": {
-          "label": "Thuis"
+          "label": "Home"
         },
         "notifications": {
           "label": "Meldingen"
@@ -20,27 +20,27 @@
         }
       }
     },
-    "noItemsFound": "Geen artikel gevonden",
+    "noItemsFound": "Geen item gevonden",
     "refill": "Bijvullen"
   },
   "inventoryView": {
     "action": {
       "collect": "Verzamelen",
       "sell": "Verkopen",
-      "upgrade": "Upgrade"
+      "upgrade": "Upgraden"
     },
-    "checkRoll": "Controleer rol",
+    "checkRoll": "Rol controleren",
     "status": {
       "collected": "Ontvangen",
       "exchanged": "Geruild",
       "forExchange": "Nieuw",
       "new": "Nieuw",
-      "pending": "In behandeling",
+      "pending": "In afwachting",
       "sold": "Verkocht",
-      "upgraded": "Opgewaardeerd"
+      "upgraded": "Geüpgraded"
     },
-    "offerSent": "Uw inventaris ontvangen",
-    "title": "Uw inventaris",
+    "offerSent": "Aanbod verzonden",
+    "title": "Je actieve items",
     "noActiveItems": "Je hebt geen actieve items",
     "openCases": "Open de cases"
   },
@@ -52,10 +52,10 @@
   },
   "settingsView": {
     "currency": {
-      "label": "Stel uw valuta in"
+      "label": "Stel je valuta in"
     },
     "lang": {
-      "label": "Stel uw taal in"
+      "label": "Taal instellen"
     },
     "save": "Instellingen opslaan",
     "title": "Instellingen",
@@ -66,7 +66,7 @@
   "userView": {
     "inventory": {
       "button": {
-        "label": "Uw inventaris"
+        "label": "Je Inventaris"
       }
     },
     "profile": {
@@ -76,28 +76,28 @@
     },
     "stats": {
       "battle": {
-        "label": "Case-gevechten"
+        "label": "Case Gevechten"
       },
       "cases": {
-        "label": "Geopende zaken"
+        "label": "Geopende Cases"
       },
       "contract": {
         "label": "Contracten"
       },
       "freeCases": {
-        "label": "Dagelijkse gevallen"
+        "label": "Dagelijkse cases"
       },
       "upgrades": {
-        "label": "Huidupgrades"
+        "label": "Skin upgrades"
       }
     },
     "wallet": {
       "balance": {
-        "label": "Wallet-saldo"
+        "label": "Saldo Portemonnee"
       }
     },
     "yourStatistics": {
-      "hr": "Jouw statistieken"
+      "hr": "Je Statistieken"
     }
   }
 }
