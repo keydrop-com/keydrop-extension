@@ -1,61 +1,61 @@
 {
   "common": {
-    "back": "Powrót",
+    "back": "Wstecz",
     "error": {
       "common": "Coś poszło nie tak",
-      "userProfile": "Nie udało się pobrać statystyk"
+      "userProfile": "Pobieranie statystyk nie powiodło się"
     },
-    "kycConfirmIdentity": "Aby dokończyć wypłatę skinów, musisz potwierdzić swoją tożsamość.",
+    "kycConfirmIdentity": "By wypłacić skina, musisz potwierdzić tożsamość",
     "loading": "Ładowanie",
     "navbar": {
       "button": {
         "main": {
-          "label": "Dom"
+          "label": "Strona Główna"
         },
         "notifications": {
-          "label": "Powiadomienia"
+          "label": "Notyfikacje"
         },
         "settings": {
           "label": "Ustawienia"
         }
       }
     },
-    "noItemsFound": "Nie znaleziono żadnego elementu",
-    "refill": "Wkład"
+    "noItemsFound": "Nie znaleziono przedmiotu",
+    "refill": "Napełnij"
   },
   "inventoryView": {
     "action": {
-      "collect": "Zbierać",
-      "sell": "Sprzedać",
-      "upgrade": "Aktualizacja"
+      "collect": "Zbierz",
+      "sell": "Sprzedaj",
+      "upgrade": "Ulepsz"
     },
-    "checkRoll": "Sprawdź rolkę",
+    "checkRoll": "Sprawdź roll",
     "status": {
-      "collected": "Otrzymane",
+      "collected": "Odebrane",
       "exchanged": "Wymienione",
-      "forExchange": "Nowy",
-      "new": "Nowy",
-      "pending": "Aż do",
-      "sold": "Sprzedany",
-      "upgraded": "Ulepszony"
+      "forExchange": "Nowe",
+      "new": "Nowe",
+      "pending": "Oczekujące",
+      "sold": "Sprzedane",
+      "upgraded": "Ulepszone"
     },
     "offerSent": "Oferta wysłana",
     "title": "Twoje aktywne przedmioty",
-    "noActiveItems": "Nie posiadasz aktywnych przedmiotów",
-    "openCases": "Otwieraj skrzynie"
+    "noActiveItems": "Nie masz aktywnych przedmiotów",
+    "openCases": "Otwieraj skrzynki"
   },
   "loginView": {
     "button": {
-      "label": "Zaloguj się za pomocą Keydropa"
+      "label": "Zaloguj się z Key-Dropem"
     },
-    "description": "Rozszerz swoją ulubioną stronę z łupami, aby zobaczyć i zyskać więcej!"
+    "description": "Rozszerz swoją ulubioną stronę z skrzynkami i zdobądź więcej!"
   },
   "settingsView": {
     "currency": {
-      "label": "Ustaw swoją walutę"
+      "label": "Ustaw walutę"
     },
     "lang": {
-      "label": "Ustaw swój język"
+      "label": "Ustaw język"
     },
     "save": "Zapisz ustawienia",
     "title": "Ustawienia",
@@ -71,29 +71,29 @@
     },
     "profile": {
       "keydrop": {
-        "label": "Upuszczenie klucza profilu"
+        "label": "Profil Key-Drop"
       }
     },
     "stats": {
       "battle": {
-        "label": "Bitwy skrzynek"
+        "label": "Case Battles"
       },
       "cases": {
         "label": "Otwarte skrzynki"
       },
       "contract": {
-        "label": "Umowy"
+        "label": "Kontrakty"
       },
       "freeCases": {
-        "label": "Codzienne przypadki"
+        "label": "Codzienne skrzynki"
       },
       "upgrades": {
-        "label": "Ulepszenia skóry"
+        "label": "Ulepszanie skrzynek"
       }
     },
     "wallet": {
       "balance": {
-        "label": "Saldo portfela"
+        "label": "Bilans Portfela"
       }
     },
     "yourStatistics": {

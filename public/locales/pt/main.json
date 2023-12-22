@@ -2,102 +2,102 @@
   "common": {
     "back": "Voltar",
     "error": {
-      "common": "Algo deu errado",
-      "userProfile": "Falha ao baixar estatísticas"
+      "common": "Algo correu mal",
+      "userProfile": "Falha ao descarregar estatísticas"
     },
-    "kycConfirmIdentity": "Para concluir o pagamento do skin, você deve confirmar sua identidade.",
-    "loading": "Carregando",
+    "kycConfirmIdentity": "De forma a completar o pagamento de skin, tem de confirmar a sua identidade.",
+    "loading": "A carregar",
     "navbar": {
       "button": {
         "main": {
-          "label": "Lar"
+          "label": "Início"
         },
         "notifications": {
           "label": "Notificações"
         },
         "settings": {
-          "label": "Configurações"
+          "label": "Definições"
         }
       }
     },
-    "noItemsFound": "Nenhum item encontrado",
-    "refill": "Reabastecer"
+    "noItemsFound": "Não foi encontrado nenhum item",
+    "refill": "Recarregar"
   },
   "inventoryView": {
     "action": {
       "collect": "Coletar",
       "sell": "Vender",
-      "upgrade": "Atualizar"
+      "upgrade": "Melhorar"
     },
-    "checkRoll": "Verifique o rolo",
+    "checkRoll": "Verificar rodada",
     "status": {
-      "collected": "Recebido",
-      "exchanged": "Trocado",
-      "forExchange": "Novo",
-      "new": "Novo",
-      "pending": "Pendente",
-      "sold": "Vendido",
-      "upgraded": "Atualizado"
+      "collected": "Recebidas",
+      "exchanged": "Trocadas",
+      "forExchange": "Novas",
+      "new": "Novas",
+      "pending": "Pendentes",
+      "sold": "Vendidas",
+      "upgraded": "Melhoradas"
     },
-    "offerSent": "Oferta recebida",
-    "title": "Seu inventário",
-    "noActiveItems": "Você não tem itens ativos",
-    "openCases": "Abra as caixas"
+    "offerSent": "Oferta enviada",
+    "title": "Os seus itens ativos",
+    "noActiveItems": "Não tem itens ativos",
+    "openCases": "Abrir as caixas"
   },
   "loginView": {
     "button": {
-      "label": "Faça login com Keydrop"
+      "label": "Iniciar a sessão com Keydrop"
     },
-    "description": "Amplie sua página de saque favorita para ver e obter mais!"
+    "description": "Instale a extensão da sua página favorita de caixas para ver e Obter Mais!"
   },
   "settingsView": {
     "currency": {
-      "label": "Defina sua moeda"
+      "label": "Defina a sua moeda"
     },
     "lang": {
-      "label": "Defina seu idioma"
+      "label": "Defina a sua linguagem"
     },
-    "save": "Salvar configurações",
-    "title": "Configurações",
+    "save": "Guardar definições",
+    "title": "Definições",
     "toast": {
-      "fail": "As configurações não foram salvas"
+      "fail": "As definições não foram guardadas"
     }
   },
   "userView": {
     "inventory": {
       "button": {
-        "label": "Seu inventário"
+        "label": "O Seu Inventário"
       }
     },
     "profile": {
       "keydrop": {
-        "label": "Soltar chave de perfil"
+        "label": "Perfil Key-Drop"
       }
     },
     "stats": {
       "battle": {
-        "label": "Batalhas de Casos"
+        "label": "Batalhas de Caixas"
       },
       "cases": {
-        "label": "Casos abertos"
+        "label": "Caixas abertas"
       },
       "contract": {
         "label": "Contratos"
       },
       "freeCases": {
-        "label": "Casos diários"
+        "label": "Caixas diárias"
       },
       "upgrades": {
-        "label": "Atualizações de skin"
+        "label": "Melhoramentos de skins"
       }
     },
     "wallet": {
       "balance": {
-        "label": "Saldo da Carteira"
+        "label": "Saldo na Carteira"
       }
     },
     "yourStatistics": {
-      "hr": "Suas estatísticas"
+      "hr": "As Suas Estatísticas"
     }
   }
 }

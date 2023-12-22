@@ -5,12 +5,12 @@
       "common": "Algo deu errado",
       "userProfile": "Falha ao baixar estatísticas"
     },
-    "kycConfirmIdentity": "Para concluir o pagamento do skin, você deve confirmar sua identidade.",
+    "kycConfirmIdentity": "Para completar o pagamento de skin, deve confirmar sua identidade.",
     "loading": "Carregando",
     "navbar": {
       "button": {
         "main": {
-          "label": "Lar"
+          "label": "Início"
         },
         "notifications": {
           "label": "Notificações"
@@ -21,15 +21,15 @@
       }
     },
     "noItemsFound": "Nenhum item encontrado",
-    "refill": "Reabastecer"
+    "refill": "Recarregar"
   },
   "inventoryView": {
     "action": {
       "collect": "Coletar",
       "sell": "Vender",
-      "upgrade": "Atualizar"
+      "upgrade": "Aprimorar"
     },
-    "checkRoll": "Verifique o rolo",
+    "checkRoll": "Verificar rolagem",
     "status": {
       "collected": "Recebido",
       "exchanged": "Trocado",
@@ -37,25 +37,25 @@
       "new": "Novo",
       "pending": "Pendente",
       "sold": "Vendido",
-      "upgraded": "Atualizado"
+      "upgraded": "Aprimorado"
     },
     "offerSent": "Oferta enviada",
     "title": "Seus itens ativos",
-    "noActiveItems": "Você não tem inventário",
-    "openCases": "Abrir os casos"
+    "noActiveItems": "Você não tem itens ativos",
+    "openCases": "Abrir as caixas"
   },
   "loginView": {
     "button": {
-      "label": "Faça login com Keydrop"
+      "label": "Entrar com KeyDrop"
     },
-    "description": "Amplie sua página de saque favorita para ver e obter mais!"
+    "description": "Extenda sua página favorita de lootbox para ver e Ganhe Mais!"
   },
   "settingsView": {
     "currency": {
       "label": "Defina sua moeda"
     },
     "lang": {
-      "label": "Defina seu idioma"
+      "label": "Selecione seu idioma"
     },
     "save": "Salvar configurações",
     "title": "Configurações",
@@ -71,33 +71,33 @@
     },
     "profile": {
       "keydrop": {
-        "label": "Soltar chave de perfil"
+        "label": "Perfil Key-Drop"
       }
     },
     "stats": {
       "battle": {
-        "label": "Batalhas de Casos"
+        "label": "Batalhas de caixa"
       },
       "cases": {
-        "label": "Casos abertos"
+        "label": "Caixas abertas"
       },
       "contract": {
         "label": "Contratos"
       },
       "freeCases": {
-        "label": "Casos diários"
+        "label": "Caixas diárias"
       },
       "upgrades": {
-        "label": "Atualizações de skin"
+        "label": "Aprimoramentos de skin"
       }
     },
     "wallet": {
       "balance": {
-        "label": "Saldo da Carteira"
+        "label": "Saldo da carteira"
       }
     },
     "yourStatistics": {
-      "hr": "Suas estatísticas"
+      "hr": "Suas Estatísticas"
     }
   }
 }
