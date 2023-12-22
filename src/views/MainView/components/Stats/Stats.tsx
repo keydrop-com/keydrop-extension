@@ -14,41 +14,38 @@ type Statistics = Omit<
   'isAnimationEnabled' | 'isAnimationEnabledChange' | 'isCounterAnimationEnabled'
 >[]
 
-export const Stats: FC<StatsInterface> = ({
-  userProfile: { stats },
-  isCounterAnimationEnabled,
-}) => {
+export const Stats: FC<StatsInterface> = ({ isCounterAnimationEnabled }) => {
   const { t } = useTranslation('main', { keyPrefix: 'userView.stats' })
 
   const statistics: Statistics = useMemo(
     () => [
       {
-        value: stats.cases,
+        value: 2142,
         label: t('cases.label'),
         iconName: 'cases-fill',
       },
       {
-        value: stats.upgrades,
+        value: 420,
         label: t('upgrades.label'),
         iconName: 'upgrades-fill',
       },
       {
-        value: stats.contract,
+        value: 96,
         label: t('contract.label'),
         iconName: 'contracts-fill',
       },
       {
-        value: stats.battle,
+        value: 21,
         label: t('battle.label'),
         iconName: 'battles-fill',
       },
       {
-        value: stats.freeCases,
+        value: 37,
         label: t('freeCases.label'),
         iconName: 'daily-fill',
       },
     ],
-    [t, stats],
+    [t],
   )
 
   return (

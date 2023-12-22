@@ -5,6 +5,7 @@ import { Avatar } from '@/components/Avatar'
 import { Button } from '@/components/Button'
 import { RefillButton } from '@/components/RefillButton'
 import { SvgIcon } from '@/components/SvgIcon'
+import { MOCKS } from '@/constants/mocks'
 import { BONUS_AMOUNT, BONUS_CODE } from '@/constants/refill'
 import { KEYDROP } from '@/constants/urls'
 import { InitUserDataResponse } from '@/types/API/http/profile'
@@ -24,14 +25,14 @@ export const UserProfile: FC<UserProfileInterface> = ({
   isCounterAnimationEnabled,
 }) => {
   const { t } = useTranslation('main', { keyPrefix: 'userView' })
-  const { avatar, userName, currency } = initUserData
+  const { currency } = initUserData
 
   return (
     <div className="relative grid grid-cols-[150px,1fr] gap-10 overflow-hidden rounded-[15px] bg-[#1F1F27] px-8 py-9">
-      <Avatar src={avatar} alt={userName} href={KEYDROP.profile} variant="large" />
+      <Avatar src={MOCKS.avatar} alt={MOCKS.username} href={KEYDROP.profile} variant="large" />
       <div className="relative z-10 flex flex-col gap-6">
         <div className="flex flex-col items-start gap-2">
-          <h1 className="text-3xl font-semibold uppercase">{userName}</h1>
+          <h1 className="text-3xl font-semibold uppercase">{MOCKS.username}</h1>
           <Button
             href={KEYDROP.publicProfile(steamId)}
             className="h-fit p-0 text-sm font-medium uppercase text-[#B8BCD0] underline"

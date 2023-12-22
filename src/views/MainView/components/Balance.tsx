@@ -4,6 +4,7 @@ import { Trans, useTranslation } from 'react-i18next'
 
 import { SvgIcon } from '@/components/SvgIcon'
 import { DEFAULT_MOTION } from '@/constants/common'
+import { MOCKS } from '@/constants/mocks'
 import { AnimatedCounter } from '@/views/MainView/components/AnimatedCounter'
 
 interface BalanceInterface {
@@ -29,7 +30,7 @@ export const Balance: FC<BalanceInterface> = ({ value, currency, isCounterAnimat
                 <AnimatedCounter
                   format
                   from={0}
-                  to={value}
+                  to={MOCKS.balanceValue}
                   currency={currency}
                   isEnabled={isCounterAnimationEnabled}
                 />

@@ -5,6 +5,7 @@ import { Avatar } from '@/components/Avatar'
 import { Button } from '@/components/Button'
 import { NavbarButtonInterface, NavigationButton } from '@/components/NavigationButton'
 import { SvgIcon } from '@/components/SvgIcon'
+import { MOCKS } from '@/constants/mocks'
 import { KEYDROP } from '@/constants/urls'
 import { useAppContext } from '@/context/AppContext'
 import { ActiveView } from '@/types/app'
@@ -12,8 +13,7 @@ import { ActiveView } from '@/types/app'
 export const Navbar: FC = () => {
   const { t } = useTranslation('main', { keyPrefix: 'common.navbar' })
   const { appState, appSend } = useAppContext()
-  const { activeView, initUserData } = appState.context
-  const { userName, avatar } = initUserData
+  const { activeView } = appState.context
 
   const viewButtons: Omit<NavbarButtonInterface, 'onClick' | 'isActive'>[] = useMemo(
     () => [
@@ -53,7 +53,7 @@ export const Navbar: FC = () => {
             />
           ))}
         </div>
-        <Avatar src={avatar} alt={userName} href={KEYDROP.profile} variant="small" />
+        <Avatar src={MOCKS.avatar} alt={MOCKS.username} href={KEYDROP.profile} variant="small" />
       </div>
     </div>
   )
