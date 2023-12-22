@@ -1,5 +1,9 @@
 # Key-Drop Extension
 
+## Requirements
+- nodejs >= 18.19.0
+- yarn >= 1.22.19
+
 ## Getting Started
 
 First, install the dependencies:

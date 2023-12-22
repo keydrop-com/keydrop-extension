@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "xstate:typegen": "xstate typegen \"./src/machines/**/*.machine.ts?(x)\"",
-    "dev": "concurrently \"npm-watch\" \"yarn xstate:typegen --watch\"",
+    "dev": "concurrently \"npm-watch\" \"yarn trans\" \"yarn xstate:typegen --watch\"",
     "trans": "i18next-resources-for-ts toc -i ./public/locales/en -o @types/i18nextResources.ts",
     "build:qucik": "REACT_APP_ENVIRONMENT=dev NODE_TLS_REJECT_UNAUTHORIZED='0' craco build",
     "build:dev:chromium": "yarn xstate:typegen && yarn trans && REACT_APP_ENVIRONMENT=dev GENERATE_SOURCEMAP=false craco build",
