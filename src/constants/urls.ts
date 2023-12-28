@@ -1,8 +1,11 @@
-export const KEYDROP_BASE_URL = 'https://key-drop.com/'
-export const STEAM_BASE_URL = 'https://steamcommunity.com/'
+const KEYDROP_BASE_URL = 'https://key-drop.com/'
+const KEYDROP_COOKIES_BASE_URL = 'https://key-drop.com/'
+const STEAM_BASE_URL = 'https://steamcommunity.com/'
+const STEAM_COOKIES_BASE_URL = 'https://steamcommunity.com/'
 
 export const KEYDROP = {
-  main: new URL(KEYDROP_BASE_URL).toString(),
+  main: KEYDROP_BASE_URL,
+  cookies: KEYDROP_COOKIES_BASE_URL,
   profile: new URL('/panel/profil', KEYDROP_BASE_URL).toString(),
   publicProfile: (steamId: string) =>
     new URL(`/user/profile/${steamId}`, KEYDROP_BASE_URL).toString(),
@@ -15,7 +18,8 @@ export const KEYDROP = {
 }
 
 export const STEAM = {
-  main: new URL(STEAM_BASE_URL).toString(),
+  main: STEAM_BASE_URL,
+  cookies: STEAM_COOKIES_BASE_URL,
   tradeOffers: (steamId: string) =>
     new URL(`/profiles/${steamId}/tradeoffers/?provider=extension`, STEAM_BASE_URL).toString(),
 }
