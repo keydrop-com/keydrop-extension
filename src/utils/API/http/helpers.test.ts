@@ -1,4 +1,4 @@
-import { KD_API_BASE_URL } from '@/constants/API/common'
+import { KEYDROP_BASE_URL } from '@/constants/urls'
 import { Params } from '@/types/API/http/helpers'
 
 import { getApiUrl, URLWithParams } from './helpers'
@@ -18,7 +18,7 @@ describe('URLWithParams function', () => {
       testBooleanParam: true,
     }
 
-    const expectedURL = `${KD_API_BASE_URL}testPath?testParam=testValue&testArrayParam=1&testArrayParam=2&testArrayParam=3&testBooleanParam=true`
+    const expectedURL = `${KEYDROP_BASE_URL}testPath?testParam=testValue&testArrayParam=1&testArrayParam=2&testArrayParam=3&testBooleanParam=true`
 
     expect(URLWithParams('/testPath', params)).toEqual(expectedURL)
   })
@@ -30,7 +30,7 @@ describe('URLWithParams function', () => {
       testParam: undefined,
     }
 
-    const expectedURL = `${KD_API_BASE_URL}testPath`
+    const expectedURL = `${KEYDROP_BASE_URL}testPath`
 
     expect(URLWithParams('/testPath', params)).toEqual(expectedURL)
   })
