@@ -44,6 +44,7 @@ export type AppMachineEvent =
   | { type: 'ACTIVE_VIEW_CHANGE'; value: ActiveView }
   | { type: 'LOGIN' }
   | { type: 'REFETCH_BALANCE' }
+  | { type: 'HARD_USER_REFRESH' }
 
 export interface AppMachineContext {
   appData: AppData
@@ -128,11 +129,24 @@ export const AppMachine = createMachine(
           ACTIVE_VIEW_CHANGE: {
             actions: ['assignActiveView', 'assignCountersAnimations'],
           },
+          HARD_USER_REFRESH: '#AppMachine.loggedIn.gettingInitUserData',
         },
         states: {
           idle: {
             on: {
               REFETCH_BALANCE: 'gettingUserBalance',
+            },
+          },
+          gettingInitUserData: {
+            invoke: {
+              src: 'getInitUserData',
+              onDone: {
+                actions: ['assignInitUserData', 'assignBalanceValueFromInitData', 'assignLang'],
+                target: 'gettingUserProfile',
+              },
+              onError: {
+                target: 'userProfileError',
+              },
             },
           },
           gettingUserProfile: {

@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react'
+import { FC, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Button } from '@/components/Button'
@@ -7,6 +7,7 @@ import { ViewBar } from '@/components/ViewBar'
 import { KEYDROP } from '@/constants/urls'
 import { useAppContext } from '@/context/AppContext'
 import { useInventoryContext } from '@/context/InventoryContext'
+import useIsWindowFocused from '@/hook/useIsWindowFocused'
 import { ActiveView } from '@/types/app'
 import { InventoryItemRow } from '@/types/inventory'
 import { ActionsCellRender } from '@/views/InventoryView/components/Table/ActionsCellRender'
@@ -16,6 +17,8 @@ import { StatusCellRender } from '@/views/InventoryView/components/Table/StatusC
 
 export const InventoryView: FC = () => {
   const { t } = useTranslation('main', { keyPrefix: 'inventoryView' })
+
+  const isFocused = useIsWindowFocused(false)
   const { appSend } = useAppContext()
   const { inventoryState, inventorySend } = useInventoryContext()
 
@@ -63,6 +66,11 @@ export const InventoryView: FC = () => {
   const handleOnLoadMore = (): void => {
     inventorySend('LOAD_MORE')
   }
+
+  useEffect(() => {
+    if (!isFocused) return
+    inventorySend('HARD_INVENTORY_REFRESH')
+  }, [isFocused])
 
   return (
     <div className="grid grid-rows-[35px,430px] gap-[5px]">
