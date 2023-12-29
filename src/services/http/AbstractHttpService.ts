@@ -1,4 +1,4 @@
-import { KD_API_BASE_URL } from '@/constants/API/common'
+import { KEYDROP } from '@/constants/urls'
 
 class AbstractHttpService {
   static async fetchWithoutAuth<T>(
@@ -37,7 +37,7 @@ class AbstractHttpService {
     const token = window.__token
     if (token) return token
 
-    const url = new URL('token', KD_API_BASE_URL)
+    const url = new URL('token', KEYDROP.main)
     url.searchParams.set('t', Date.now().toString())
 
     return fetch(url).then(async (r) => {
