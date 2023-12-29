@@ -1,23 +1,23 @@
 {
   "name": "keydrop-extension",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "xstate:typegen": "xstate typegen \"./src/machines/**/*.machine.ts?(x)\"",
     "dev": "concurrently \"npm-watch\" \"yarn trans\" \"yarn xstate:typegen --watch\"",
     "trans": "i18next-resources-for-ts toc -i ./public/locales/en -o @types/i18nextResources.ts",
-    "build:qucik": "REACT_APP_ENVIRONMENT=dev NODE_TLS_REJECT_UNAUTHORIZED='0' craco build",
-    "build:dev:chromium": "yarn xstate:typegen && yarn trans && REACT_APP_ENVIRONMENT=dev GENERATE_SOURCEMAP=false craco build",
-    "build:prod:chromium": "yarn xstate:typegen && yarn trans && REACT_APP_ENVIRONMENT=prod GENERATE_SOURCEMAP=false craco build",
-    "build:dev:gecko": "yarn xstate:typegen && yarn trans && REACT_APP_ENVIRONMENT=dev REACT_APP_BROWSER_ENGINE=gecko GENERATE_SOURCEMAP=false craco build",
-    "build:prod:gecko": "yarn xstate:typegen && yarn trans && REACT_APP_ENVIRONMENT=prod REACT_APP_BROWSER_ENGINE=gecko GENERATE_SOURCEMAP=false craco build",
+    "build": "REACT_APP_ENVIRONMENT=dev NODE_TLS_REJECT_UNAUTHORIZED='0' craco build",
+    "build:chromium": "yarn xstate:typegen && yarn trans && REACT_APP_ENVIRONMENT=dev GENERATE_SOURCEMAP=false craco build",
+    "build:gecko": "yarn xstate:typegen && yarn trans && REACT_APP_ENVIRONMENT=dev REACT_APP_BROWSER_ENGINE=gecko GENERATE_SOURCEMAP=false craco build",
+    "build:chromium:prod": "yarn xstate:typegen && yarn trans && REACT_APP_ENVIRONMENT=prod GENERATE_SOURCEMAP=false craco build",
+    "build:gecko:prod": "yarn xstate:typegen && yarn trans && REACT_APP_ENVIRONMENT=prod REACT_APP_BROWSER_ENGINE=gecko GENERATE_SOURCEMAP=false craco build",
     "test": "jest --watch --coverage",
     "eject": "react-scripts eject",
     "lint": "eslint --cache --fix",
     "prepare": "husky install"
   },
   "watch": {
-    "build:qucik": {
+    "build": {
       "patterns": [
         "src"
       ],
