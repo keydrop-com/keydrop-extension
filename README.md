@@ -26,20 +26,20 @@ yarn dev
 
 ## Available commands
 
-### `yarn build:quick`
+### `yarn build`
 The command builds the **dev** version of the extension for **chromium** based browsers.
 
 ### `yarn dev`
 The command watches the changes and builds the **dev** version of the extension for **chromium** based browsers.
 
-### `yarn build:dev:chromium`
+### `yarn build:chromium`
 The command builds the **dev** version of the extension for **chromium** based browsers.
 
-### `yarn build:prod:chromium`
+### `yarn build:chromium:prod`
 The command builds the **prod** version of the extension for **chromium** based browsers.
 
-### `yarn build:dev:gecko`
+### `yarn build:gecko`
 The command builds the **dev** version of the extension for **gecko** based browsers.
 
-### `yarn build:prod:gecko`
+### `yarn build:gecko:prod`
 The command builds the **prod** version of the extension for **gecko** based browsers.
