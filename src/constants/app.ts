@@ -86,4 +86,4 @@ export const INIT_COUNTER_ANIMATIONS: CountersAnimations = {
   [ActiveView.SETTINGS]: true,
 }
 
-export const APP_VERSION = '1.0.2'
+export const APP_VERSION = '1.0.1'

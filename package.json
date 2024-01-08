@@ -1,6 +1,6 @@
 {
   "name": "keydrop-extension",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "xstate:typegen": "xstate typegen \"./src/machines/**/*.machine.ts?(x)\"",
