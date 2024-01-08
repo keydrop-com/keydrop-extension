@@ -3,7 +3,7 @@ import { JSX } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Button } from '@/components/Button'
-import { KEYDROP } from '@/constants/urls'
+import { KEYDROP_URLS } from '@/constants/urls'
 import { ItemService } from '@/types/inventory'
 
 export const DateCellRender = (service: ItemService): JSX.Element => {
@@ -22,7 +22,7 @@ export const DateCellRender = (service: ItemService): JSX.Element => {
       {pfId && (
         <Button
           title={t('checkRoll')}
-          href={KEYDROP.provablyFair(id)}
+          href={KEYDROP_URLS.provablyFair(id)}
           className="h-fit w-fit truncate rounded-none p-0 underline"
         >
           <span className="max-w-[120px] truncate">{t('checkRoll')}</span>

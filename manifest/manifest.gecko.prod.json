@@ -1,7 +1,7 @@
 {
   "name": "Key-Drop Extension",
   "description": "Key-Drop Extension",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "manifest_version": 3,
   "browser_specific_settings": {
     "gecko": {

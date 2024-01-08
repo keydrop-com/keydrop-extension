@@ -10,7 +10,7 @@ import {
   CAN_BE_UPGRADED_OR_SOLD_STATES,
   IS_LOADING_STATES,
 } from '@/constants/inventory'
-import { KEYDROP, STEAM } from '@/constants/urls'
+import { KEYDROP_URLS, STEAM_URLS } from '@/constants/urls'
 import { useAppContext } from '@/context/AppContext'
 import CommonClient from '@/services/browser/CommonClient'
 import { ItemService } from '@/types/inventory'
@@ -48,7 +48,7 @@ export const ActionsCellRender = (service: ItemService): JSX.Element => {
 
   useEffect(() => {
     if (canBeCollectedState && isPending) {
-      CommonClient.openInNewTab(STEAM.tradeOffers(steamId))
+      CommonClient.openInNewTab(STEAM_URLS.tradeOffers(steamId))
     }
   }, [state])
 
@@ -71,7 +71,7 @@ export const ActionsCellRender = (service: ItemService): JSX.Element => {
         )}
       >
         <Button
-          href={KEYDROP.upgradeItem(id)}
+          href={KEYDROP_URLS.upgradeItem(id)}
           disabled={!canBeUpgradedOrSold || isLoading || isSold}
           className="button--upgrade col-span-1 h-[27px] min-w-[27px] rounded-[5px] p-0 text-2xs"
         >

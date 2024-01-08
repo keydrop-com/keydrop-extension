@@ -8,7 +8,7 @@ import {
   INIT_USER_DATA,
   INIT_USER_PROFILE,
 } from '@/constants/app'
-import { KEYDROP } from '@/constants/urls'
+import { KEYDROP_URLS } from '@/constants/urls'
 import { changeLang } from '@/i18n'
 import CommonClient from '@/services/browser/CommonClient'
 import KeydropClient from '@/services/browser/KeydropClient'
@@ -213,7 +213,7 @@ export const AppMachine = createMachine(
     services: {
       authUser: async () => {
         await KeydropClient.removeSessionCookie()
-        await CommonClient.openInNewTab(KEYDROP.main)
+        await CommonClient.openInNewTab(KEYDROP_URLS.main)
       },
       getAppData: async () => {
         const sessionId = await KeydropClient.getSessionId()

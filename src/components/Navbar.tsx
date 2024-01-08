@@ -5,7 +5,7 @@ import { Avatar } from '@/components/Avatar'
 import { Button } from '@/components/Button'
 import { NavbarButtonInterface, NavigationButton } from '@/components/NavigationButton'
 import { SvgIcon } from '@/components/SvgIcon'
-import { KEYDROP } from '@/constants/urls'
+import { KEYDROP_URLS } from '@/constants/urls'
 import { useAppContext } from '@/context/AppContext'
 import { ActiveView } from '@/types/app'
 
@@ -38,7 +38,7 @@ export const Navbar: FC = () => {
   return (
     <div className="flex h-[80px] items-center justify-between overflow-hidden rounded-[15px] bg-[#23232D]">
       <div className="px-[22px]">
-        <Button className="p-0" href={KEYDROP.main}>
+        <Button className="p-0" href={KEYDROP_URLS.main}>
           <SvgIcon iconName="keydrop-logo" className="h-[35px] w-[153px]" />
         </Button>
       </div>
@@ -53,7 +53,7 @@ export const Navbar: FC = () => {
             />
           ))}
         </div>
-        <Avatar src={avatar} alt={userName} href={KEYDROP.profile} variant="small" />
+        <Avatar src={avatar} alt={userName} href={KEYDROP_URLS.profile} variant="small" />
       </div>
     </div>
   )

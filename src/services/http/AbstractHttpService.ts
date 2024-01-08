@@ -1,4 +1,4 @@
-import { KEYDROP } from '@/constants/urls'
+import { KEYDROP_URLS } from '@/constants/urls'
 
 class AbstractHttpService {
   static async fetchWithoutAuth<T>(
@@ -37,7 +37,7 @@ class AbstractHttpService {
     const token = window.__token
     if (token) return token
 
-    const url = new URL('token', KEYDROP.main)
+    const url = new URL('token', KEYDROP_URLS.main)
     url.searchParams.set('t', Date.now().toString())
 
     return fetch(url).then(async (r) => {

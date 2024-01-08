@@ -1,14 +1,14 @@
-import { KEYDROP } from '@/constants/urls'
+import { KEYDROP_URLS } from '@/constants/urls'
 import { Params } from '@/types/API/http/helpers'
 
 export const getApiUrl = (url: string): string => {
   const apiBasePathname =
-    new URL(KEYDROP.main).pathname === '/' ? '' : new URL(KEYDROP.main).pathname
-  return new URL(`${apiBasePathname}/${url}`, KEYDROP.main).toString()
+    new URL(KEYDROP_URLS.main).pathname === '/' ? '' : new URL(KEYDROP_URLS.main).pathname
+  return new URL(`${apiBasePathname}/${url}`, KEYDROP_URLS.main).toString()
 }
 
 export const URLWithParams = (pathname: string, params: Params): string => {
-  const url = new URL(pathname, KEYDROP.main)
+  const url = new URL(pathname, KEYDROP_URLS.main)
 
   Object.entries(params).forEach(([key, val]) => {
     if (!val) return
@@ -22,4 +22,4 @@ export const URLWithParams = (pathname: string, params: Params): string => {
   return url.toString()
 }
 
-export const getAbsoluteApiUrl = (url: string): string => new URL(url, KEYDROP.main).toString()
+export const getAbsoluteApiUrl = (url: string): string => new URL(url, KEYDROP_URLS.main).toString()

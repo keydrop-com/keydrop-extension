@@ -1,8 +1,9 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { FC } from 'react'
+import { FC, JSX } from 'react'
 import { withTranslation } from 'react-i18next'
 
 import { APP_VERSION, DEFAULT_APP_MOTION } from '@/constants/app'
+import { KEYDROP_URLS } from '@/constants/urls'
 import { useAppContext } from '@/context/AppContext'
 import BaseLayout from '@/layouts/BaseLayout'
 import MainLayout from '@/layouts/MainLayout'
@@ -25,14 +26,20 @@ const App: FC = () => {
   const isLoggedIn = matches('loggedIn')
   const isLoading = matches('gettingData')
 
+  const hostname = new URL(KEYDROP_URLS.main).hostname
+
+  function renderDevAppInfo(): JSX.Element | null {
+    if (!IS_DEV_MODE) return null
+
+    return (
+      <p key="version" className="absolute left-1/2 top-0 z-[1000] -translate-x-1/2 p-1 text-2xs">
+        {hostname.toUpperCase()} | DEV v{APP_VERSION}
+      </p>
+    )
+  }
+
   return (
     <>
-      {IS_DEV_MODE && (
-        <p key="version" className="absolute right-0 top-0 z-[1000] p-1 text-2xs">
-          DEV v{APP_VERSION}
-        </p>
-      )}
-
       <AnimatePresence mode="wait">
         <motion.div key={isLoggedIn ? 'loggedIn' : 'notLoggedIn'} {...DEFAULT_APP_MOTION}>
           {isLoading && (
@@ -58,6 +65,7 @@ const App: FC = () => {
           )}
         </motion.div>
       </AnimatePresence>
+      {renderDevAppInfo()}
     </>
   )
 }
