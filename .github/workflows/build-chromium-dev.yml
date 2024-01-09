@@ -2,9 +2,13 @@ name: "[CHROMIUM/DEV] Build Extension"
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main", "develop"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main", "develop"]
+
+env:
+  REACT_APP_SESSION_COOKIE_NAME: ${{ secrets.REACT_APP_SESSION_COOKIE_NAME }}
+  REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
 
 jobs:
   build:

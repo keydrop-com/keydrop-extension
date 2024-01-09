@@ -32,8 +32,8 @@ const App: FC = () => {
     if (!IS_DEV_MODE) return null
 
     return (
-      <p key="version" className="absolute left-1/2 top-0 z-[1000] -translate-x-1/2 p-1 text-2xs">
-        {hostname.toUpperCase()} | DEV v{APP_VERSION}
+      <p className="absolute inset-x-0 top-0 z-[1000] flex h-[20px] items-center justify-center text-2xs leading-none">
+        {hostname.toUpperCase()} | v{APP_VERSION}
       </p>
     )
   }

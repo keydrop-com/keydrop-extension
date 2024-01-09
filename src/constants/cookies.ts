@@ -1,5 +1,5 @@
 export const KEYDROP_COOKIES = {
-  session: 'session_id',
+  session: process.env.REACT_APP_SESSION_COOKIE_NAME || 'session_id',
   lang: 'lang',
   keyLang: 'key-lang',
 }

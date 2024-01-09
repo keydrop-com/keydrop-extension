@@ -5,7 +5,7 @@ import AbstractBrowserService from '@/services/browser/AbstractBrowserService'
 class SteamClient extends AbstractBrowserService {
   static async getSteamId(): Promise<string | null> {
     return (
-      (await super.getCookie(STEAM_URLS.cookies, STEAM_COOKIES.session))?.split('%7C%7C')[0] || null
+      (await super.getCookie(STEAM_URLS.main, STEAM_COOKIES.session))?.split('%7C%7C')[0] || null
     )
   }
 }
