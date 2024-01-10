@@ -18,7 +18,7 @@ yarn dev
 ## Loading the extension into browsers
 - [Google Chrome](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked)
 - [Opera](https://dev.opera.com/extensions/basics/)
-- [Mozilla Firefox](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#installing) - for an extension loaded this way to work properly in Firefox, **you need to grant all permissions** [about:addons](about:addons)
+- [Mozilla Firefox](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#installing) - for an extension loaded this way to work properly in Firefox, **you need to grant all permissions** in [about:addons](about:addons)
 
 
 ## Supported browsers
