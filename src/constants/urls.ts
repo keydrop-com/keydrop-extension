@@ -7,7 +7,7 @@ export const KEYDROP_URLS = {
   publicProfile: (steamId: string) =>
     new URL(`/user/profile/${steamId}`, KEYDROP_BASE_URL).toString(),
   refillBalanceWithCode: (code: string) =>
-    new URL(`/?code=${code}#payment`, KEYDROP_BASE_URL).toString(),
+    new URL(`/?code=${code}#payment/promocode`, KEYDROP_BASE_URL).toString(),
   provablyFair: (id?: string) =>
     new URL(`/provably-fair/check-roll/${id}`, KEYDROP_BASE_URL).toString(),
   upgradeItem: (id?: string) => new URL(`/skins/upgrader?item=${id}`, KEYDROP_BASE_URL).toString(),
