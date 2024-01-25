@@ -1,6 +1,6 @@
 {
   "name": "Key-Drop Extension [DEV - GECKO]",
-  "description": "Boost your Key-Drop experience with a dedicated browser extension. Get real-time access to your inventory, sell skins with one click, manage your items with ease, and see detailed stats. All Key-Drop.com features in one convenient interface!",
+  "description": "Boost your Key-Drop experience with a dedicated browser extension. All Key-Drop.com features in one convenient interface!",
   "version": "1.0.1",
   "manifest_version": 3,
   "browser_specific_settings": {
