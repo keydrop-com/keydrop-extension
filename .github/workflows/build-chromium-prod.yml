@@ -21,7 +21,7 @@ jobs:
         cache: "yarn"
         cache-dependency-path: yarn.lock
     - run: yarn install --frozen-lockfile
-    - run: yarn build:prod:chromium
+    - run: yarn build:chromium:prod
     - name: Archive production artifacts
       uses: actions/upload-artifact@v3
       with:

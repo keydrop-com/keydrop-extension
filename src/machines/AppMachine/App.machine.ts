@@ -8,7 +8,7 @@ import {
   INIT_USER_DATA,
   INIT_USER_PROFILE,
 } from '@/constants/app'
-import { KEYDROP } from '@/constants/urls'
+import { KEYDROP_URLS } from '@/constants/urls'
 import { changeLang } from '@/i18n'
 import CommonClient from '@/services/browser/CommonClient'
 import KeydropClient from '@/services/browser/KeydropClient'
@@ -44,6 +44,7 @@ export type AppMachineEvent =
   | { type: 'ACTIVE_VIEW_CHANGE'; value: ActiveView }
   | { type: 'LOGIN' }
   | { type: 'REFETCH_BALANCE' }
+  | { type: 'HARD_USER_REFRESH' }
 
 export interface AppMachineContext {
   appData: AppData
@@ -128,11 +129,24 @@ export const AppMachine = createMachine(
           ACTIVE_VIEW_CHANGE: {
             actions: ['assignActiveView', 'assignCountersAnimations'],
           },
+          HARD_USER_REFRESH: '#AppMachine.loggedIn.gettingInitUserData',
         },
         states: {
           idle: {
             on: {
               REFETCH_BALANCE: 'gettingUserBalance',
+            },
+          },
+          gettingInitUserData: {
+            invoke: {
+              src: 'getInitUserData',
+              onDone: {
+                actions: ['assignInitUserData', 'assignBalanceValueFromInitData', 'assignLang'],
+                target: 'gettingUserProfile',
+              },
+              onError: {
+                target: 'userProfileError',
+              },
             },
           },
           gettingUserProfile: {
@@ -199,7 +213,7 @@ export const AppMachine = createMachine(
     services: {
       authUser: async () => {
         await KeydropClient.removeSessionCookie()
-        await CommonClient.openInNewTab(KEYDROP.main)
+        await CommonClient.openInNewTab(KEYDROP_URLS.main)
       },
       getAppData: async () => {
         const sessionId = await KeydropClient.getSessionId()

@@ -2,9 +2,13 @@ name: "[GECKO/DEV] Build Extension"
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "develop" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "develop" ]
+
+env:
+  REACT_APP_SESSION_COOKIE_NAME: ${{ secrets.REACT_APP_SESSION_COOKIE_NAME }}
+  REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
 
 jobs:
   build:
@@ -21,7 +25,7 @@ jobs:
         cache: "yarn"
         cache-dependency-path: yarn.lock
     - run: yarn install --frozen-lockfile
-    - run: yarn build:dev:gecko
+    - run: yarn build:gecko
     - name: Archive production artifacts
       uses: actions/upload-artifact@v3
       with:

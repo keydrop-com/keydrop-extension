@@ -4,7 +4,7 @@ import { createMachine, raise, sendParent } from 'xstate'
 import { choose } from 'xstate/lib/actions'
 
 import { Button } from '@/components/Button'
-import { KEYDROP } from '@/constants/urls'
+import { KEYDROP_URLS } from '@/constants/urls'
 import { translate } from '@/i18n'
 import CommonClient from '@/services/browser/CommonClient'
 import InventoryClient from '@/services/http/InventoryClient'
@@ -414,14 +414,14 @@ const ItemMachine = createMachine(
         toast.error(e?.data?.Info || e?.data?.info || translate('main:common.error.common'))
       },
       exchange: (ctx) => {
-        CommonClient.openInNewTab(KEYDROP.upgradeItem(ctx.data.id))
+        CommonClient.openInNewTab(KEYDROP_URLS.upgradeItem(ctx.data.id))
       },
       updateBalance: sendParent('UPDATE_BALANCE'),
       showKYCModal: () => {
         toast.error(
           <span className="flex flex-col gap-4">
             <span>{translate('main:common.kycConfirmIdentity')}</span>
-            <Button href={KEYDROP.kyc} label="KYC process" className="button--primary" />
+            <Button href={KEYDROP_URLS.kyc} label="KYC process" className="button--primary" />
           </span>,
           { autoClose: false },
         )

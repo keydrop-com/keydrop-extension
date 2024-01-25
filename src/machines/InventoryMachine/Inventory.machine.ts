@@ -75,6 +75,7 @@ export type InventoryMachineEvent =
   | { type: 'SET_SORTING_VARIANT'; payload: SORTING_VARIANT }
   | { type: 'UPDATE_BALANCE' }
   | { type: 'REFRESH_MARKET_DATA'; data: ItemMarketDataResponse[] }
+  | { type: 'HARD_INVENTORY_REFRESH' }
 
 const getUserItems = async (ctx: InventoryContext): Promise<MyWinnerListResponse> => {
   return await InventoryClient.getUserItems({
@@ -208,6 +209,10 @@ export const InventoryMachine = createMachine(
       REFRESH_MARKET_DATA: {
         actions: ['sendMarketDataToRelevantItems', 'updateBalance'],
         internal: true,
+      },
+      HARD_INVENTORY_REFRESH: {
+        actions: ['assignHardRefresh'],
+        target: 'loadingInitialData',
       },
     },
     initial: 'initialising',
@@ -434,6 +439,16 @@ export const InventoryMachine = createMachine(
       updateBalance: () => {
         window?.__refetchBalance?.()
       },
+      assignHardRefresh: assign((ctx) => {
+        ctx.filters = INIT_INVENTORY_CONTEXT.filters
+        ctx.weaponTypeOptions = INIT_INVENTORY_CONTEXT.weaponTypeOptions
+        ctx.sortingVariant = INIT_INVENTORY_CONTEXT.sortingVariant
+        ctx.sortingOptions = INIT_INVENTORY_CONTEXT.sortingOptions
+        ctx.eqValue = INIT_INVENTORY_CONTEXT.eqValue
+        ctx.data = INIT_INVENTORY_CONTEXT.data
+        ctx.marketData = INIT_INVENTORY_CONTEXT.marketData
+        ctx.dataResponse = INIT_INVENTORY_CONTEXT.dataResponse
+      }),
     },
     services: {
       getMarketItemsDataInterval,

@@ -1,7 +1,7 @@
 {
-  "name": "Key-Drop Extension (DEV)",
-  "description": "Key-Drop Extension (DEV)",
-  "version": "1.0.0",
+  "name": "Key-Drop Extension [DEV - GECKO]",
+  "description": "Boost your Key-Drop experience with a dedicated browser extension. Get real-time access to your inventory, sell skins with one click, manage your items with ease, and see detailed stats. All Key-Drop.com features in one convenient interface!",
+  "version": "1.0.1",
   "manifest_version": 3,
   "browser_specific_settings": {
     "gecko": {
@@ -28,7 +28,7 @@
   "permissions": [
     "cookies"
   ],
-  "host_permissions": ["*://*.key-drop.com/*", "*://*.steamcommunity.com/*"],
+  "host_permissions": ["<all_urls>"],
   "content_scripts": [
     {
       "matches": ["*://*.steamcommunity.com/*"],

@@ -1,15 +1,21 @@
-export const KEYDROP = {
-  main: 'https://key-drop.com/',
-  profile: 'https://key-drop.com/panel/profil',
-  publicProfile: (steamId: string) => `https://key-drop.com/user/profile/${steamId}`,
-  refillBalanceWithCode: (code: string) => `https://key-drop.com/pl/?code=${code}#payment`,
-  provablyFair: (id?: string) => `https://key-drop.com/provably-fair/check-roll/${id}`,
-  upgradeItem: (id?: string) => `https://key-drop.com/skins/upgrader?item=${id}`,
-  kyc: 'https://key-drop.com/Kyc',
+const KEYDROP_BASE_URL = process.env.REACT_APP_BASE_URL || 'https://key-drop.com/'
+const STEAM_BASE_URL = 'https://steamcommunity.com/'
+
+export const KEYDROP_URLS = {
+  main: KEYDROP_BASE_URL,
+  profile: new URL('/panel/profil', KEYDROP_BASE_URL).toString(),
+  publicProfile: (steamId: string) =>
+    new URL(`/user/profile/${steamId}`, KEYDROP_BASE_URL).toString(),
+  refillBalanceWithCode: (code: string) =>
+    new URL(`/?code=${code}#payment/promocode`, KEYDROP_BASE_URL).toString(),
+  provablyFair: (id?: string) =>
+    new URL(`/provably-fair/check-roll/${id}`, KEYDROP_BASE_URL).toString(),
+  upgradeItem: (id?: string) => new URL(`/skins/upgrader?item=${id}`, KEYDROP_BASE_URL).toString(),
+  kyc: new URL('/Kyc', KEYDROP_BASE_URL).toString(),
 }
 
-export const STEAM = {
-  main: 'https://steamcommunity.com/',
+export const STEAM_URLS = {
+  main: STEAM_BASE_URL,
   tradeOffers: (steamId: string) =>
-    `https://steamcommunity.com/profiles/${steamId}/tradeoffers/?provider=extension`,
+    new URL(`/profiles/${steamId}/tradeoffers/?provider=extension`, STEAM_BASE_URL).toString(),
 }
