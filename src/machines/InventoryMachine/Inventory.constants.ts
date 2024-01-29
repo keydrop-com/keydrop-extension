@@ -1,9 +1,10 @@
 import { SORTING_OPTIONS, WEAPON_TYPE_OPTIONS } from '@/constants/inventory'
+import { KEYDROP_BASE_URL } from '@/constants/urls'
 import { InventoryContext } from '@/machines/InventoryMachine/Inventory.types'
 import { CATEGORY_FILTER, SORTING_VARIANT, STATE_FILTER } from '@/types/API/http/inventory'
 
 export const INIT_INVENTORY_CONTEXT: InventoryContext = {
-  mirrorUrl: 'https://key-drop.com/',
+  mirrorUrl: KEYDROP_BASE_URL,
   filters: {
     state: STATE_FILTER.ACTIVE,
     weaponType: '',

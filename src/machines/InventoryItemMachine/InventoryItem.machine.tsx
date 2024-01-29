@@ -6,6 +6,7 @@ import { choose } from 'xstate/lib/actions'
 import { Button } from '@/components/Button'
 import { KEYDROP_URLS } from '@/constants/urls'
 import { translate } from '@/i18n'
+import { INIT_ITEM_MACHINE_CTX } from '@/machines/InventoryItemMachine/InventoryItem.constants'
 import {
   ItemContext,
   ItemEvent,
@@ -16,11 +17,9 @@ import InventoryClient from '@/services/http/InventoryClient'
 import {
   CollectGameResponse,
   CollectSkinResponse,
-  Item,
   ITEM_MARKET_STATUS,
   ITEM_SOURCE_TYPE,
   ITEM_STATUS,
-  ItemMarketDataResponse,
   SellGameResponse,
   SellItemResponse,
 } from '@/types/API/http/inventory'
@@ -35,12 +34,7 @@ const ItemMachine = createMachine(
       events: {} as ItemEvent,
       services: {} as ItemServices,
     },
-    context: {
-      mirrorUrl: 'https://key-drop.com/',
-      isPublic: true,
-      data: {} as Item,
-      marketData: {} as ItemMarketDataResponse,
-    },
+    context: INIT_ITEM_MACHINE_CTX,
     states: {
       determiningState: {
         always: [{ cond: 'isPublic', target: 'public' }, { target: 'private' }],

@@ -5,11 +5,12 @@ import {
   INIT_USER_DATA,
   INIT_USER_PROFILE,
 } from '@/constants/app'
+import { KEYDROP_BASE_URL } from '@/constants/urls'
 import { AppMachineContext } from '@/machines/AppMachine/App.types'
 import { ActiveView } from '@/types/app'
 
 export const INIT_APP_CONTEXT: AppMachineContext = {
-  mirrorUrl: 'https://key-drop.com/',
+  mirrorUrl: KEYDROP_BASE_URL,
   userProfile: INIT_USER_PROFILE,
   initUserData: INIT_USER_DATA,
   userBalance: INIT_USER_BALANCE,

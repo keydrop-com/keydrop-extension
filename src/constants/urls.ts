@@ -1,5 +1,5 @@
-// const KEYDROP_BASE_URL = process.env.REACT_APP_BASE_URL || 'https://key-drop.com/'
-const STEAM_BASE_URL = 'https://steamcommunity.com/'
+export const KEYDROP_BASE_URL = 'https://key-drop.com/'
+export const STEAM_BASE_URL = 'https://steamcommunity.com/'
 
 export const KEYDROP_URLS = {
   profile: (baseUrl: string) => new URL('/panel/profil', baseUrl).toString(),
@@ -15,7 +15,6 @@ export const KEYDROP_URLS = {
 }
 
 export const STEAM_URLS = {
-  main: STEAM_BASE_URL,
   tradeOffers: (steamId: string) =>
     new URL(`/profiles/${steamId}/tradeoffers/?provider=extension`, STEAM_BASE_URL).toString(),
 }

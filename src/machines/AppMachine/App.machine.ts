@@ -15,7 +15,7 @@ import BalanceClient from '@/services/http/BalanceClient'
 import MirrorClient from '@/services/http/MirrorClient'
 import ProfileClient from '@/services/http/ProfileClient'
 
-const KD_BASE_URL = process.env.REACT_APP_BASE_URL
+const APP_BASE_URL = process.env.REACT_APP_BASE_URL
 
 export const AppMachine = createMachine(
   {
@@ -28,23 +28,23 @@ export const AppMachine = createMachine(
       services: {} as AppMachineServices,
     },
     context: INIT_APP_CONTEXT,
-    initial: 'gettingMirrorUrl',
+    initial: 'gettingData',
     states: {
-      gettingMirrorUrl: {
-        invoke: {
-          src: 'getMirrorUrl',
-          onDone: {
-            actions: 'assignMirrorUrl',
-            target: 'gettingData',
-          },
-          onError: {
-            target: '#AppMachine.loggedOut',
-          },
-        },
-      },
       gettingData: {
-        initial: 'gettingAppData',
+        initial: 'gettingMirrorUrl',
         states: {
+          gettingMirrorUrl: {
+            invoke: {
+              src: 'getMirrorUrl',
+              onDone: {
+                actions: 'assignMirrorUrl',
+                target: 'gettingAppData',
+              },
+              onError: {
+                target: '#AppMachine.loggedOut',
+              },
+            },
+          },
           gettingAppData: {
             invoke: {
               src: 'getAppData',
@@ -178,8 +178,11 @@ export const AppMachine = createMachine(
     },
     services: {
       getMirrorUrl: async () => {
-        if (KD_BASE_URL) return KD_BASE_URL
-        return await MirrorClient.getMirrorUrl()
+        if (APP_BASE_URL) return APP_BASE_URL
+        const urlPrefix = 'https://'
+        const domain = await MirrorClient.getMirrorUrl()
+        if (domain.startsWith(urlPrefix)) return domain
+        else return urlPrefix + domain
       },
       authUser: async (ctx) => {
         await KeydropClient.removeSessionCookie(ctx.mirrorUrl)
