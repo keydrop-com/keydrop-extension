@@ -12,7 +12,7 @@ import { ActiveView } from '@/types/app'
 export const Navbar: FC = () => {
   const { t } = useTranslation('main', { keyPrefix: 'common.navbar' })
   const { appState, appSend } = useAppContext()
-  const { activeView, initUserData } = appState.context
+  const { activeView, initUserData, mirrorUrl } = appState.context
   const { userName, avatar } = initUserData
 
   const viewButtons: Omit<NavbarButtonInterface, 'onClick' | 'isActive'>[] = useMemo(
@@ -38,7 +38,7 @@ export const Navbar: FC = () => {
   return (
     <div className="flex h-[80px] items-center justify-between overflow-hidden rounded-[15px] bg-[#23232D]">
       <div className="px-[22px]">
-        <Button className="p-0" href={KEYDROP_URLS.main}>
+        <Button className="p-0" href={mirrorUrl}>
           <SvgIcon iconName="keydrop-logo" className="h-[35px] w-[153px]" />
         </Button>
       </div>
@@ -53,7 +53,12 @@ export const Navbar: FC = () => {
             />
           ))}
         </div>
-        <Avatar src={avatar} alt={userName} href={KEYDROP_URLS.profile} variant="small" />
+        <Avatar
+          src={avatar}
+          alt={userName}
+          href={KEYDROP_URLS.profile(mirrorUrl)}
+          variant="small"
+        />
       </div>
     </div>
   )

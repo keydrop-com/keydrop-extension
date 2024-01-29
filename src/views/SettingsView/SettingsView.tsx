@@ -11,6 +11,8 @@ import { SUPPORTED_CURRENCIES } from '@/constants/currency'
 import { SUPPORTED_LANGUAGES } from '@/constants/lang'
 import { useAppContext } from '@/context/AppContext'
 import { LangCurrencyMachine } from '@/machines/LangCurrencyMachine/LangCurrency.machine'
+import KeydropClient from '@/services/browser/KeydropClient'
+import SettingsClient from '@/services/http/SettingsClient'
 import { ActiveView } from '@/types/app'
 
 const renderLangLabel = (value: string, label?: string): JSX.Element => (
@@ -25,7 +27,8 @@ const renderLangLabel = (value: string, label?: string): JSX.Element => (
 export const SettingsView: FC = () => {
   const { t } = useTranslation('main', { keyPrefix: 'settingsView' })
   const { appState, appSend } = useAppContext()
-  const { langList, currencyList, lang: _lang, currency: _currency } = appState.context.initUserData
+  const { initUserData, mirrorUrl } = appState.context
+  const { langList, currencyList, lang: _lang, currency: _currency } = initUserData
 
   const [state, send] = useMachine(LangCurrencyMachine, {
     context: {
@@ -42,6 +45,20 @@ export const SettingsView: FC = () => {
       failToast: () => {
         toast.success(t('toast.fail'))
         return Promise.resolve()
+      },
+      saveData: async ({ draft }) => {
+        return await SettingsClient.setLangCurrency(mirrorUrl, {
+          lang: draft.language.toUpperCase(),
+          currency: draft.currency.toUpperCase(),
+        })
+      },
+    },
+    actions: {
+      assignSavedData: async (ctx) => {
+        const lang = ctx.draft.language
+        localStorage.setItem('i18nextLng', lang)
+        await KeydropClient.setLangCookie(mirrorUrl, lang)
+        location.reload()
       },
     },
   })

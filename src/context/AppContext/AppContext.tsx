@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 import { Sender, StateFrom } from 'xstate'
 
-import { AppMachine, AppMachineEvent } from '@/machines/AppMachine/App.machine'
+import { AppMachine } from '@/machines/AppMachine/App.machine'
+import { AppMachineEvent } from '@/machines/AppMachine/App.types'
 
 interface AppContextProvider {
   children: ReactNode

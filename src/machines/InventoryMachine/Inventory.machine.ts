@@ -1,133 +1,33 @@
 import { assign } from '@xstate/immer'
 import { toast } from 'react-toastify'
-import { actions, createMachine, Sender, sendTo, spawn } from 'xstate'
+import { actions, createMachine, sendTo, spawn } from 'xstate'
+import { TransitionsConfig } from 'xstate/lib/types'
 
-import { SORTING_OPTIONS, WEAPON_TYPE_OPTIONS } from '@/constants/inventory'
 import { translate } from '@/i18n'
 import ItemMachine from '@/machines/InventoryItemMachine/InventoryItem.machine'
-import InventoryClient from '@/services/http/InventoryClient'
+import { INIT_INVENTORY_CONTEXT } from '@/machines/InventoryMachine/Inventory.constants'
 import {
-  CATEGORY_FILTER,
+  InventoryContext,
+  InventoryMachineEvent,
+  InventoryMachineServices,
+} from '@/machines/InventoryMachine/Inventory.types'
+import {
+  getMarketItemsDataInterval,
+  getUserEqValue,
+  getUserInventoryData,
+  sellEq,
+} from '@/machines/InventoryMachine/Inventory.utils'
+import {
   EqValueResponse,
   Item,
   ItemMarketDataResponse,
   MyWinnerListResponse,
-  SellEqResponse,
-  SORTING_VARIANT,
   STATE_FILTER,
 } from '@/types/API/http/inventory'
-import { ItemService, UserInventoryData, WeaponTypeOption } from '@/types/inventory'
 
 const { pure } = actions
 
-export type InventoryContext = {
-  filters: {
-    state: STATE_FILTER
-    weaponType: string
-    category: string[]
-    perPage: number
-    currentPage: number
-  }
-  weaponTypeOptions: WeaponTypeOption[]
-  sortingVariant: SORTING_VARIANT
-  sortingOptions: SORTING_VARIANT[]
-  eqValue: EqValueResponse
-  data: {
-    data: Item
-    ref: ItemService
-  }[]
-  marketData: ItemMarketDataResponse[]
-  dataResponse: MyWinnerListResponse
-}
-
-export type InventoryMachineServices = {
-  getUserItems: {
-    data: MyWinnerListResponse
-  }
-  getMarketItemsData: {
-    data: ItemMarketDataResponse[]
-  }
-  getMarketItemsDataInterval: {
-    data: ItemMarketDataResponse[]
-  }
-  getUserEqValue: {
-    data: EqValueResponse
-  }
-  getUserInventoryData: {
-    data: UserInventoryData
-  }
-  sellEq: {
-    data: SellEqResponse
-  }
-}
-
-export type InventoryMachineEvent =
-  | { type: 'TOGGLE_STATE_FILTER' }
-  | { type: 'SET_ACTIVE_STATE_FILTER' }
-  | { type: 'SET_ALL_STATE_FILTER' }
-  | { type: 'SET_WEAPON_TYPE_FILTER'; payload: string }
-  | { type: 'SET_CATEGORY_FILTERS'; payload: Array<string | CATEGORY_FILTER> }
-  | { type: 'RESET_FILTERS' }
-  | { type: 'LOAD_MORE' }
-  | { type: 'RETRY' }
-  | { type: 'SELL_EQ' }
-  | { type: 'REFRESH_EQ' }
-  | { type: 'SET_SORTING_VARIANT'; payload: SORTING_VARIANT }
-  | { type: 'UPDATE_BALANCE' }
-  | { type: 'REFRESH_MARKET_DATA'; data: ItemMarketDataResponse[] }
-  | { type: 'HARD_INVENTORY_REFRESH' }
-
-const getUserItems = async (ctx: InventoryContext): Promise<MyWinnerListResponse> => {
-  return await InventoryClient.getUserItems({
-    type: ctx.filters.category.length === 1 ? String(ctx.filters.category) : CATEGORY_FILTER.ALL,
-    sort: ctx.sortingVariant,
-    weaponType: ctx.filters.weaponType,
-    state: ctx.filters.state,
-    per_page: String(ctx.filters.perPage),
-    current_page: String(ctx.filters.currentPage),
-  })
-}
-
-const getMarketItemsData = async (): Promise<ItemMarketDataResponse[]> => {
-  return await InventoryClient.getUserItemsMarketData()
-}
-
-const getMarketItemsDataInterval = () => (callback: Sender<InventoryMachineEvent>) => {
-  const id = setInterval(() => {
-    getMarketItemsData()
-      .then((data) => {
-        callback({ type: 'REFRESH_MARKET_DATA', data })
-      })
-      .catch(console.error)
-  }, 10000)
-
-  return () => clearInterval(id)
-}
-
-const getUserEqValue = async (): Promise<EqValueResponse> => {
-  return await InventoryClient.getUserItemsEqValue()
-}
-
-const getUserInventoryData = async (ctx: InventoryContext): Promise<UserInventoryData> => {
-  const [dataRes, marketDataRes, eqValue] = await Promise.all([
-    getUserItems(ctx),
-    getMarketItemsData(),
-    getUserEqValue(),
-  ])
-  return {
-    dataRes,
-    marketDataRes,
-    eqValue,
-  }
-}
-
-const sellEq = async (): Promise<SellEqResponse> => {
-  const res = await InventoryClient.sellEq()
-  if (!res.status) return Promise.reject(res)
-  return res
-}
-
-const FILTER_EVENTS = {
+const FILTER_EVENTS: TransitionsConfig<InventoryContext, InventoryMachineEvent> = {
   TOGGLE_STATE_FILTER: {
     actions: ['resetPagination', 'toggleStateFilter'],
     target: 'loadingInitialData',
@@ -155,35 +55,6 @@ const FILTER_EVENTS = {
   RESET_FILTERS: {
     actions: ['resetPagination', 'setResetFilters'],
     target: 'loadingInitialData',
-  },
-}
-
-const INIT_INVENTORY_CONTEXT: InventoryContext = {
-  filters: {
-    state: STATE_FILTER.ACTIVE,
-    weaponType: '',
-    category: [],
-    perPage: 18,
-    currentPage: 1,
-  },
-  weaponTypeOptions: WEAPON_TYPE_OPTIONS,
-  sortingVariant: SORTING_VARIANT.NEWEST,
-  sortingOptions: SORTING_OPTIONS,
-  eqValue: {
-    currency: '',
-    fullPrice: '',
-  },
-  data: [],
-  marketData: [],
-  dataResponse: {
-    status: true,
-    message: '',
-    total: 0,
-    perPage: 0,
-    currentPage: 1,
-    state: STATE_FILTER.ALL,
-    type: CATEGORY_FILTER.ALL,
-    data: [],
   },
 }
 
@@ -374,6 +245,7 @@ export const InventoryMachine = createMachine(
           data: item,
           ref: spawn(
             ItemMachine.withContext({
+              mirrorUrl: ctx.mirrorUrl,
               isPublic: false,
               data: item,
               marketData: (response.marketDataRes as ItemMarketDataResponse[]).find(
@@ -393,6 +265,7 @@ export const InventoryMachine = createMachine(
           data: item,
           ref: spawn(
             ItemMachine.withContext({
+              mirrorUrl: ctx.mirrorUrl,
               isPublic: false,
               data: item,
               marketData: (response.marketDataRes as ItemMarketDataResponse[]).find(

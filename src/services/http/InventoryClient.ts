@@ -17,39 +17,48 @@ import {
 import { INVENTORY_API } from '@/utils/API/http/inventory'
 
 class InventoryClient extends AbstractHttpService {
-  static async getUserItems(params: MyWinnerListParams): Promise<MyWinnerListResponse> {
-    return super.fetchWithAuth(INVENTORY_API.yourItemsData(params))
+  static async getUserItems(
+    baseUrl: string,
+    params: MyWinnerListParams,
+  ): Promise<MyWinnerListResponse> {
+    return super.fetchWithAuth(baseUrl, INVENTORY_API.yourItemsData(baseUrl, params))
   }
 
-  static async getUserItemsMarketData(): Promise<ItemMarketDataResponse[]> {
-    return super.fetchWithAuth(INVENTORY_API.yourItemsMarketData)
+  static async getUserItemsMarketData(baseUrl: string): Promise<ItemMarketDataResponse[]> {
+    return super.fetchWithAuth(baseUrl, INVENTORY_API.yourItemsMarketData(baseUrl))
   }
 
-  static async getUserItemsEqValue(): Promise<EqValueResponse> {
-    return super.fetchWithAuth(INVENTORY_API.yourItemsEqValue)
+  static async getUserItemsEqValue(baseUrl: string): Promise<EqValueResponse> {
+    return super.fetchWithAuth(baseUrl, INVENTORY_API.yourItemsEqValue(baseUrl))
   }
 
-  static async sellSkin(params: SellItemParams): Promise<SellItemResponse> {
-    return super.fetchWithAuth(INVENTORY_API.yourItemsSellSkin(params))
+  static async sellSkin(baseUrl: string, params: SellItemParams): Promise<SellItemResponse> {
+    return super.fetchWithAuth(baseUrl, INVENTORY_API.yourItemsSellSkin(baseUrl, params))
   }
 
-  static async sellGame(params: SellGameParams): Promise<SellGameResponse> {
-    return super.fetchWithAuth(INVENTORY_API.yourItemsSellGame(params))
+  static async sellGame(baseUrl: string, params: SellGameParams): Promise<SellGameResponse> {
+    return super.fetchWithAuth(baseUrl, INVENTORY_API.yourItemsSellGame(baseUrl, params))
   }
 
-  static async collectSkin(params: CollectSkinParams): Promise<CollectSkinResponse> {
-    return super.fetchWithAuth(INVENTORY_API.yourItemsCollectSkin(params))
+  static async collectSkin(
+    baseUrl: string,
+    params: CollectSkinParams,
+  ): Promise<CollectSkinResponse> {
+    return super.fetchWithAuth(baseUrl, INVENTORY_API.yourItemsCollectSkin(baseUrl, params))
   }
 
-  static async collectGame(params: CollectGameParams): Promise<CollectGameResponse> {
-    return super.fetchWithAuth(INVENTORY_API.yourItemsCollectGame, {
+  static async collectGame(
+    baseUrl: string,
+    params: CollectGameParams,
+  ): Promise<CollectGameResponse> {
+    return super.fetchWithAuth(baseUrl, INVENTORY_API.yourItemsCollectGame(baseUrl), {
       method: 'POST',
       body: JSON.stringify(params),
     })
   }
 
-  static async sellEq(): Promise<SellEqResponse> {
-    return super.fetchWithAuth(INVENTORY_API.yourItemsSellEq)
+  static async sellEq(baseUrl: string): Promise<SellEqResponse> {
+    return super.fetchWithAuth(baseUrl, INVENTORY_API.yourItemsSellEq(baseUrl))
   }
 }
 

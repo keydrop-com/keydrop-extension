@@ -7,12 +7,15 @@ import {
 import { PROFILE_API } from '@/utils/API/http/profile'
 
 class ProfileClient extends AbstractHttpService {
-  static async getUserProfile(params: ProfilePageParams): Promise<ProfilePageResponse> {
-    return super.fetchWithAuth(PROFILE_API.profileData(params), {}, true, true)
+  static async getUserProfile(
+    baseUrl: string,
+    params: ProfilePageParams,
+  ): Promise<ProfilePageResponse> {
+    return super.fetchWithAuth(baseUrl, PROFILE_API.profileData(baseUrl, params), {}, true, true)
   }
 
-  static async getInitUserData(): Promise<InitUserDataResponse> {
-    return super.fetchWithAuth(PROFILE_API.initData, {}, true, true)
+  static async getInitUserData(baseUrl: string): Promise<InitUserDataResponse> {
+    return super.fetchWithAuth(baseUrl, PROFILE_API.initData(baseUrl), {}, true, true)
   }
 }
 

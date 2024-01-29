@@ -15,7 +15,8 @@ export const MainView: FC = () => {
 
   const isFocused = useIsWindowFocused(false)
   const { appState, appSend } = useAppContext()
-  const { initUserData, userBalanceValue, userProfile, countersAnimations } = appState.context
+  const { initUserData, userBalanceValue, userProfile, countersAnimations, mirrorUrl } =
+    appState.context
   const { steamId } = initUserData
 
   const isCounterAnimationEnabled = countersAnimations[ActiveView.MAIN]
@@ -33,6 +34,7 @@ export const MainView: FC = () => {
     <div className="flex flex-col gap-[30px]">
       <div className="flex flex-col gap-[30px] px-5">
         <UserProfile
+          baseUrl={mirrorUrl}
           steamId={steamId}
           initUserData={initUserData}
           balanceValue={userBalanceValue}

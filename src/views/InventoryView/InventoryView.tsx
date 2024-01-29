@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/Button'
 import { Table, TableColumnInterface } from '@/components/Table'
 import { ViewBar } from '@/components/ViewBar'
-import { KEYDROP_URLS } from '@/constants/urls'
 import { useAppContext } from '@/context/AppContext'
 import { useInventoryContext } from '@/context/InventoryContext'
 import useIsWindowFocused from '@/hook/useIsWindowFocused'
@@ -19,8 +18,10 @@ export const InventoryView: FC = () => {
   const { t } = useTranslation('main', { keyPrefix: 'inventoryView' })
 
   const isFocused = useIsWindowFocused(false)
-  const { appSend } = useAppContext()
+  const { appState, appSend } = useAppContext()
   const { inventoryState, inventorySend } = useInventoryContext()
+
+  const { mirrorUrl } = appState.context
 
   const { context, matches } = inventoryState
   const { data } = context
@@ -87,7 +88,7 @@ export const InventoryView: FC = () => {
           <div className="flex w-full flex-col items-center justify-center gap-1">
             <p className="text-lg">{t('noActiveItems')}</p>
             <Button
-              href={KEYDROP_URLS.main}
+              href={mirrorUrl}
               label={t('openCases')}
               className="rounded-none p-0 text-base font-bold normal-case text-gold-400 hover:text-white"
             />

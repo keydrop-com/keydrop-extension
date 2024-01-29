@@ -6,6 +6,11 @@ import { choose } from 'xstate/lib/actions'
 import { Button } from '@/components/Button'
 import { KEYDROP_URLS } from '@/constants/urls'
 import { translate } from '@/i18n'
+import {
+  ItemContext,
+  ItemEvent,
+  ItemServices,
+} from '@/machines/InventoryItemMachine/InventoryItem.types'
 import CommonClient from '@/services/browser/CommonClient'
 import InventoryClient from '@/services/http/InventoryClient'
 import {
@@ -20,39 +25,6 @@ import {
   SellItemResponse,
 } from '@/types/API/http/inventory'
 
-export type ItemContext = {
-  isPublic: boolean
-  data: Item
-  marketData?: ItemMarketDataResponse
-}
-
-export type ItemEvent =
-  | { type: 'UPGRADE' }
-  | { type: 'SELL' }
-  | { type: 'COLLECT' }
-  | { type: 'EXCHANGE' }
-  | { type: 'SHOW_ACTIVATION_GUIDE' }
-  | { type: 'REFRESH_MARKET_STATUS'; data: ItemMarketDataResponse }
-  | { type: 'INIT_MARKET_STATUS' }
-  | { type: 'YES' }
-  | { type: 'NO' }
-  | { type: 'SET_SOLD' }
-
-type ItemServices = {
-  collectGame: {
-    data: CollectGameResponse
-  }
-  sellSkin: {
-    data: SellItemResponse
-  }
-  collectSkin: {
-    data: CollectSkinResponse
-  }
-  sellGame: {
-    data: SellGameResponse
-  }
-}
-
 const ItemMachine = createMachine(
   {
     id: 'ItemMachine',
@@ -64,6 +36,7 @@ const ItemMachine = createMachine(
       services: {} as ItemServices,
     },
     context: {
+      mirrorUrl: 'https://key-drop.com/',
       isPublic: true,
       data: {} as Item,
       marketData: {} as ItemMarketDataResponse,
@@ -414,14 +387,18 @@ const ItemMachine = createMachine(
         toast.error(e?.data?.Info || e?.data?.info || translate('main:common.error.common'))
       },
       exchange: (ctx) => {
-        CommonClient.openInNewTab(KEYDROP_URLS.upgradeItem(ctx.data.id))
+        CommonClient.openInNewTab(KEYDROP_URLS.upgradeItem(ctx.mirrorUrl, ctx.data.id))
       },
       updateBalance: sendParent('UPDATE_BALANCE'),
-      showKYCModal: () => {
+      showKYCModal: (ctx) => {
         toast.error(
           <span className="flex flex-col gap-4">
             <span>{translate('main:common.kycConfirmIdentity')}</span>
-            <Button href={KEYDROP_URLS.kyc} label="KYC process" className="button--primary" />
+            <Button
+              href={KEYDROP_URLS.kyc(ctx.mirrorUrl)}
+              label="KYC process"
+              className="button--primary"
+            />
           </span>,
           { autoClose: false },
         )
@@ -431,28 +408,28 @@ const ItemMachine = createMachine(
       sellSkin: async (ctx: ItemContext): Promise<SellItemResponse> => {
         const id = ctx.data.id
         if (!id) throw new Error('No id provided')
-        const res = await InventoryClient.sellSkin({ id })
+        const res = await InventoryClient.sellSkin(ctx.mirrorUrl, { id })
         if (!res.Status) return Promise.reject(res)
         return res
       },
       sellGame: async (ctx: ItemContext): Promise<SellGameResponse> => {
         const id = ctx.data.id
         if (!id) throw new Error('No id provided')
-        const res = await InventoryClient.sellGame({ id })
+        const res = await InventoryClient.sellGame(ctx.mirrorUrl, { id })
         if (!res.Status) return Promise.reject(res)
         return res
       },
       collectSkin: async (ctx: ItemContext): Promise<CollectSkinResponse> => {
         const id = ctx.data.id
         if (!id) throw new Error('No id provided')
-        const res = await InventoryClient.collectSkin({ id })
+        const res = await InventoryClient.collectSkin(ctx.mirrorUrl, { id })
         if (!res.Status || res.Kyc === true) return Promise.reject(res)
         return Promise.resolve(res)
       },
       collectGame: async (ctx: ItemContext): Promise<CollectGameResponse> => {
         const id = ctx.data.id
         if (!id) throw new Error('No id provided')
-        const res = await InventoryClient.collectGame({ id })
+        const res = await InventoryClient.collectGame(ctx.mirrorUrl, { id })
         if (!res.Status || res.Kyc === true) return Promise.reject(res)
         return res
       },

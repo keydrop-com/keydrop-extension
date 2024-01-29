@@ -1,46 +1,12 @@
 import { assign } from '@xstate/immer'
 import { createMachine } from 'xstate'
 
-import KeydropClient from '@/services/browser/KeydropClient'
-import SettingsClient from '@/services/http/SettingsClient'
-import { InitUserDataResponse } from '@/types/API/http/profile'
-
-type LangCurrencyMachineContext = {
-  langList: InitUserDataResponse['langList']
-  currencyList: InitUserDataResponse['currencyList']
-  language: InitUserDataResponse['lang']
-  currency: InitUserDataResponse['currency']
-  draft: {
-    language: InitUserDataResponse['lang']
-    currency: InitUserDataResponse['currency']
-  }
-}
-
-type LangCurrencyMachineEvent =
-  | { type: 'CHANGE_LANGUAGE'; value: string }
-  | { type: 'CHANGE_CURRENCY'; value: string }
-  | { type: 'SAVE' }
-  | { type: 'CANCEL' }
-
-type LangCurrencyMachineServices = {
-  saveData: {
-    data: void
-  }
-  failToast: {
-    data: void
-  }
-}
-
-const INIT_LANG_CURRENCY_CONTEXT: LangCurrencyMachineContext = {
-  langList: {},
-  draft: {
-    language: 'en',
-    currency: 'usd',
-  },
-  currency: 'usd',
-  currencyList: [],
-  language: 'en',
-}
+import { INIT_LANG_CURRENCY_CONTEXT } from '@/machines/LangCurrencyMachine/LangCurrency.constants'
+import {
+  LangCurrencyMachineContext,
+  LangCurrencyMachineEvent,
+  LangCurrencyMachineServices,
+} from '@/machines/LangCurrencyMachine/LangCurrency.types'
 
 export const LangCurrencyMachine = createMachine(
   {
@@ -112,20 +78,6 @@ export const LangCurrencyMachine = createMachine(
         ctx.draft.language = ctx.language
         ctx.draft.currency = ctx.currency
       }),
-      assignSavedData: async (ctx) => {
-        const lang = ctx.draft.language
-        localStorage.setItem('i18nextLng', lang)
-        await KeydropClient.setLangCookie(lang)
-        location.reload()
-      },
-    },
-    services: {
-      saveData: async ({ draft }) => {
-        return await SettingsClient.setLangCurrency({
-          lang: draft.language.toUpperCase(),
-          currency: draft.currency.toUpperCase(),
-        })
-      },
     },
   },
 )
