@@ -23,7 +23,7 @@
   "permissions": [
     "cookies"
   ],
-  "host_permissions": ["*://*.key-drop.com/*", "*://*.steamcommunity.com/*"],
+  "host_permissions": ["<all_urls>"],
   "content_scripts": [
     {
       "matches": ["*://*.steamcommunity.com/*"],
