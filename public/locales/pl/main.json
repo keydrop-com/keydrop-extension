@@ -21,7 +21,7 @@
       }
     },
     "noItemsFound": "Nie znaleziono przedmiotu",
-    "refill": "Napełnij"
+    "refill": "Doładuj"
   },
   "inventoryView": {
     "action": {
@@ -30,6 +30,12 @@
       "upgrade": "Ulepsz"
     },
     "checkRoll": "Sprawdź roll",
+    "header": {
+      "itemDetails":  "Szczegóły przedmiotu",
+      "status": "Status",
+      "date":  "Data",
+      "actions": "Akcje"
+    },
     "status": {
       "collected": "Odebrane",
       "exchanged": "Wymienione",
@@ -93,7 +99,7 @@
     },
     "wallet": {
       "balance": {
-        "label": "Bilans Portfela"
+        "label": "Stan Portfela"
       }
     },
     "yourStatistics": {

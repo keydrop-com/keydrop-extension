@@ -30,6 +30,12 @@
       "upgrade": "Uppgradera"
     },
     "checkRoll": "Kontrollera rulle",
+    "header": {
+      "itemDetails":  "Artikel detaljer",
+      "status": "Status",
+      "date":  "Datum",
+      "actions": "Åtgärder"
+    },
     "status": {
       "collected": "Mottagen",
       "exchanged": "Bytt",

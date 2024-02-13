@@ -30,6 +30,12 @@
       "upgrade": "Улучшить"
     },
     "checkRoll": "Проверить результат",
+    "header": {
+      "itemDetails":  "Детали товара",
+      "status": "Статус",
+      "date":  "Дата",
+      "actions": "Действия"
+    },
     "status": {
       "collected": "Получено",
       "exchanged": "Обменянный",

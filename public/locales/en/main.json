@@ -30,6 +30,12 @@
       "upgrade": "Upgrade"
     },
     "checkRoll": "Check roll",
+    "header": {
+      "itemDetails":  "Item details",
+      "status": "Status",
+      "date":  "Date",
+      "actions": "Actions"
+    },
     "status": {
       "collected": "Received",
       "exchanged": "Exchanged",

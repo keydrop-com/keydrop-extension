@@ -30,6 +30,12 @@
       "upgrade": "Aggiornamento"
     },
     "checkRoll": "Controlla il risultato",
+    "header": {
+      "itemDetails":  "Dettagli dell'articolo",
+      "status": "Stato",
+      "date":  "Data",
+      "actions": "Azioni"
+    },
     "status": {
       "collected": "Ricevuto",
       "exchanged": "Scambiato",

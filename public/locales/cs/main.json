@@ -30,6 +30,12 @@
       "upgrade": "Upgradovat"
     },
     "checkRoll": "Kontrolní role",
+    "header": {
+      "itemDetails":  "Podrobnosti o položce",
+      "status": "Stav",
+      "date":  "Datum",
+      "actions": "Akce"
+    },
     "status": {
       "collected": "Přijato",
       "exchanged": "Nahrazeno",

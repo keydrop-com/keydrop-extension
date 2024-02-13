@@ -30,6 +30,12 @@
       "upgrade": "Melhorar"
     },
     "checkRoll": "Verificar rodada",
+    "header": {
+      "itemDetails":  "Detalhes do item",
+      "status": "Status",
+      "date":  "Data",
+      "actions": "Ações"
+    },
     "status": {
       "collected": "Recebidas",
       "exchanged": "Trocadas",

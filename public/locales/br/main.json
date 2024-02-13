@@ -30,6 +30,12 @@
       "upgrade": "Aprimorar"
     },
     "checkRoll": "Verificar rolagem",
+    "header": {
+      "itemDetails": "Detalhes do item",
+      "status": "Status",
+      "date": "Data",
+      "actions": "Ações"
+    },
     "status": {
       "collected": "Recebido",
       "exchanged": "Trocado",

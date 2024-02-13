@@ -30,6 +30,12 @@
       "upgrade": "升级"
     },
     "checkRoll": "检查卷",
+    "header": {
+      "itemDetails": "项目详情",
+      "status": "状态",
+      "date": "日期",
+      "actions": "操作"
+    },
     "status": {
       "collected": "已收到",
       "exchanged": "已交换",

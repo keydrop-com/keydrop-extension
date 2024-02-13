@@ -30,6 +30,12 @@
       "upgrade": "Mise à niveau"
     },
     "checkRoll": "Vérifier le rouleau",
+    "header": {
+      "itemDetails":  "Détails de l'article",
+      "status": "Statut",
+      "date":  "Date",
+      "actions": "Actions"
+    },
     "status": {
       "collected": "Reçu",
       "exchanged": "Échangé",

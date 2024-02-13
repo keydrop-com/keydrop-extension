@@ -30,6 +30,12 @@
       "upgrade": "Mejorar"
     },
     "checkRoll": "Comprobar tirada",
+    "header": {
+      "itemDetails":  "Detalles del artículo",
+      "status": "Estado",
+      "date":  "Fecha",
+      "actions": "Acciones"
+    },
     "status": {
       "collected": "Recibido",
       "exchanged": "Intercambiado",

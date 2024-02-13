@@ -30,6 +30,12 @@
       "upgrade": "Îmbunătățește"
     },
     "checkRoll": "Verifică rola",
+    "header": {
+      "itemDetails":  "Detalii produs",
+      "status": "Stare",
+      "date":  "Data",
+      "actions": "Acțiuni"
+    },
     "status": {
       "collected": "Primit",
       "exchanged": "Tranzacționat",

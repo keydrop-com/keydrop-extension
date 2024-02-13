@@ -30,6 +30,12 @@
       "upgrade": "Fejlesztés"
     },
     "checkRoll": "Ellenőrizd a dobást",
+    "header": {
+      "itemDetails":  "Elem részletei",
+      "status": "Állapot",
+      "date":  "Dátum",
+      "actions": "Műveletek"
+    },
     "status": {
       "collected": "Beérkezett",
       "exchanged": "Cserélt",

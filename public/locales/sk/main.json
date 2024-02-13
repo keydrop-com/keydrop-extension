@@ -30,6 +30,12 @@
       "upgrade": "Upgradovať"
     },
     "checkRoll": "Kontrola rolky",
+    "header": {
+      "itemDetails":  "Podrobnosti o položke",
+      "status": "Stav",
+      "date":  "Dátum",
+      "actions": "Akcie"
+    },
     "status": {
       "collected": "Prijaté",
       "exchanged": "Vymenené",

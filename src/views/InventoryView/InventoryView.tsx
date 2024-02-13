@@ -38,27 +38,27 @@ export const InventoryView: FC = () => {
   const columns: TableColumnInterface<InventoryItemRow>[] = useMemo(() => {
     return [
       {
-        header: 'Item details',
+        header: t('header.itemDetails'),
         accessor: 'itemDetails',
         cellRenderer: ItemsDetailsCellRender,
       },
       {
-        header: 'Status',
+        header: t('header.status'),
         accessor: 'status',
         cellRenderer: StatusCellRender,
       },
       {
-        header: 'Date',
+        header: t('header.date'),
         accessor: 'date',
         cellRenderer: DateCellRender,
       },
       {
-        header: 'Actions',
+        header: t('header.actions'),
         accessor: 'actions',
         cellRenderer: ActionsCellRender,
       },
     ]
-  }, [])
+  }, [t])
 
   const handleOnBackClick = (): void => {
     appSend({ type: 'ACTIVE_VIEW_CHANGE', value: ActiveView.MAIN })
