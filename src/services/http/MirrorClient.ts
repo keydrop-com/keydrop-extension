@@ -3,7 +3,10 @@ import { MIRROR_API } from '@/utils/API/http/mirror'
 
 class MirrorClient extends AbstractHttpService {
   static async getMirrorUrl(): Promise<string> {
-    return super.fetchWithoutAuth(MIRROR_API.getUrl, {}, true, false, true)
+    const urlPrefix = 'https://'
+    const domain = await super.fetchWithoutAuth<string>(MIRROR_API.getUrl, {}, true, false, true)
+    if (domain.startsWith(urlPrefix)) return domain
+    return urlPrefix + domain
   }
 }
 

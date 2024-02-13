@@ -179,10 +179,7 @@ export const AppMachine = createMachine(
     services: {
       getMirrorUrl: async () => {
         if (APP_BASE_URL) return APP_BASE_URL
-        const urlPrefix = 'https://'
-        const domain = await MirrorClient.getMirrorUrl()
-        if (domain.startsWith(urlPrefix)) return domain
-        else return urlPrefix + domain
+        return await MirrorClient.getMirrorUrl()
       },
       authUser: async (ctx) => {
         await KeydropClient.removeSessionCookie(ctx.mirrorUrl)
