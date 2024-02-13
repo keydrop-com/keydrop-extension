@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/Button'
 import { SvgIcon } from '@/components/SvgIcon'
 import { KEYDROP_URLS } from '@/constants/urls'
+import { useAppContext } from '@/context/AppContext'
 
 interface RefillButtonInterface {
   bonus: number
@@ -12,10 +13,13 @@ interface RefillButtonInterface {
 
 export const RefillButton: FC<RefillButtonInterface> = ({ bonus, code }) => {
   const { t } = useTranslation('main', { keyPrefix: 'common' })
+  const { appState } = useAppContext()
+
+  const { mirrorUrl } = appState.context
 
   return (
     <Button
-      href={KEYDROP_URLS.refillBalanceWithCode(code)}
+      href={KEYDROP_URLS.refillBalanceWithCode(mirrorUrl, code)}
       className="group relative flex h-[50px] min-w-[200px] items-center justify-center gap-2 overflow-hidden rounded-lg border border-[#92FFB1] bg-[#001A07] px-4"
     >
       <div className="absolute inset-0 z-0 bg-gradient-to-r from-lightgreen-100/25 bg-[length:100%_100%] transition-[background-size] duration-200 group-hover:bg-[length:150%_150%]" />

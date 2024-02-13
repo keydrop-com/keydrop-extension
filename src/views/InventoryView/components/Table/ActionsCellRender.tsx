@@ -25,7 +25,8 @@ export const ActionsCellRender = (service: ItemService): JSX.Element => {
   const { context, matches } = state
   const { id, price, name } = context.data
 
-  const { steamId, currency } = appState.context.initUserData
+  const { initUserData, mirrorUrl } = appState.context
+  const { steamId, currency } = initUserData
 
   const [canBeCollectedState] = useState(CAN_BE_COLLECTED_STATES.some(matches))
 
@@ -71,7 +72,7 @@ export const ActionsCellRender = (service: ItemService): JSX.Element => {
         )}
       >
         <Button
-          href={KEYDROP_URLS.upgradeItem(id)}
+          href={KEYDROP_URLS.upgradeItem(mirrorUrl, id)}
           disabled={!canBeUpgradedOrSold || isLoading || isSold}
           className="button--upgrade col-span-1 h-[27px] min-w-[27px] rounded-[5px] p-0 text-2xs"
         >

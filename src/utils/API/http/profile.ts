@@ -2,7 +2,7 @@ import { ProfilePageParams } from '@/types/API/http/profile'
 import { getApiUrl } from '@/utils/API/http/helpers'
 
 export const PROFILE_API = {
-  profileData: ({ steamId }: ProfilePageParams): string =>
-    getApiUrl(`apiData/UserStats/index/${steamId}`),
-  initData: getApiUrl('apiData/Init/index'),
+  profileData: (baseUrl: string, { steamId }: ProfilePageParams): string =>
+    getApiUrl(baseUrl, `apiData/UserStats/index/${steamId}`),
+  initData: (baseUrl: string) => getApiUrl(baseUrl, 'apiData/Init/index'),
 }

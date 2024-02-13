@@ -3,7 +3,6 @@ import { FC, JSX } from 'react'
 import { withTranslation } from 'react-i18next'
 
 import { APP_VERSION, DEFAULT_APP_MOTION } from '@/constants/app'
-import { KEYDROP_URLS } from '@/constants/urls'
 import { useAppContext } from '@/context/AppContext'
 import BaseLayout from '@/layouts/BaseLayout'
 import MainLayout from '@/layouts/MainLayout'
@@ -21,12 +20,12 @@ const IS_DEV_MODE = process.env.REACT_APP_ENVIRONMENT === 'dev'
 const App: FC = () => {
   const { appState } = useAppContext()
   const { context, matches } = appState
-  const { activeView } = context
+  const { activeView, mirrorUrl } = context
 
   const isLoggedIn = matches('loggedIn')
   const isLoading = matches('gettingData')
 
-  const hostname = new URL(KEYDROP_URLS.main).hostname
+  const hostname = new URL(mirrorUrl).hostname
 
   function renderDevAppInfo(): JSX.Element | null {
     if (!IS_DEV_MODE) return null
