@@ -20,12 +20,12 @@
         }
       }
     },
-    "noItemsFound": "Nie znaleziono przedmiotu",
+    "noItemsFound": "Nie znaleziono przedmiotów",
     "refill": "Doładuj"
   },
   "inventoryView": {
     "action": {
-      "collect": "Zbierz",
+      "collect": "Odbierz",
       "sell": "Sprzedaj",
       "upgrade": "Ulepsz"
     },
@@ -52,9 +52,9 @@
   },
   "loginView": {
     "button": {
-      "label": "Zaloguj się z Key-Dropem"
+      "label": "Zaloguj się poprzez Key-Drop"
     },
-    "description": "Rozszerz swoją ulubioną stronę z skrzynkami i zdobądź więcej!"
+    "description": "Rozszerz swoją ulubioną stronę ze skrzynkami i zdobądź więcej!"
   },
   "settingsView": {
     "currency": {
@@ -88,13 +88,13 @@
         "label": "Otwarte skrzynki"
       },
       "contract": {
-        "label": "Kontrakty"
+        "label": "Kontraktów"
       },
       "freeCases": {
         "label": "Codzienne skrzynki"
       },
       "upgrades": {
-        "label": "Ulepszanie skrzynek"
+        "label": "Ulepszeń"
       }
     },
     "wallet": {

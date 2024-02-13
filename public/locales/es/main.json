@@ -85,7 +85,7 @@
         "label": "Caja de Batalla"
       },
       "cases": {
-        "label": "Cajas abiertas"
+        "label": "Cajas Abiertas"
       },
       "contract": {
         "label": "Contratos"
@@ -94,7 +94,7 @@
         "label": "Cajas diarias"
       },
       "upgrades": {
-        "label": "Mejoras de skins"
+        "label": "Mejoras"
       }
     },
     "wallet": {

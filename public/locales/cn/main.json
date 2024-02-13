@@ -85,7 +85,7 @@
         "label": "案件大战"
       },
       "cases": {
-        "label": "已打开的案例"
+        "label": "已开启的宝箱"
       },
       "contract": {
         "label": "合约"
@@ -94,7 +94,7 @@
         "label": "日常案例"
       },
       "upgrades": {
-        "label": "皮肤升级"
+        "label": "升级"
       }
     },
     "wallet": {

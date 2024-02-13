@@ -25,7 +25,7 @@
   },
   "inventoryView": {
     "action": {
-      "collect": "Zbierať",
+      "collect": "Zozbierať",
       "sell": "Predať",
       "upgrade": "Upgradovať"
     },
@@ -94,7 +94,7 @@
         "label": "Denné debny"
       },
       "upgrades": {
-        "label": "Upgrady skinov"
+        "label": "Upgrady"
       }
     },
     "wallet": {

@@ -25,7 +25,7 @@
   },
   "inventoryView": {
     "action": {
-      "collect": "Sammeln",
+      "collect": "Einsammeln",
       "sell": "Verkaufen",
       "upgrade": "Upgrade"
     },
@@ -85,7 +85,7 @@
         "label": "Case Battles"
       },
       "cases": {
-        "label": "Geöffnete herausforderungen"
+        "label": "Eröffnete Kisten"
       },
       "contract": {
         "label": "Verträge"
@@ -94,7 +94,7 @@
         "label": "Tägliche Kisten"
       },
       "upgrades": {
-        "label": "Skins-upgrades"
+        "label": "Upgrades"
       }
     },
     "wallet": {

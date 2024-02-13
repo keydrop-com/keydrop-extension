@@ -25,7 +25,7 @@
   },
   "inventoryView": {
     "action": {
-      "collect": "Sbírat",
+      "collect": "Sebrat",
       "sell": "Prodej",
       "upgrade": "Upgradovat"
     },
@@ -85,7 +85,7 @@
         "label": "Bitvy o bedny"
       },
       "cases": {
-        "label": "Otevření beden"
+        "label": "Otevřené Bedny"
       },
       "contract": {
         "label": "Smlouvy"
@@ -94,7 +94,7 @@
         "label": "Denní bedny"
       },
       "upgrades": {
-        "label": "Upgradovaní skinu"
+        "label": "Upgrady"
       }
     },
     "wallet": {

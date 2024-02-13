@@ -25,7 +25,7 @@
   },
   "inventoryView": {
     "action": {
-      "collect": "Samla",
+      "collect": "Hämta",
       "sell": "Sälja",
       "upgrade": "Uppgradera"
     },
@@ -85,7 +85,7 @@
         "label": "Fallstrider"
       },
       "cases": {
-        "label": "Öppnade fall"
+        "label": "Öppnade lådor"
       },
       "contract": {
         "label": "Kontrakt"
@@ -94,7 +94,7 @@
         "label": "Dagliga fall"
       },
       "upgrades": {
-        "label": "Huduppgraderingar"
+        "label": "Uppgraderingar"
       }
     },
     "wallet": {

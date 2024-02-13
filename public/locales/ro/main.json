@@ -25,7 +25,7 @@
   },
   "inventoryView": {
     "action": {
-      "collect": "Colectează",
+      "collect": "Colectați",
       "sell": "Vinde",
       "upgrade": "Îmbunătățește"
     },
@@ -85,7 +85,7 @@
         "label": "Bătălia Cuferelor"
       },
       "cases": {
-        "label": "Cufere deschise"
+        "label": "Deschide cufere"
       },
       "contract": {
         "label": "Contracte"
@@ -94,7 +94,7 @@
         "label": "Cufere zilnice"
       },
       "upgrades": {
-        "label": "Îmbunătățiri ale skin-ului"
+        "label": "Îmbunătățiri"
       }
     },
     "wallet": {

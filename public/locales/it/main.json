@@ -25,7 +25,7 @@
   },
   "inventoryView": {
     "action": {
-      "collect": "Raccogli",
+      "collect": "Ottieni",
       "sell": "Vendi",
       "upgrade": "Aggiornamento"
     },
@@ -94,7 +94,7 @@
         "label": "Casse giornaliere"
       },
       "upgrades": {
-        "label": "Potenziamenti della skin"
+        "label": "Upgrades"
       }
     },
     "wallet": {

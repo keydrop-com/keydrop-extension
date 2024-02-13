@@ -25,7 +25,7 @@
   },
   "inventoryView": {
     "action": {
-      "collect": "Begyűjtés",
+      "collect": "Begyűjt",
       "sell": "Eladás",
       "upgrade": "Fejlesztés"
     },
@@ -94,7 +94,7 @@
         "label": "Napi ládák"
       },
       "upgrades": {
-        "label": "Skin fejlesztések"
+        "label": "Upgrades"
       }
     },
     "wallet": {
