@@ -30,6 +30,12 @@
       "upgrade": "Melhorar"
     },
     "checkRoll": "Verificar rodada",
+    "header": {
+      "itemDetails":  "Detalhes do item",
+      "status": "Status",
+      "date":  "Data",
+      "actions": "Ações"
+    },
     "status": {
       "collected": "Recebidas",
       "exchanged": "Trocadas",
@@ -88,7 +94,7 @@
         "label": "Caixas diárias"
       },
       "upgrades": {
-        "label": "Melhoramentos de skins"
+        "label": "Melhoramentos"
       }
     },
     "wallet": {

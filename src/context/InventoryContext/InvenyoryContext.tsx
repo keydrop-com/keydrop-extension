@@ -2,10 +2,9 @@ import { useMachine } from '@xstate/react'
 import { createContext, FC, ReactNode, useContext } from 'react'
 import { Sender, StateFrom } from 'xstate'
 
-import {
-  InventoryMachine,
-  InventoryMachineEvent,
-} from '@/machines/InventoryMachine/Inventory.machine'
+import { useAppContext } from '@/context/AppContext'
+import { InventoryMachine } from '@/machines/InventoryMachine/Inventory.machine'
+import { InventoryMachineEvent } from '@/machines/InventoryMachine/Inventory.types'
 
 interface InventoryContextProvider {
   children: ReactNode
@@ -22,7 +21,10 @@ export const InventoryContext = createContext<InventoryContextInterface>({
 })
 
 export const InventoryContextProvider: FC<InventoryContextProvider> = ({ children }) => {
-  const [state, send] = useMachine(InventoryMachine)
+  const { appState } = useAppContext()
+  const [state, send] = useMachine(InventoryMachine, {
+    context: { mirrorUrl: appState.context.mirrorUrl },
+  })
 
   return (
     <InventoryContext.Provider value={{ inventoryState: state, inventorySend: send }}>

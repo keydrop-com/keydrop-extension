@@ -1,11 +1,10 @@
-import { KEYDROP_URLS } from '@/constants/urls'
-
 class AbstractHttpService {
   static async fetchWithoutAuth<T>(
     url: string,
     options: RequestInit = {},
     resolveResponse = true,
     throwError = false,
+    asText = false,
   ): Promise<T> {
     return fetch(url, {
       ...options,
@@ -16,8 +15,9 @@ class AbstractHttpService {
           return Promise.reject(res)
         }
         if (resolveResponse) {
-          const parsedResponse = await res.json()
+          const parsedResponse = asText ? await res.text() : await res.json()
           if (
+            !asText &&
             throwError &&
             parsedResponse.hasOwnProperty('status') &&
             parsedResponse.status === false
@@ -33,11 +33,11 @@ class AbstractHttpService {
       })
   }
 
-  static async getToken(): Promise<string> {
+  static async getToken(baseUrl: string): Promise<string> {
     const token = window.__token
     if (token) return token
 
-    const url = new URL('token', KEYDROP_URLS.main)
+    const url = new URL('token', baseUrl)
     url.searchParams.set('t', Date.now().toString())
 
     return fetch(url).then(async (r) => {
@@ -53,12 +53,13 @@ class AbstractHttpService {
   }
 
   static async fetchWithAuth<T>(
+    baseUrl: string,
     url: string,
     options: RequestInit = {},
     resolveResponse = true,
     throwError = true,
   ): Promise<T> {
-    const token = await this.getToken()
+    const token = await this.getToken(baseUrl)
 
     if (!token) return Promise.reject()
 

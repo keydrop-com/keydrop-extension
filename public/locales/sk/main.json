@@ -25,11 +25,17 @@
   },
   "inventoryView": {
     "action": {
-      "collect": "Zbierať",
+      "collect": "Zozbierať",
       "sell": "Predať",
       "upgrade": "Upgradovať"
     },
     "checkRoll": "Kontrola rolky",
+    "header": {
+      "itemDetails":  "Podrobnosti o položke",
+      "status": "Stav",
+      "date":  "Dátum",
+      "actions": "Akcie"
+    },
     "status": {
       "collected": "Prijaté",
       "exchanged": "Vymenené",
@@ -88,7 +94,7 @@
         "label": "Denné debny"
       },
       "upgrades": {
-        "label": "Upgrady skinov"
+        "label": "Upgrady"
       }
     },
     "wallet": {

@@ -25,11 +25,17 @@
   },
   "inventoryView": {
     "action": {
-      "collect": "Begyűjtés",
+      "collect": "Begyűjt",
       "sell": "Eladás",
       "upgrade": "Fejlesztés"
     },
     "checkRoll": "Ellenőrizd a dobást",
+    "header": {
+      "itemDetails":  "Elem részletei",
+      "status": "Állapot",
+      "date":  "Dátum",
+      "actions": "Műveletek"
+    },
     "status": {
       "collected": "Beérkezett",
       "exchanged": "Cserélt",
@@ -88,7 +94,7 @@
         "label": "Napi ládák"
       },
       "upgrades": {
-        "label": "Skin fejlesztések"
+        "label": "Upgrades"
       }
     },
     "wallet": {

@@ -30,6 +30,12 @@
       "upgrade": "Geliştir"
     },
     "checkRoll": "Kontrol et",
+    "header": {
+      "itemDetails":  "Ürün detayları",
+      "status": "Durum",
+      "date":  "Tarih",
+      "actions": "Eylemler"
+    },
     "status": {
       "collected": "Alındı",
       "exchanged": "Takas edildi",
@@ -88,7 +94,7 @@
         "label": "Günlük kasalar"
       },
       "upgrades": {
-        "label": "Skin geliştirmeleri"
+        "label": "Yükseltmeler"
       }
     },
     "wallet": {

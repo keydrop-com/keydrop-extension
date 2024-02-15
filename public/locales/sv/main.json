@@ -25,11 +25,17 @@
   },
   "inventoryView": {
     "action": {
-      "collect": "Samla",
+      "collect": "Hämta",
       "sell": "Sälja",
       "upgrade": "Uppgradera"
     },
     "checkRoll": "Kontrollera rulle",
+    "header": {
+      "itemDetails":  "Artikel detaljer",
+      "status": "Status",
+      "date":  "Datum",
+      "actions": "Åtgärder"
+    },
     "status": {
       "collected": "Mottagen",
       "exchanged": "Bytt",
@@ -79,7 +85,7 @@
         "label": "Fallstrider"
       },
       "cases": {
-        "label": "Öppnade fall"
+        "label": "Öppnade lådor"
       },
       "contract": {
         "label": "Kontrakt"
@@ -88,7 +94,7 @@
         "label": "Dagliga fall"
       },
       "upgrades": {
-        "label": "Huduppgraderingar"
+        "label": "Uppgraderingar"
       }
     },
     "wallet": {

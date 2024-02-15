@@ -30,6 +30,12 @@
       "upgrade": "Mise à niveau"
     },
     "checkRoll": "Vérifier le rouleau",
+    "header": {
+      "itemDetails":  "Détails de l'article",
+      "status": "Statut",
+      "date":  "Date",
+      "actions": "Actions"
+    },
     "status": {
       "collected": "Reçu",
       "exchanged": "Échangé",
@@ -79,7 +85,7 @@
         "label": "Batailles d'affaires"
       },
       "cases": {
-        "label": "Cas ouverts"
+        "label": "Mallettes ouvertes"
       },
       "contract": {
         "label": "Contrats"
@@ -88,7 +94,7 @@
         "label": "Cas quotidiens"
       },
       "upgrades": {
-        "label": "Améliorations de la peau"
+        "label": "Upgrades"
       }
     },
     "wallet": {

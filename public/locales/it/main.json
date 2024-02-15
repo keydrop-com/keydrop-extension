@@ -25,11 +25,17 @@
   },
   "inventoryView": {
     "action": {
-      "collect": "Raccogli",
+      "collect": "Ottieni",
       "sell": "Vendi",
       "upgrade": "Aggiornamento"
     },
     "checkRoll": "Controlla il risultato",
+    "header": {
+      "itemDetails":  "Dettagli dell'articolo",
+      "status": "Stato",
+      "date":  "Data",
+      "actions": "Azioni"
+    },
     "status": {
       "collected": "Ricevuto",
       "exchanged": "Scambiato",
@@ -88,7 +94,7 @@
         "label": "Casse giornaliere"
       },
       "upgrades": {
-        "label": "Potenziamenti della skin"
+        "label": "Upgrades"
       }
     },
     "wallet": {

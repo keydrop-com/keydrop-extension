@@ -30,6 +30,12 @@
       "upgrade": "Upgraden"
     },
     "checkRoll": "Rol controleren",
+    "header": {
+      "itemDetails":  "Artikel details",
+      "status": "Status",
+      "date":  "Datum",
+      "actions": "Acties"
+    },
     "status": {
       "collected": "Ontvangen",
       "exchanged": "Geruild",
@@ -88,7 +94,7 @@
         "label": "Dagelijkse cases"
       },
       "upgrades": {
-        "label": "Skin upgrades"
+        "label": "Upgrades"
       }
     },
     "wallet": {

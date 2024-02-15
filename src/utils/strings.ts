@@ -32,3 +32,11 @@ export const splitHashName = (
     ? [result[1].trim(), result[2].trim(), (result[3] || '').trim()]
     : [hashName, '', '']
 }
+
+export const getFormattedTime = (date: string): string => {
+  return date.split(' ')[0]
+}
+
+export const getFormattedDate = (date: string): string => {
+  return date.split(' ')[1]
+}

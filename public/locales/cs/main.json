@@ -25,11 +25,17 @@
   },
   "inventoryView": {
     "action": {
-      "collect": "Sbírat",
+      "collect": "Sebrat",
       "sell": "Prodej",
       "upgrade": "Upgradovat"
     },
     "checkRoll": "Kontrolní role",
+    "header": {
+      "itemDetails":  "Podrobnosti o položce",
+      "status": "Stav",
+      "date":  "Datum",
+      "actions": "Akce"
+    },
     "status": {
       "collected": "Přijato",
       "exchanged": "Nahrazeno",
@@ -79,7 +85,7 @@
         "label": "Bitvy o bedny"
       },
       "cases": {
-        "label": "Otevření beden"
+        "label": "Otevřené Bedny"
       },
       "contract": {
         "label": "Smlouvy"
@@ -88,7 +94,7 @@
         "label": "Denní bedny"
       },
       "upgrades": {
-        "label": "Upgradovaní skinu"
+        "label": "Upgrady"
       }
     },
     "wallet": {

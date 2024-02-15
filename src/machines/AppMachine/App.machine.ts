@@ -1,70 +1,21 @@
 import { assign } from '@xstate/immer'
 import { createMachine } from 'xstate'
 
-import {
-  INIT_APP_DATA,
-  INIT_COUNTER_ANIMATIONS,
-  INIT_USER_BALANCE,
-  INIT_USER_DATA,
-  INIT_USER_PROFILE,
-} from '@/constants/app'
-import { KEYDROP_URLS } from '@/constants/urls'
 import { changeLang } from '@/i18n'
+import { INIT_APP_CONTEXT } from '@/machines/AppMachine/App.constants'
+import {
+  AppMachineContext,
+  AppMachineEvent,
+  AppMachineServices,
+} from '@/machines/AppMachine/App.types'
 import CommonClient from '@/services/browser/CommonClient'
 import KeydropClient from '@/services/browser/KeydropClient'
 import SteamClient from '@/services/browser/SteamClient'
 import BalanceClient from '@/services/http/BalanceClient'
+import MirrorClient from '@/services/http/MirrorClient'
 import ProfileClient from '@/services/http/ProfileClient'
-import { BalanceResponse } from '@/types/API/http/balance'
-import { InitUserDataResponse, ProfilePageResponse } from '@/types/API/http/profile'
-import { ActiveView, AppData, CountersAnimations } from '@/types/app'
 
-export type AppMachineServices = {
-  getAppData: {
-    data: AppData
-  }
-  getUserProfile: {
-    data: ProfilePageResponse
-  }
-  getUserBalance: {
-    data: BalanceResponse
-  }
-  authUser: {
-    data: void
-  }
-  getInitUserData: {
-    data: InitUserDataResponse
-  }
-  userProfileErrorToast: {
-    data: void
-  }
-}
-
-export type AppMachineEvent =
-  | { type: 'ACTIVE_VIEW_CHANGE'; value: ActiveView }
-  | { type: 'LOGIN' }
-  | { type: 'REFETCH_BALANCE' }
-  | { type: 'HARD_USER_REFRESH' }
-
-export interface AppMachineContext {
-  appData: AppData
-  activeView: ActiveView
-  userProfile: ProfilePageResponse
-  initUserData: InitUserDataResponse
-  userBalance: BalanceResponse
-  countersAnimations: CountersAnimations
-  userBalanceValue: null | number
-}
-
-export const INIT_APP_CONTEXT: AppMachineContext = {
-  userProfile: INIT_USER_PROFILE,
-  initUserData: INIT_USER_DATA,
-  userBalance: INIT_USER_BALANCE,
-  appData: INIT_APP_DATA,
-  countersAnimations: INIT_COUNTER_ANIMATIONS,
-  activeView: ActiveView.MAIN,
-  userBalanceValue: null,
-}
+const APP_BASE_URL = process.env.REACT_APP_BASE_URL
 
 export const AppMachine = createMachine(
   {
@@ -80,8 +31,20 @@ export const AppMachine = createMachine(
     initial: 'gettingData',
     states: {
       gettingData: {
-        initial: 'gettingAppData',
+        initial: 'gettingMirrorUrl',
         states: {
+          gettingMirrorUrl: {
+            invoke: {
+              src: 'getMirrorUrl',
+              onDone: {
+                actions: 'assignMirrorUrl',
+                target: 'gettingAppData',
+              },
+              onError: {
+                target: '#AppMachine.loggedOut',
+              },
+            },
+          },
           gettingAppData: {
             invoke: {
               src: 'getAppData',
@@ -180,6 +143,9 @@ export const AppMachine = createMachine(
   },
   {
     actions: {
+      assignMirrorUrl: assign((ctx, e) => {
+        ctx.mirrorUrl = e.data
+      }),
       assignBalanceValueFromInitData: assign((ctx, e) => {
         ctx.userBalanceValue = e.data.balance
       }),
@@ -211,12 +177,16 @@ export const AppMachine = createMachine(
       },
     },
     services: {
-      authUser: async () => {
-        await KeydropClient.removeSessionCookie()
-        await CommonClient.openInNewTab(KEYDROP_URLS.main)
+      getMirrorUrl: async () => {
+        if (APP_BASE_URL) return APP_BASE_URL
+        return await MirrorClient.getMirrorUrl()
       },
-      getAppData: async () => {
-        const sessionId = await KeydropClient.getSessionId()
+      authUser: async (ctx) => {
+        await KeydropClient.removeSessionCookie(ctx.mirrorUrl)
+        await CommonClient.openInNewTab(ctx.mirrorUrl)
+      },
+      getAppData: async (ctx) => {
+        const sessionId = await KeydropClient.getSessionId(ctx.mirrorUrl)
         const steamId = await SteamClient.getSteamId()
 
         if (!sessionId || !steamId) {
@@ -225,14 +195,14 @@ export const AppMachine = createMachine(
           return { sessionId, steamId }
         }
       },
-      getUserProfile: async ({ appData: { steamId } }) => {
-        return await ProfileClient.getUserProfile({ steamId })
+      getUserProfile: async ({ mirrorUrl, appData: { steamId } }) => {
+        return await ProfileClient.getUserProfile(mirrorUrl, { steamId })
       },
-      getUserBalance: async () => {
-        return await BalanceClient.getUserBalance({ skinsValue: false })
+      getUserBalance: async (ctx) => {
+        return await BalanceClient.getUserBalance(ctx.mirrorUrl, { skinsValue: false })
       },
-      getInitUserData: async () => {
-        return await ProfileClient.getInitUserData()
+      getInitUserData: async (ctx) => {
+        return await ProfileClient.getInitUserData(ctx.mirrorUrl)
       },
     },
   },
