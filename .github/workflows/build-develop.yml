@@ -113,3 +113,14 @@ jobs:
         with:
           name: kd_ext_prod_gecko_v${{ steps.get-version.outputs.version }}
           path: build
+  source-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get source code
+        uses: actions/upload-artifact@v3
+        with:
+          name: kd_ext_source_v${{ steps.get-version.outputs.version }}
+          path: |
+            .
+            !.github
+            !.husky
