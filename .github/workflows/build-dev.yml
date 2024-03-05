@@ -25,10 +25,15 @@ jobs:
       env:
         REACT_APP_SESSION_COOKIE_NAME: ${{ secrets.REACT_APP_SESSION_COOKIE_NAME }}
         REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
+    - name: Get version from package.json
+      id: get-version
+      uses: beaconbrigade/package-json-version@v0.3
+      with:
+        path: .
     - name: Archive production artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: chromium-dev-build
+        name: kd_ext_staging_chromium_${{ steps.get-version.outputs.version }}
         path: build
   gecko-dev:
     runs-on: ubuntu-latest
@@ -48,10 +53,15 @@ jobs:
         env:
           REACT_APP_SESSION_COOKIE_NAME: ${{ secrets.REACT_APP_SESSION_COOKIE_NAME }}
           REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
+      - name: Get version from package.json
+        id: get-version
+        uses: beaconbrigade/package-json-version@v0.3
+        with:
+          path: .
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: gecko-dev-build
+          name: kd_ext_staging_gecko_${{ steps.get-version.outputs.version }}
           path: build
   chromium-prod:
     runs-on: ubuntu-latest
@@ -68,10 +78,15 @@ jobs:
           cache-dependency-path: yarn.lock
       - run: yarn install --frozen-lockfile
       - run: yarn build:chromium:prod
+      - name: Get version from package.json
+        id: get-version
+        uses: beaconbrigade/package-json-version@v0.3
+        with:
+          path: .
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: chromium-prod-build
+          name: kd_ext_prod_chromium_${{ steps.get-version.outputs.version }}
           path: build
   gecko-prod:
     runs-on: ubuntu-latest
@@ -88,8 +103,13 @@ jobs:
           cache-dependency-path: yarn.lock
       - run: yarn install --frozen-lockfile
       - run: yarn build:gecko:prod
+      - name: Get version from package.json
+        id: get-version
+        uses: beaconbrigade/package-json-version@v0.3
+        with:
+          path: .
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: gecko-prod-build
+          name: kd_ext_prod_gecko_${{ steps.get-version.outputs.version }}
           path: build
