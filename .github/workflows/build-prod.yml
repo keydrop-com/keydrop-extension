@@ -1,4 +1,4 @@
-name: "[PROD] Build Extension"
+name: "[MAIN] Build Extension"
 
 on:
   push:
@@ -7,27 +7,32 @@ on:
     branches: ["main"]
 
 jobs:
-  chromium:
+  chromium-prod:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.x]
+        node-version: [ 20.x ]
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: "yarn"
-        cache-dependency-path: yarn.lock
-    - run: yarn install --frozen-lockfile
-    - run: yarn build:chromium:prod
-    - name: Archive production artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: chromium-prod-build
-        path: build
-  gecko:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+          cache-dependency-path: yarn.lock
+      - run: yarn install --frozen-lockfile
+      - run: yarn build:chromium:prod
+      - name: Get version from package.json
+        id: get-version
+        uses: beaconbrigade/package-json-version@v0.3
+        with:
+          path: .
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: kd_ext_prod_chromium_v${{ steps.get-version.outputs.version }}
+          path: build
+  gecko-prod:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -42,8 +47,13 @@ jobs:
           cache-dependency-path: yarn.lock
       - run: yarn install --frozen-lockfile
       - run: yarn build:gecko:prod
+      - name: Get version from package.json
+        id: get-version
+        uses: beaconbrigade/package-json-version@v0.3
+        with:
+          path: .
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: gecko-prod-build
+          name: kd_ext_prod_gecko_v${{ steps.get-version.outputs.version }}
           path: build
