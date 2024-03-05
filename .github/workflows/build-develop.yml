@@ -119,7 +119,7 @@ jobs:
           VERSION: "${{ steps.get-version.outputs.version }}"
         run: |
           VERSION=${{ env.VERSION }}
-          VERSION=${VERSION/.//_}
+          VERSION=${VERSION//.}
           echo VERSION=${VERSION} >> $GITHUB_ENV
       - name: Create zip
         run: git archive -o kd_ext_source_v${{ env.VERSION }}.zip develop
