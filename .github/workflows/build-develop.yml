@@ -121,5 +121,6 @@ jobs:
         with:
           name: kd_ext_source_v${{ steps.get-version.outputs.version }}
           path: |
-            cd ..
-            ls -la
+            .
+            !.github
+            !.husky
