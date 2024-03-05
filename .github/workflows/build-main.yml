@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: ["main"]
 
-env:
-  VERSION: "v_x_x_x"
-
 jobs:
   version:
     runs-on: ubuntu-latest
@@ -19,8 +16,8 @@ jobs:
         uses: beaconbrigade/package-json-version@v0.3
         with:
           path: .
-      - run: echo "VERSION=${{ steps.get-version.outputs.version }}" >> $GITHUB_ENV
-      - run: echo "VERSION=${VERSION/.//_}" >> $GITHUB_ENV
+      - run: echo "VERSION=${{ steps.get-version.outputs.version }}" >> "$GITHUB_ENV"
+      - run: echo "VERSION=${VERSION/.//_}" >> "$GITHUB_ENV"
 
   chromium-prod:
     runs-on: ubuntu-latest
