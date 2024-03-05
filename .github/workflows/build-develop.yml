@@ -19,10 +19,7 @@ jobs:
         uses: beaconbrigade/package-json-version@v0.3
         with:
           path: .
-      - run: |
-          VERSION=${{ env.VERSION }}
-          VERSION=${VERSION//.}
-          echo VERSION=${VERSION} >> $GITHUB_ENV
+      - run: echo "VERSION=${VERSION/.//_}" >> $GITHUB_ENV
 
   chromium-dev:
     runs-on: ubuntu-latest
