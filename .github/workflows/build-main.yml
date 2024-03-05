@@ -16,7 +16,7 @@ jobs:
         uses: beaconbrigade/package-json-version@v0.3
         with:
           path: .
-      - run: echo ${ ${{ steps.get-version.outputs.version }}/.//_ }
+      - run: echo ${{ steps.get-version.outputs.version }}/.//_
 
   chromium-prod:
     runs-on: ubuntu-latest
