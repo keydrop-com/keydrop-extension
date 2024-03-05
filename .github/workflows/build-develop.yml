@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: ["develop"]
 
-env:
-  VERSION: "v_x_x_x"
-
 jobs:
   version:
     runs-on: ubuntu-latest
