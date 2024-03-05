@@ -9,6 +9,8 @@ on:
 jobs:
   version:
     runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.ref }}
     steps:
       - uses: actions/checkout@v4
       - name: Get version from package.json
@@ -22,6 +24,8 @@ jobs:
   chromium-dev:
     runs-on: ubuntu-latest
     needs: version
+    environment:
+      name: ${{ github.ref }}
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js 20.x
@@ -36,10 +40,7 @@ jobs:
           REACT_APP_SESSION_COOKIE_NAME: ${{ secrets.REACT_APP_SESSION_COOKIE_NAME }}
           REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
       - name: Archive production artifacts
-        if: steps.build.outcome == 'success'
         uses: actions/upload-artifact@v4
-        env:
-          VERSION: ${{ env.VERSION }}
         with:
           name: kd_ext_staging_chromium_${{ env.VERSION }}
           path: build
@@ -47,6 +48,8 @@ jobs:
   chromium-prod:
     runs-on: ubuntu-latest
     needs: version
+    environment:
+      name: ${{ github.ref }}
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js 20.x
@@ -59,8 +62,6 @@ jobs:
       - run: yarn build:chromium:prod
       - name: Archive production artifacts
         uses: actions/upload-artifact@v4
-        env:
-          VERSION: ${{ env.VERSION }}
         with:
           name: kd_ext_prod_chromium_${{ env.VERSION }}
           path: build
@@ -68,6 +69,8 @@ jobs:
   gecko-dev:
     runs-on: ubuntu-latest
     needs: version
+    environment:
+      name: ${{ github.ref }}
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js 20.x
@@ -81,11 +84,8 @@ jobs:
         env:
           REACT_APP_SESSION_COOKIE_NAME: ${{ secrets.REACT_APP_SESSION_COOKIE_NAME }}
           REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
-          VERSION: ${{ env.VERSION }}
       - name: Archive production artifacts
         uses: actions/upload-artifact@v4
-        env:
-          VERSION: ${{ env.VERSION }}
         with:
           name: kd_ext_staging_gecko_${{ env.VERSION }}
           path: build
@@ -93,6 +93,8 @@ jobs:
   gecko-prod:
     runs-on: ubuntu-latest
     needs: version
+    environment:
+      name: ${{ github.ref }}
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js 20.x
@@ -105,8 +107,6 @@ jobs:
       - run: yarn build:gecko:prod
       - name: Archive production artifacts
         uses: actions/upload-artifact@v4
-        env:
-          VERSION: ${{ env.VERSION }}
         with:
           name: kd_ext_prod_gecko_${{ env.VERSION }}
           path: build
@@ -114,16 +114,14 @@ jobs:
   source-code:
     runs-on: ubuntu-latest
     needs: version
+    environment:
+      name: ${{ github.ref }}
     steps:
       - uses: actions/checkout@v4
       - name: Create zip
         run: git archive -o kd_ext_source_${{ env.VERSION }}.zip develop
-        env:
-          VERSION: ${{ env.VERSION }}
       - name: Upload zip
         uses: actions/upload-artifact@v4
-        env:
-          VERSION: ${{ env.VERSION }}
         with:
           name: kd_ext_source_${{ env.VERSION }}
           path: kd_ext_source_${{ env.VERSION }}.zip
