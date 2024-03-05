@@ -19,7 +19,7 @@ jobs:
         uses: beaconbrigade/package-json-version@v0.3
         with:
           path: .
-      - run: echo "VERSION=${VERSION/.//_}" >> $GITHUB_ENV
+      - run: echo "VERSION=${steps.get-version.outputs.version/.//_}" >> $GITHUB_ENV
 
   chromium-dev:
     runs-on: ubuntu-latest
@@ -43,7 +43,7 @@ jobs:
         if: steps.build.outcome == 'success'
         uses: actions/upload-artifact@v3
         with:
-          name: kd_ext_staging_chromium_v${{ env.VERSION }}
+          name: kd_ext_staging_chromium_${{ env.VERSION }}
           path: build
 
   chromium-prod:
@@ -64,7 +64,7 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: kd_ext_prod_chromium_v${{ env.VERSION }}
+          name: kd_ext_prod_chromium_${{ env.VERSION }}
           path: build
 
   gecko-dev:
@@ -88,7 +88,7 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: kd_ext_staging_gecko_v${{ env.VERSION }}
+          name: kd_ext_staging_gecko_${{ env.VERSION }}
           path: build
 
   gecko-prod:
@@ -109,7 +109,7 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: kd_ext_prod_gecko_v${{ env.VERSION }}
+          name: kd_ext_prod_gecko_${{ env.VERSION }}
           path: build
 
   source-code:
@@ -120,9 +120,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Create zip
-        run: git archive -o kd_ext_source_v${{ env.VERSION }}.zip develop
+        run: git archive -o kd_ext_source_${{ env.VERSION }}.zip develop
       - name: Upload zip
         uses: actions/upload-artifact@v3
         with:
-          name: kd_ext_source_v${{ env.VERSION }}
-          path: kd_ext_source_v${{ env.VERSION }}.zip
+          name: kd_ext_source_${{ env.VERSION }}
+          path: kd_ext_source_${{ env.VERSION }}.zip
