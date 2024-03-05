@@ -113,19 +113,3 @@ jobs:
         with:
           name: kd_ext_prod_gecko_v${{ steps.get-version.outputs.version }}
           path: build
-  source-code:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Zip Folder
-        run: |
-          cd ../
-          zip -r ${{ github.event.repository.name }}.zip ${{ github.event.repository.name }} -x ".git/*" ".github/*" ".husky/*"
-      - name: Upload zip
-        uses: actions/upload-artifact@v3
-        with:
-          name: kd_ext_source_v${{ steps.get-version.outputs.version }}
-          path: ${{ github.event.repository.name }}.zip
-      - name: Remove zip folder
-        run: |
-          cd ../
-          rm -rf ${{ github.event.repository.name }}.zip
