@@ -3,6 +3,9 @@ import { BalanceResponse } from '@/types/API/http/balance'
 import { InitUserDataResponse, ProfilePageResponse } from '@/types/API/http/profile'
 import { ActiveView, AppData, CountersAnimations } from '@/types/app'
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+export const APP_VERSION = require('../../package.json').version
+
 export const DEFAULT_APP_MOTION = {
   ...DEFAULT_MOTION,
   className: 'h-full w-full',
@@ -85,5 +88,3 @@ export const INIT_COUNTER_ANIMATIONS: CountersAnimations = {
   [ActiveView.NOTIFICATIONS]: true,
   [ActiveView.SETTINGS]: true,
 }
-
-export const APP_VERSION = '1.0.3'
