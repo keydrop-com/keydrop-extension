@@ -27,7 +27,7 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: kd_ext_v${{ steps.get-version.outputs.version }}_prod_chromium
+          name: kd_ext_prod_chromium_v${{ steps.get-version.outputs.version }}
           path: build
 
   gecko-prod:
@@ -50,5 +50,5 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: kd_ext_v${{ steps.get-version.outputs.version }}_prod_gecko
+          name: kd_ext_prod_gecko_v${{ steps.get-version.outputs.version }}
           path: build
