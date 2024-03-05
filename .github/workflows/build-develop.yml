@@ -117,11 +117,14 @@ jobs:
       - name: Normalize version string
         env:
           VERSION: "${{ steps.get-version.outputs.version }}"
-        run: echo "VERSION=${VERSION/\//-}" >> $GITHUB_ENV
+        run: |
+          VERSION=${{ env.VERSION }}
+          VERSION=${VERSION/\//_}
+          echo VERSION=${VERSION} >> $GITHUB_ENV
       - name: Create zip
-        run: git archive -o kd_ext_source_v${{ env.GITHUB_ENV }}.zip develop
+        run: git archive -o kd_ext_source_v${{ env.VERSION }}.zip develop
       - name: Upload zip
         uses: actions/upload-artifact@v4
         with:
-          name: kd_ext_source_v${{ env.GITHUB_ENV }}
-          path: kd_ext_source_v${{ env.GITHUB_ENV }}.zip
+          name: kd_ext_source_v${{ env.VERSION }}
+          path: kd_ext_source_v${{ env.VERSION }}.zip
