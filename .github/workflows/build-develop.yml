@@ -13,28 +13,28 @@ jobs:
       matrix:
         node-version: [20.x]
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: "yarn"
-        cache-dependency-path: yarn.lock
-    - run: yarn install --frozen-lockfile
-    - run: yarn build:chromium
-      env:
-        REACT_APP_SESSION_COOKIE_NAME: ${{ secrets.REACT_APP_SESSION_COOKIE_NAME }}
-        REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
-    - name: Get version from package.json
-      id: get-version
-      uses: beaconbrigade/package-json-version@v0.3
-      with:
-        path: .
-    - name: Archive production artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: kd_ext_staging_chromium_v${{ steps.get-version.outputs.version }}
-        path: build
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+          cache-dependency-path: yarn.lock
+      - run: yarn install --frozen-lockfile
+      - run: yarn build:chromium
+        env:
+          REACT_APP_SESSION_COOKIE_NAME: ${{ secrets.REACT_APP_SESSION_COOKIE_NAME }}
+          REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
+      - name: Get version from package.json
+        id: get-version
+        uses: beaconbrigade/package-json-version@v0.3
+        with:
+          path: .
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: kd_ext_staging_chromium_v${{ steps.get-version.outputs.version }}
+          path: build
   chromium-prod:
     runs-on: ubuntu-latest
     strategy:
@@ -121,6 +121,6 @@ jobs:
         with:
           name: kd_ext_source_v${{ steps.get-version.outputs.version }}
           path: |
-            .
+            ${{ github.workspace }}/*
             !.github
             !.husky
