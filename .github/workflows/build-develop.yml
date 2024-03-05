@@ -10,7 +10,7 @@ jobs:
   version:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Get version from package.json
         id: get-version
         uses: beaconbrigade/package-json-version@v0.3
@@ -23,9 +23,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: version
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js 20.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: "20.x"
           cache: "yarn"
@@ -37,7 +37,9 @@ jobs:
           REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
       - name: Archive production artifacts
         if: steps.build.outcome == 'success'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
+        env:
+          VERSION: ${{ env.VERSION }}
         with:
           name: kd_ext_staging_chromium_${{ env.VERSION }}
           path: build
@@ -46,9 +48,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: version
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js 20.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: "20.x"
           cache: "yarn"
@@ -56,7 +58,9 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn build:chromium:prod
       - name: Archive production artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
+        env:
+          VERSION: ${{ env.VERSION }}
         with:
           name: kd_ext_prod_chromium_${{ env.VERSION }}
           path: build
@@ -65,9 +69,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: version
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js 20.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: "20.x"
           cache: "yarn"
@@ -77,8 +81,11 @@ jobs:
         env:
           REACT_APP_SESSION_COOKIE_NAME: ${{ secrets.REACT_APP_SESSION_COOKIE_NAME }}
           REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
+          VERSION: ${{ env.VERSION }}
       - name: Archive production artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
+        env:
+          VERSION: ${{ env.VERSION }}
         with:
           name: kd_ext_staging_gecko_${{ env.VERSION }}
           path: build
@@ -87,9 +94,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: version
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js 20.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: "20.x"
           cache: "yarn"
@@ -97,7 +104,9 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn build:gecko:prod
       - name: Archive production artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
+        env:
+          VERSION: ${{ env.VERSION }}
         with:
           name: kd_ext_prod_gecko_${{ env.VERSION }}
           path: build
@@ -106,11 +115,15 @@ jobs:
     runs-on: ubuntu-latest
     needs: version
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Create zip
         run: git archive -o kd_ext_source_${{ env.VERSION }}.zip develop
+        env:
+          VERSION: ${{ env.VERSION }}
       - name: Upload zip
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
+        env:
+          VERSION: ${{ env.VERSION }}
         with:
           name: kd_ext_source_${{ env.VERSION }}
           path: kd_ext_source_${{ env.VERSION }}.zip
