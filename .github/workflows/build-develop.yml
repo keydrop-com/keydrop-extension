@@ -113,3 +113,18 @@ jobs:
         with:
           name: kd_ext_prod_gecko_v${{ steps.get-version.outputs.version }}
           path: build
+  source-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create zip
+        run: git archive -o output.zip develop
+      - name: Get version from package.json
+        id: get-version
+        uses: beaconbrigade/package-json-version@v0.3
+        with:
+          path: .
+      - name: Upload zip
+        uses: actions/upload-artifact@v3
+        with:
+          name: kd_ext_source_v${{ steps.get-version.outputs.version }}
+          path: output.zip
