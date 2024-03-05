@@ -115,12 +115,7 @@ jobs:
         with:
           path: .
       - name: Normalize version string
-        env:
-          VERSION: "${{ steps.get-version.outputs.version }}"
-        run: |
-          VERSION=${{ env.VERSION }}
-          VERSION=${VERSION/\//_}
-          echo VERSION=${VERSION} >> $GITHUB_ENV
+        run: echo "VERSION=${steps.get-version.outputs.version/.//_}" >> $GITHUB_ENV
       - name: Create zip
         run: git archive -o kd_ext_source_v${{ env.VERSION }}.zip develop
       - name: Upload zip
