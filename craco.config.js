@@ -4,6 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin')
 const getClientEnvironment = require('react-scripts/config/env')
 const TerserPlugin = require('terser-webpack-plugin')
 const path = require('path')
+const { version: appVersion } = require('./package.json')
 
 /** @type {import('@craco/types').CracoConfig} */
 const config = {
@@ -57,6 +58,9 @@ const config = {
                   : '.chromium'
               }.${getClientEnvironment().raw.REACT_APP_ENVIRONMENT}.json`,
               to: 'manifest.json',
+              transform(content) {
+                return content.toString().replace('$APP_VERSION', appVersion)
+              },
             },
           ],
         }),

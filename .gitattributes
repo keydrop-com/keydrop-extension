@@ -1,0 +1,11 @@
+.gitattributes export-ignore
+.gitignore export-ignore
+.git export-ignore
+.husky export-ignore
+.github export-ignore
+.eslintcache export-ignore
+.DS_Store export-ignore
+.idea export-ignore
+/build export-ignore
+/coverage export-ignore
+/node_modules export-ignore

@@ -1,0 +1,158 @@
+name: "[DEVELOP] Build Extension"
+
+on:
+  push:
+    branches: ["develop"]
+  pull_request:
+    branches: ["develop"]
+
+jobs:
+  chromium-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: "yarn"
+          cache-dependency-path: yarn.lock
+      - name: Get version from package.json
+        id: get-version
+        uses: beaconbrigade/package-json-version@v0.3
+        with:
+          path: .
+      - name: Normalize version string
+        env:
+          VERSION: "${{ steps.get-version.outputs.version }}"
+        run: |
+          VERSION=${{ env.VERSION }}
+          VERSION=${VERSION//./_}
+          echo VERSION=${VERSION} >> $GITHUB_ENV
+      - run: yarn install --frozen-lockfile
+      - run: yarn build:chromium
+        env:
+          REACT_APP_SESSION_COOKIE_NAME: ${{ secrets.REACT_APP_SESSION_COOKIE_NAME }}
+          REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: kd_ext_staging_chromium_v${{ env.VERSION }}
+          path: build
+
+  chromium-prod:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: "yarn"
+          cache-dependency-path: yarn.lock
+      - name: Get version from package.json
+        id: get-version
+        uses: beaconbrigade/package-json-version@v0.3
+        with:
+          path: .
+      - name: Normalize version string
+        env:
+          VERSION: "${{ steps.get-version.outputs.version }}"
+        run: |
+          VERSION=${{ env.VERSION }}
+          VERSION=${VERSION//./_}
+          echo VERSION=${VERSION} >> $GITHUB_ENV
+      - run: yarn install --frozen-lockfile
+      - run: yarn build:chromium:prod
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: kd_ext_prod_chromium_v${{ env.VERSION }}
+          path: build
+
+  gecko-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: "yarn"
+          cache-dependency-path: yarn.lock
+      - name: Get version from package.json
+        id: get-version
+        uses: beaconbrigade/package-json-version@v0.3
+        with:
+          path: .
+      - name: Normalize version string
+        env:
+          VERSION: "${{ steps.get-version.outputs.version }}"
+        run: |
+          VERSION=${{ env.VERSION }}
+          VERSION=${VERSION//./_}
+          echo VERSION=${VERSION} >> $GITHUB_ENV
+      - run: yarn install --frozen-lockfile
+      - run: yarn build:gecko
+        env:
+          REACT_APP_SESSION_COOKIE_NAME: ${{ secrets.REACT_APP_SESSION_COOKIE_NAME }}
+          REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: kd_ext_staging_gecko_v${{ env.VERSION }}
+          path: build
+
+  gecko-prod:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: "yarn"
+          cache-dependency-path: yarn.lock
+      - name: Get version from package.json
+        id: get-version
+        uses: beaconbrigade/package-json-version@v0.3
+        with:
+          path: .
+      - name: Normalize version string
+        env:
+          VERSION: "${{ steps.get-version.outputs.version }}"
+        run: |
+          VERSION=${{ env.VERSION }}
+          VERSION=${VERSION//./_}
+          echo VERSION=${VERSION} >> $GITHUB_ENV
+      - run: yarn install --frozen-lockfile
+      - run: yarn build:gecko:prod
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: kd_ext_prod_gecko_v${{ env.VERSION }}
+          path: build
+
+  source-code:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get version from package.json
+        id: get-version
+        uses: beaconbrigade/package-json-version@v0.3
+        with:
+          path: .
+      - name: Normalize version string
+        env:
+          VERSION: "${{ steps.get-version.outputs.version }}"
+        run: |
+          VERSION=${{ env.VERSION }}
+          VERSION=${VERSION//./_}
+          echo VERSION=${VERSION} >> $GITHUB_ENV
+      - name: Create zip
+        run: git archive -o kd_ext_source_v${{ env.VERSION }}.zip develop
+      - name: Upload zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: kd_ext_source_v${{ env.VERSION }}
+          path: kd_ext_source_v${{ env.VERSION }}.zip
